@@ -36,7 +36,7 @@
     }
   </style>
 </head>
-<body class="bg-slate-50 text-slate-900 antialiased selection:bg-[#0072CE] selection:text-white">
+<body class="bg-slate-50 text-slate-900 antialiased selection:bg-[#0072CE] selection:text-white flex flex-col min-h-screen">
 
   <!-- TOP GLOBAL NAVIGATION BAR -->
   <header class="sticky top-0 z-40 w-full bg-white border-b border-slate-200" id="global-header">
@@ -54,8 +54,8 @@
         </div>
       </div>
 
-      <!-- 성도 모드 전용 1Depth 메뉴 (데스크톱 전용) -->
-      <nav id="member-gnb" class="hidden md:flex items-center space-x-8 h-full">
+      <!-- 1) 성도 모드 전용 1Depth 메뉴 -->
+      <nav id="member-gnb" class="hidden items-center space-x-8 h-full">
         <div class="nav-item h-full flex items-center" data-menu="church">
           <button class="text-base font-bold text-slate-700 hover:text-[#0072CE] h-full transition flex items-center">교회안내</button>
         </div>
@@ -76,6 +76,22 @@
         </div>
       </nav>
 
+      <!-- 2) 새가족 모드 전용 1Depth 메뉴 -->
+      <nav id="welcome-gnb" class="hidden items-center space-x-8 h-full">
+        <div class="nav-item-welcome h-full flex items-center" data-menu="welcome_intro">
+          <button class="text-base font-bold text-slate-700 hover:text-[#0072CE] h-full transition flex items-center">교회소개</button>
+        </div>
+        <div class="nav-item-welcome h-full flex items-center" data-menu="welcome_register">
+          <button class="text-base font-bold text-slate-700 hover:text-[#0072CE] h-full transition flex items-center">새가족등록</button>
+        </div>
+        <div class="nav-item-welcome h-full flex items-center" data-menu="welcome_worship">
+          <button class="text-base font-bold text-slate-700 hover:text-[#0072CE] h-full transition flex items-center">예배안내</button>
+        </div>
+        <div class="nav-item-welcome h-full flex items-center" data-menu="welcome_faq">
+          <button class="text-base font-bold text-slate-700 hover:text-[#0072CE] h-full transition flex items-center">FAQ</button>
+        </div>
+      </nav>
+
       <!-- 상단 우측: 상시 분기 스위처 + 햄버거 메뉴 -->
       <div class="flex items-center space-x-3 flex-shrink-0">
         <div class="inline-flex p-1 bg-slate-100 rounded-full border border-slate-200 text-xs font-semibold">
@@ -93,16 +109,16 @@
       </div>
     </div>
 
-    <!-- 월드비전 스타일 풀위드 메가 드롭다운 패널 (2Depth / 3Depth) -->
+    <!-- 풀위드 메가 드롭다운 패널 (2Depth / 3Depth) -->
     <div id="mega-dropdown" class="absolute top-16 left-0 w-full bg-white border-b border-slate-200 shadow-xl hidden z-30 transition-all duration-200">
       <div class="max-w-7xl mx-auto px-6 lg:px-8 py-8" id="mega-dropdown-content">
-        <!-- JS로 호버된 1Depth 메뉴의 2Depth & 3Depth 콘텐츠 동적 주입 -->
+        <!-- JS 동적 주입 -->
       </div>
     </div>
   </header>
 
   <!-- MAIN VIEWPORT CONTAINER -->
-  <main id="app-viewport">
+  <main id="app-viewport" class="flex-grow">
     
     <!-- VIEW 1: GATEWAY (기본 첫 화면) -->
     <section id="view-gateway" class="fade-enter min-h-[calc(100vh-4rem)] flex flex-col justify-between">
@@ -150,25 +166,43 @@
     </section>
 
     <!-- VIEW 2: WELCOME (새가족 페이지) -->
-    <section id="view-welcome" class="hidden fade-enter max-w-5xl mx-auto px-4 py-12">
+    <section id="view-welcome" class="hidden fade-enter max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
       <div class="mb-10 text-center">
         <span class="text-xs font-bold text-[#0072CE] uppercase tracking-widest">Plan Your Visit</span>
         <h2 class="text-3xl font-extrabold text-slate-900 mt-1">하남교회 새가족 안내 센터</h2>
       </div>
+      
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-        <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm border-t-2 border-t-[#0072CE]">
+        <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm border-t-4 border-t-[#0072CE]">
           <h3 class="font-bold text-slate-900 mb-2 flex items-center gap-2"><span class="material-symbols-outlined text-[#0072CE]">schedule</span> 예배 시간 안내</h3>
           <p class="text-sm text-slate-600 leading-relaxed">주일 1부: 09:00 / 주일 2부: 11:00<br>청년부: 13:30 (본당 3층)</p>
         </div>
-        <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm border-t-2 border-t-[#0072CE]">
+        <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm border-t-4 border-t-[#0072CE]">
           <h3 class="font-bold text-slate-900 mb-2 flex items-center gap-2"><span class="material-symbols-outlined text-[#0072CE]">directions_car</span> 주차 및 오시는 길</h3>
-          <p class="text-sm text-slate-600 leading-relaxed">교회 지하 전용 주차장 완비<br>(새가족 전용 주차 안내)</p>
+          <p class="text-sm text-slate-600 leading-relaxed">교회 지하 전용 주차장 완비<br>(새가족 전용 주차 안내 표지판 설치)</p>
         </div>
-        <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm border-t-2 border-t-[#F58220]">
+        <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm border-t-4 border-t-[#F58220]">
           <h3 class="font-bold text-slate-900 mb-2 flex items-center gap-2"><span class="material-symbols-outlined text-[#F58220]">how_to_reg</span> 새가족 온라인 신청</h3>
-          <p class="text-sm text-slate-600 leading-relaxed">사전 방문 예약 시 전담 안내위원이 등록 과정을 도와드립니다.</p>
+          <p class="text-sm text-slate-600 leading-relaxed">사전 방문 예약 시 전담 안내위원이 로비에서 따뜻하게 맞이해 드립니다.</p>
         </div>
       </div>
+
+      <div class="bg-white rounded-2xl border border-slate-200 p-8 mb-12">
+        <h3 class="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2">
+          <span class="material-symbols-outlined text-[#0072CE]">help</span> 처음 방문하시는 분들을 위한 FAQ
+        </h3>
+        <div class="space-y-4">
+          <div class="p-4 bg-slate-50 rounded-xl">
+            <p class="font-bold text-sm text-slate-800 mb-1">Q. 처음 갈 때 복장이나 준비물이 있나요?</p>
+            <p class="text-sm text-slate-600">A. 단정한 평상복 차림으로 오시면 되며, 별도의 준비물 없이 편안한 마음으로 방문해 주시면 됩니다.</p>
+          </div>
+          <div class="p-4 bg-slate-50 rounded-xl">
+            <p class="font-bold text-sm text-slate-800 mb-1">Q. 자녀들은 어느 예배실로 가야 하나요?</p>
+            <p class="text-sm text-slate-600">A. 영아부, 유치부, 초등부, 청소년부 등 각 연령별 교육관이 준비되어 있어 맞춤 예배를 드릴 수 있습니다.</p>
+          </div>
+        </div>
+      </div>
+
       <div class="text-center">
         <button onclick="switchView('gateway')" class="text-xs font-medium text-slate-400 underline hover:text-slate-600">홈화면으로 돌아가기</button>
       </div>
@@ -176,8 +210,6 @@
 
     <!-- VIEW 3: MEMBER (성도 전용 포털) -->
     <section id="view-member" class="hidden fade-enter max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-      
-      <!-- 성도 광장 헤더 & 퀵 액션 -->
       <div class="mb-8 flex flex-col md:flex-row md:items-center md:justify-between border-b pb-6 border-slate-200 gap-4">
         <div>
           <span class="text-xs font-bold text-[#88BE1E] uppercase tracking-widest">MEMBER HUB</span>
@@ -189,7 +221,6 @@
         </div>
       </div>
 
-      <!-- 성도 대시보드 카드 영역 -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
         <div class="bg-white p-6 rounded-2xl border border-slate-200 border-t-4 border-t-[#88BE1E] shadow-sm">
           <h3 class="font-bold text-slate-900 mb-4 flex items-center gap-2 text-lg"><span class="material-symbols-outlined text-[#88BE1E]">videocam</span> 주일 설교 영상</h3>
@@ -210,6 +241,60 @@
       </div>
     </section>
   </main>
+
+  <!-- WORLD VISION STYLE FOOTER -->
+  <footer class="bg-white border-t border-slate-200 text-slate-600 py-10 mt-auto">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 pb-8 border-b border-slate-100">
+        <!-- 이용약관 및 정책 링크 (사이트맵 클릭 시 openSitemap() 트리거 적용) -->
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-slate-700 font-medium">
+          <a href="#" class="hover:text-slate-900">자주하는 질문</a>
+          <span class="text-slate-300">|</span>
+          <a href="#" onclick="openSitemap(); return false;" class="hover:text-slate-900">사이트맵</a>
+          <span class="text-slate-300">|</span>
+          <a href="#" class="hover:text-slate-900">이용약관</a>
+          <span class="text-slate-300">|</span>
+          <a href="#" class="font-bold text-slate-900 hover:underline">개인정보처리방침</a>
+        </div>
+
+        <!-- 우측: 관련기관 드롭다운 박스 (Family Site) -->
+        <div class="relative w-full sm:w-64">
+          <label for="family-site-select" class="sr-only">관련기관 선택</label>
+          <select id="family-site-select" onchange="handleFamilySite(this.value)" class="w-full appearance-none bg-white border border-slate-300 rounded-lg px-4 py-2.5 text-sm font-semibold text-slate-700 hover:border-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0072CE] focus:border-transparent transition cursor-pointer">
+            <option value="" disabled selected>관련기관 (Family Site)</option>
+            <option value="sunnyhill_school">써니힐국제학교</option>
+            <option value="sunnyhill_kinder">써니힐유치원</option>
+            <option value="hanam_daycare">하남장애주간보호시설</option>
+            <option value="hanam_elem_care">하남시립초등어린이집</option>
+            <option value="neutinamu">느티나무마을</option>
+          </select>
+          <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-slate-500">
+            <span class="material-symbols-outlined text-20">expand_less</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 하남교회 상세 메타데이터 및 저작권 정보 -->
+      <div class="pt-8 flex flex-col lg:flex-row items-start justify-between gap-6 text-xs text-slate-500 leading-relaxed">
+        <div class="space-y-1.5 max-w-4xl">
+          <p class="font-bold text-slate-800 text-sm mb-2">대한예수교장로회 하남교회 (HANAM PRESBYTERIAN CHURCH)</p>
+          <p>주소 : 12936 경기도 하남시 덕풍동로 45 (경기도 하남시 덕풍3동 827번지)</p>
+          <p>대표전화 : 031-792-5004 | 팩스번호 : 031-794-7566 | 교회수양관 : 031-771-8121</p>
+          <p class="pt-1 text-slate-600">
+            <strong class="text-slate-700">담임목사님 방송안내</strong> : CBSTV | sk Btv 300번, skylife 182번, 올레 KT 238번, LG U+ 270번 (토) 오후6시
+          </p>
+          <p class="pt-2 text-[11px] text-slate-400">COPYRIGHT © HANAM PRESBYTERIAN CHURCH. ALL RIGHTS RESERVED.</p>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- FLOATING SCROLL TO TOP BUTTON (화면 우하단 고정, 스크롤 발생 시 활성화) -->
+  <button id="btn-scroll-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" aria-label="맨 위로 이동" class="fixed bottom-8 right-8 z-40 p-3.5 rounded-full bg-white border border-slate-200 text-slate-700 shadow-xl hover:bg-slate-50 hover:text-slate-900 transition-all duration-300 opacity-0 pointer-events-none translate-y-4 flex items-center justify-center">
+    <span class="material-symbols-outlined text-24 block">arrow_upward</span>
+  </button>
 
   <!-- FULLSCREEN OVERLAY SITEMAP -->
   <div id="sitemap-modal" class="fixed inset-0 z-50 bg-[#0B2038] text-white hidden opacity-0 transition-opacity duration-200 overflow-y-auto">
@@ -261,17 +346,6 @@
               <li><a href="#" class="hover:text-white hover:underline transition">교회를 섬기는 이들</a></li>
               <li><a href="#" class="hover:text-white hover:underline transition">하남교회 발자취</a></li>
               <li><a href="#" class="hover:text-white hover:underline transition">교회 둘러보기</a></li>
-            </ul>
-          </div>
-
-          <div class="mb-5">
-            <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">관련기관</p>
-            <ul class="space-y-2.5 text-base text-slate-200 font-medium">
-              <li><a href="#" class="hover:text-white hover:underline transition">써니힐국제학교</a></li>
-              <li><a href="#" class="hover:text-white hover:underline transition">써니힐유치원</a></li>
-              <li><a href="#" class="hover:text-white hover:underline transition">하남장애주간보호시설</a></li>
-              <li><a href="#" class="hover:text-white hover:underline transition">하남시립초등어린이집</a></li>
-              <li><a href="#" class="hover:text-white hover:underline transition">느티나무마을</a></li>
             </ul>
           </div>
 
@@ -411,7 +485,7 @@
 
       </div>
 
-      <!-- 퀵메뉴 (기본 디자인 통일 및 호버 시 오렌지 색상 전환 적용) -->
+      <!-- 퀵메뉴 -->
       <div class="border-t border-slate-700 pt-8 pb-4">
         <h5 class="text-[#F58220] font-extrabold text-lg sm:text-xl tracking-wider uppercase mb-6">퀵메뉴</h5>
         <div class="flex flex-wrap gap-4">
@@ -435,21 +509,22 @@
 
       <!-- Sitemap Footer -->
       <div class="border-t border-slate-700 pt-8 flex flex-col sm:flex-row items-center justify-between text-sm text-slate-400 gap-4">
-        <p>하남교회 (HANAM PRESBYTERIAN CHURCH) | 경기도 하남시</p>
+        <p>하남교회 (HANAM PRESBYTERIAN CHURCH) | 경기도 하남시 덕풍동로 45 (경기도 하남시 덕풍3동 827번지)</p>
         <div class="flex space-x-6 text-slate-300 font-medium">
-          <a href="#" onclick="routeFromSitemap('welcome')" class="hover:text-[#0072CE]">새가족 센터</a>
+          <a href="#" onclick="routeFromSitemap('welcome')" class="hover:text-[#0072CE]">새가족</a>
           <span>|</span>
-          <a href="#" onclick="routeFromSitemap('member')" class="hover:text-[#88BE1E]">성도 광장</a>
+          <a href="#" onclick="routeFromSitemap('member')" class="hover:text-[#88BE1E]">성도</a>
         </div>
       </div>
 
     </div>
   </div>
 
-  <!-- ROUTING & INTERACTIVE MEGA MENU SCRIPT -->
+  <!-- ROUTING & INTERACTIVE SCRIPT -->
   <script>
-    // 메뉴 데이터베이스 정의 (1Depth -> 2Depth -> 3Depth)
+    // 메뉴 데이터베이스 정의 (성도용 + 새가족용)
     const MENU_DATA = {
+      // --- 성도용 메뉴 ---
       church: {
         title: '교회안내',
         theme: '#0072CE',
@@ -457,7 +532,6 @@
           { title: '환영합니다', links: [{ label: '새가족안내', path: 'welcome' }, { label: '교육소개' }] },
           { title: '예배안내', links: [{ label: '예배시간/안내' }] },
           { title: '하남교회 소개', links: [{ label: '담임목사님 인사말' }, { label: '목회서신' }, { label: '추천도서' }, { label: '신앙상담실' }, { label: '교회를 섬기는 이들' }, { label: '하남교회 발자취' }, { label: '교회 둘러보기' }] },
-          { title: '관련기관', links: [{ label: '써니힐국제학교' }, { label: '써니힐유치원' }, { label: '하남장애주간보호시설' }, { label: '하남시립초등어린이집' }, { label: '느티나무마을' }] },
           { title: '오시는 길', links: [{ label: '지도 안내' }, { label: '셔틀버스 안내' }] }
         ]
       },
@@ -503,10 +577,43 @@
           { title: '캠핑치치', links: [{ label: '소개' }, { label: '신청하기' }, { label: '갤러리' }, { label: 'Review' }] },
           { title: '교육연구소', links: [{ label: '오르가가정예배지' }] }
         ]
+      },
+      // --- 새가족용 메뉴 ---
+      welcome_intro: {
+        title: '교회소개',
+        theme: '#0072CE',
+        sections: [
+          { title: '하남교회는', links: [{ label: '담임목사 인사말' }, { label: '비전 및 핵심가치' }, { label: '교회 둘러보기' }] },
+          { title: '오시는 길', links: [{ label: '대중교통 / 주차 안내' }, { label: '셔틀버스 노선표' }] }
+        ]
+      },
+      welcome_register: {
+        title: '새가족등록',
+        theme: '#0072CE',
+        sections: [
+          { title: '등록안내', links: [{ label: '온라인 새가족 신청' }, { label: '현장 방문 예약' }] },
+          { title: '교육과정', links: [{ label: '새가족 4주 온보딩' }, { label: '바나바 사역 매칭' }] }
+        ]
+      },
+      welcome_worship: {
+        title: '예배안내',
+        theme: '#0072CE',
+        sections: [
+          { title: '예배 시간', links: [{ label: '주일 대예배 (1·2부)' }, { label: '청년부 예배' }, { label: '주중 집회 안내' }] },
+          { title: '다음세대 예배', links: [{ label: '영아/유치부' }, { label: '유소년부' }, { label: '청소년부' }] }
+        ]
+      },
+      welcome_faq: {
+        title: '자주 묻는 질문',
+        theme: '#0072CE',
+        sections: [
+          { title: '첫 방문 가이드', links: [{ label: '복장 및 준비물 FAQ' }, { label: '자녀 동반 예배 안내' }, { label: '주차권 발급 안내' }] },
+          { title: '문의 및 상담', links: [{ label: '1:1 신앙상담실' }, { label: '새가족팀 카카오톡 문의' }] }
+        ]
       }
     };
 
-    // 뷰 전환 제어
+    // 뷰 전환 제어 (성도 GNB vs 새가족 GNB 동적 교체)
     function switchView(viewName) {
       document.getElementById('view-gateway').classList.add('hidden');
       document.getElementById('view-welcome').classList.add('hidden');
@@ -515,14 +622,24 @@
       const targetView = document.getElementById(`view-${viewName}`);
       if (targetView) targetView.classList.remove('hidden');
 
-      // 1Depth 네비게이션은 오직 성도 모드('member')에서만 노출
       const memberGnb = document.getElementById('member-gnb');
+      const welcomeGnb = document.getElementById('welcome-gnb');
+
       if (viewName === 'member') {
         memberGnb.classList.remove('hidden');
         memberGnb.classList.add('md:flex');
+        welcomeGnb.classList.add('hidden');
+        welcomeGnb.classList.remove('md:flex');
+      } else if (viewName === 'welcome') {
+        welcomeGnb.classList.remove('hidden');
+        welcomeGnb.classList.add('md:flex');
+        memberGnb.classList.add('hidden');
+        memberGnb.classList.remove('md:flex');
       } else {
         memberGnb.classList.add('hidden');
         memberGnb.classList.remove('md:flex');
+        welcomeGnb.classList.add('hidden');
+        welcomeGnb.classList.remove('md:flex');
         hideMegaDropdown();
       }
 
@@ -548,7 +665,7 @@
       switchView(path);
     }
 
-    // 메가 드롭다운 UI 렌더링 및 이벤트 바인딩
+    // 메가 드롭다운 UI 렌더링
     const megaDropdown = document.getElementById('mega-dropdown');
     const megaDropdownContent = document.getElementById('mega-dropdown-content');
     const globalHeader = document.getElementById('global-header');
@@ -558,10 +675,11 @@
       const data = MENU_DATA[key];
       if (!data) return;
 
-      const colCount = data.sections.length > 4 ? 5 : data.sections.length;
+      const colCount = data.sections.length;
       let gridColsClass = `grid-cols-1 md:grid-cols-${colCount}`;
-      if (data.sections.length === 2) gridColsClass = 'grid-cols-1 md:grid-cols-2 max-w-2xl';
-      if (data.sections.length === 3) gridColsClass = 'grid-cols-1 md:grid-cols-3 max-w-4xl';
+      if (colCount === 2) gridColsClass = 'grid-cols-1 md:grid-cols-2 max-w-2xl';
+      if (colCount === 3) gridColsClass = 'grid-cols-1 md:grid-cols-3 max-w-4xl';
+      if (colCount === 4) gridColsClass = 'grid-cols-1 md:grid-cols-4 max-w-6xl';
 
       let html = `
         <div class="border-b border-slate-100 pb-3 mb-6 flex items-center justify-between">
@@ -608,7 +726,8 @@
       }, 150);
     }
 
-    document.querySelectorAll('.nav-item').forEach(item => {
+    // 마우스 호버 이벤트 바인딩 (성도 및 새가족 GNB 일괄 적용)
+    document.querySelectorAll('.nav-item, .nav-item-welcome').forEach(item => {
       item.addEventListener('mouseenter', () => {
         const menuKey = item.getAttribute('data-menu');
         showMegaDropdown(menuKey);
@@ -618,6 +737,25 @@
     globalHeader.addEventListener('mouseleave', hideMegaDropdown);
     megaDropdown.addEventListener('mouseenter', () => clearTimeout(dropdownTimer));
     megaDropdown.addEventListener('mouseleave', hideMegaDropdown);
+
+    // 패밀리 사이트 선택 핸들러
+    function handleFamilySite(val) {
+      if (!val) return;
+      alert(`선택된 관련기관(${val}) 페이지로 이동합니다.`);
+      document.getElementById('family-site-select').selectedIndex = 0;
+    }
+
+    // 플로팅 최상단 스크롤 버튼 리스너
+    const scrollTopBtn = document.getElementById('btn-scroll-top');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 200) {
+        scrollTopBtn.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-4');
+        scrollTopBtn.classList.add('opacity-100', 'translate-y-0');
+      } else {
+        scrollTopBtn.classList.add('opacity-0', 'pointer-events-none', 'translate-y-4');
+        scrollTopBtn.classList.remove('opacity-100', 'translate-y-0');
+      }
+    });
 
     // 전체화면 사이트맵 모달 제어
     function openSitemap() {

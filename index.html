@@ -195,64 +195,197 @@
         </button>
       </div>
 
-      <!-- Sitemap Multi-Column Grid (폰트 확대 적용) -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10 py-12">
-        
-        <!-- Col 1 -->
+      <!-- Sitemap Multi-Column Grid (7개 카테고리, 전체 항목 반영) -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-12 py-12">
+
+        <!-- Col 1: 교회안내 -->
         <div>
-          <h4 class="text-[#0072CE] font-extrabold text-lg sm:text-xl tracking-wider uppercase mb-6 border-b-2 border-[#0072CE] pb-3">교회소개</h4>
-          <ul class="space-y-4 text-base sm:text-lg text-slate-200 font-medium">
-            <li><a href="#" class="hover:text-white hover:underline transition">담임목사 인사말</a></li>
-            <li><a href="#" class="hover:text-white hover:underline transition">비전 및 사명</a></li>
-            <li><a href="#" class="hover:text-white hover:underline transition">섬기는 사람들</a></li>
-            <li><a href="#" class="hover:text-white hover:underline transition">예배안내 / 오시는 길</a></li>
-          </ul>
+          <h4 class="text-[#0072CE] font-extrabold text-lg sm:text-xl tracking-wider uppercase mb-6 border-b-2 border-[#0072CE] pb-3">교회안내</h4>
+
+          <div class="mb-5">
+            <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">환영합니다</p>
+            <ul class="space-y-2.5 text-base text-slate-200 font-medium">
+              <li><a href="#" onclick="routeFromSitemap('welcome')" class="hover:text-white hover:underline transition">새가족안내</a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">교육소개</a></li>
+            </ul>
+          </div>
+
+          <div class="mb-5">
+            <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">예배안내</p>
+            <ul class="space-y-2.5 text-base text-slate-200 font-medium">
+              <li><a href="#" class="hover:text-white hover:underline transition">예배안내</a></li>
+            </ul>
+          </div>
+
+          <div class="mb-5">
+            <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">하남교회 소개</p>
+            <ul class="space-y-2.5 text-base text-slate-200 font-medium">
+              <li><a href="#" class="hover:text-white hover:underline transition">담임목사님 인사말</a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">목회서신</a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">추천도서</a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">신앙상담실</a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">교회를 섬기는 이들</a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">하남교회 발자취</a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">교회 둘러보기</a></li>
+            </ul>
+          </div>
+
+          <div class="mb-5">
+            <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">관련기관</p>
+            <ul class="space-y-2.5 text-base text-slate-200 font-medium">
+              <li><a href="#" class="hover:text-white hover:underline transition">써니힐국제학교</a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">써니힐유치원</a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">하남장애주간보호시설</a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">하남시립초등어린이집</a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">느티나무마을</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">오시는 길</p>
+            <ul class="space-y-2.5 text-base text-slate-200 font-medium">
+              <li><a href="#" class="hover:text-white hover:underline transition">지도</a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">셔틀버스 안내</a></li>
+            </ul>
+          </div>
         </div>
 
-        <!-- Col 2 -->
+        <!-- Col 2: 말씀·찬양 / Today하남 -->
         <div>
-          <h4 class="text-[#0072CE] font-extrabold text-lg sm:text-xl tracking-wider uppercase mb-6 border-b-2 border-[#0072CE] pb-3">새가족</h4>
-          <ul class="space-y-4 text-base sm:text-lg text-slate-200 font-medium">
-            <li><a href="#" onclick="routeFromSitemap('welcome')" class="hover:text-white hover:underline transition">새가족 등록 안내</a></li>
-            <li><a href="#" class="hover:text-white hover:underline transition">4주 안내 과정</a></li>
-            <li><a href="#" class="hover:text-white hover:underline transition">온라인 방문 예약</a></li>
-            <li><a href="#" class="hover:text-white hover:underline transition">자주 묻는 질문(FAQ)</a></li>
-          </ul>
+          <h4 class="text-[#88BE1E] font-extrabold text-lg sm:text-xl tracking-wider uppercase mb-6 border-b-2 border-[#88BE1E] pb-3">말씀 · 찬양</h4>
+
+          <div class="mb-5">
+            <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">설교</p>
+            <ul class="space-y-2.5 text-base text-slate-200 font-medium">
+              <li><a href="#" onclick="routeFromSitemap('member')" class="hover:text-white hover:underline transition">주일설교</a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">3분터치</a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">간증영상</a></li>
+            </ul>
+          </div>
+
+          <div class="mb-10">
+            <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">찬양</p>
+            <ul class="space-y-2.5 text-base text-slate-200 font-medium">
+              <li><a href="#" class="hover:text-white hover:underline transition">찬양대</a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">주일찬양</a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">OTN찬양</a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">메타하남 찬양</a></li>
+            </ul>
+          </div>
+
+          <h4 class="text-[#88BE1E] font-extrabold text-lg sm:text-xl tracking-wider uppercase mb-6 border-b-2 border-[#88BE1E] pb-3">Today하남</h4>
+
+          <div class="mb-5">
+            <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">하남소식</p>
+            <ul class="space-y-2.5 text-base text-slate-200 font-medium">
+              <li><a href="#" class="hover:text-white hover:underline transition">교회주보</a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">자료실</a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">아름다운신문</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">하남라이프</p>
+            <ul class="space-y-2.5 text-base text-slate-200 font-medium">
+              <li><a href="#" class="hover:text-white hover:underline transition">감사노트</a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">큐티노트</a></li>
+            </ul>
+          </div>
         </div>
 
-        <!-- Col 3 -->
+        <!-- Col 3: 교구 / 양육·훈련 -->
         <div>
-          <h4 class="text-[#88BE1E] font-extrabold text-lg sm:text-xl tracking-wider uppercase mb-6 border-b-2 border-[#88BE1E] pb-3">말씀 / 찬양</h4>
-          <ul class="space-y-4 text-base sm:text-lg text-slate-200 font-medium">
-            <li><a href="#" onclick="routeFromSitemap('member')" class="hover:text-white hover:underline transition">주일 설교 다시보기</a></li>
-            <li><a href="#" class="hover:text-white hover:underline transition">수요/금요 집회</a></li>
-            <li><a href="#" class="hover:text-white hover:underline transition">찬양대 영상</a></li>
-            <li><a href="#" class="hover:text-white hover:underline transition">온라인 주보</a></li>
-          </ul>
+          <h4 class="text-[#F58220] font-extrabold text-lg sm:text-xl tracking-wider uppercase mb-6 border-b-2 border-[#F58220] pb-3">교구</h4>
+
+          <div class="mb-10">
+            <ul class="space-y-2.5 text-base text-slate-200 font-medium">
+              <li><a href="#" class="hover:text-white hover:underline transition">장년교구 <span class="text-slate-500 text-sm font-normal">(소개/갤러리)</span></a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">청년교구 <span class="text-slate-500 text-sm font-normal">(소개/갤러리)</span></a></li>
+            </ul>
+          </div>
+
+          <h4 class="text-[#F58220] font-extrabold text-lg sm:text-xl tracking-wider uppercase mb-6 border-b-2 border-[#F58220] pb-3">양육 · 훈련</h4>
+
+          <div class="mb-5">
+            <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">양육</p>
+            <ul class="space-y-2.5 text-base text-slate-200 font-medium">
+              <li><a href="#" class="hover:text-white hover:underline transition">일대일제자 <span class="text-slate-500 text-sm font-normal">(소개/갤러리)</span></a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">상담아카데미 <span class="text-slate-500 text-sm font-normal">(소개/갤러리)</span></a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">실버대학 <span class="text-slate-500 text-sm font-normal">(소개/갤러리)</span></a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">온라인 마케팅 <span class="text-slate-500 text-sm font-normal">(소개/갤러리)</span></a></li>
+            </ul>
+          </div>
+
+          <div>
+            <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">훈련 (HDTS)</p>
+            <ul class="space-y-2.5 text-base text-slate-200 font-medium">
+              <li><a href="#" class="hover:text-white hover:underline transition">목자학교 <span class="text-slate-500 text-sm font-normal">(소개/갤러리)</span></a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">중보기도학교 <span class="text-slate-500 text-sm font-normal">(소개/갤러리)</span></a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">큐티학교 <span class="text-slate-500 text-sm font-normal">(소개/갤러리)</span></a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">행복전도 <span class="text-slate-500 text-sm font-normal">(소개/갤러리)</span></a></li>
+            </ul>
+          </div>
         </div>
 
-        <!-- Col 4 -->
+        <!-- Col 4: 다음세대 -->
         <div>
-          <h4 class="text-[#88BE1E] font-extrabold text-lg sm:text-xl tracking-wider uppercase mb-6 border-b-2 border-[#88BE1E] pb-3">양육 / 부서</h4>
-          <ul class="space-y-4 text-base sm:text-lg text-slate-200 font-medium">
-            <li><a href="#" class="hover:text-white hover:underline transition">교회학교 (영·유아·청소년)</a></li>
-            <li><a href="#" class="hover:text-white hover:underline transition">청년부</a></li>
-            <li><a href="#" class="hover:text-white hover:underline transition">제자훈련 및 양육</a></li>
-            <li><a href="#" class="hover:text-white hover:underline transition">국내외 선교 사역</a></li>
-          </ul>
+          <h4 class="text-[#0072CE] font-extrabold text-lg sm:text-xl tracking-wider uppercase mb-6 border-b-2 border-[#0072CE] pb-3">다음세대</h4>
+
+          <div class="mb-5">
+            <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">미취학부</p>
+            <ul class="space-y-2.5 text-base text-slate-200 font-medium">
+              <li><a href="#" class="hover:text-white hover:underline transition">영아 <span class="text-slate-500 text-sm font-normal">(소개/갤러리)</span></a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">유아 <span class="text-slate-500 text-sm font-normal">(소개/갤러리)</span></a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">유치 <span class="text-slate-500 text-sm font-normal">(소개/갤러리)</span></a></li>
+            </ul>
+          </div>
+
+          <div class="mb-5">
+            <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">취학부</p>
+            <ul class="space-y-2.5 text-base text-slate-200 font-medium">
+              <li><a href="#" class="hover:text-white hover:underline transition">유년 <span class="text-slate-500 text-sm font-normal">(소개/갤러리)</span></a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">초등 <span class="text-slate-500 text-sm font-normal">(소개/갤러리)</span></a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">소년 <span class="text-slate-500 text-sm font-normal">(소개/갤러리)</span></a></li>
+            </ul>
+          </div>
+
+          <div class="mb-5">
+            <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">청소년부</p>
+            <ul class="space-y-2.5 text-base text-slate-200 font-medium">
+              <li><a href="#" class="hover:text-white hover:underline transition">중등 <span class="text-slate-500 text-sm font-normal">(소개/갤러리)</span></a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">고등 <span class="text-slate-500 text-sm font-normal">(소개/갤러리)</span></a></li>
+            </ul>
+          </div>
+
+          <div class="mb-5">
+            <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">캠핑치치</p>
+            <ul class="space-y-2.5 text-base text-slate-200 font-medium">
+              <li><a href="#" class="hover:text-white hover:underline transition">소개</a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">신청</a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">갤러리</a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">Review</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">교육연구소</p>
+            <ul class="space-y-2.5 text-base text-slate-200 font-medium">
+              <li><a href="#" class="hover:text-white hover:underline transition">오르가가정예배지 <span class="text-slate-500 text-sm font-normal">(소개/다운로드)</span></a></li>
+            </ul>
+          </div>
         </div>
 
-        <!-- Col 5 -->
-        <div>
-          <h4 class="text-[#F58220] font-extrabold text-lg sm:text-xl tracking-wider uppercase mb-6 border-b-2 border-[#F58220] pb-3">성도 행정</h4>
-          <ul class="space-y-4 text-base sm:text-lg text-slate-200 font-medium">
-            <li><a href="#" class="hover:text-white hover:underline transition">교우 소식 / 공지</a></li>
-            <li><a href="#" class="hover:text-white transition text-[#F58220] font-bold">온라인 헌금 안내</a></li>
-            <li><a href="#" class="hover:text-white hover:underline transition">시설 / 차량 예약</a></li>
-            <li><a href="#" class="hover:text-white hover:underline transition">기부금 영수증 발급</a></li>
-          </ul>
-        </div>
+      </div>
 
+      <!-- 퀵메뉴 (GNB 우측 고정 항목) -->
+      <div class="border-t border-slate-700 pt-10 pb-2">
+        <h4 class="text-[#F58220] font-extrabold text-lg sm:text-xl tracking-wider uppercase mb-6">퀵메뉴</h4>
+        <div class="flex flex-wrap gap-4">
+          <a href="#" class="px-6 py-3 rounded-xl bg-slate-800/70 border border-slate-700 text-base font-semibold text-slate-100 hover:bg-slate-700 hover:border-slate-500 transition">설교패키지</a>
+          <a href="#" onclick="routeFromSitemap('member')" class="px-6 py-3 rounded-xl bg-slate-800/70 border border-slate-700 text-base font-semibold text-slate-100 hover:bg-slate-700 hover:border-slate-500 transition">예배생중계</a>
+          <a href="#" class="px-6 py-3 rounded-xl bg-[#F58220] text-white text-base font-bold hover:bg-[#db7116] transition">온라인헌금</a>
+          <a href="#" class="px-6 py-3 rounded-xl bg-slate-800/70 border border-slate-700 text-base font-semibold text-slate-100 hover:bg-slate-700 hover:border-slate-500 transition">온라인행정</a>
+        </div>
       </div>
 
       <!-- Sitemap Footer -->

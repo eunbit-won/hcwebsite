@@ -41,7 +41,7 @@
   <!-- TOP WRAPPER (TOP UTILITY BAR + GLOBAL NAVIGATION BAR) -->
   <header class="sticky top-0 z-40 w-full bg-white border-b border-slate-200" id="global-header">
     
-    <!-- 1. TOP UTILITY QUICK MENU (월드비전 스타일 상단 유틸리티 바) -->
+    <!-- 1. TOP UTILITY QUICK MENU -->
     <div class="bg-slate-50 border-b border-slate-200/80">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-9 flex items-center justify-end">
         <div class="flex items-center space-x-4 text-xs font-medium text-slate-600">
@@ -55,7 +55,6 @@
           <span class="text-slate-300">|</span>
           <a href="#" class="hover:text-[#0072CE] transition">온라인행정</a>
           
-          <!-- 검색 아이콘 버튼 -->
           <button onclick="openSearchModal()" aria-label="통합검색" class="p-1 text-slate-500 hover:text-slate-900 flex items-center transition ml-1">
             <span class="material-symbols-outlined text-18 block leading-none">search</span>
           </button>
@@ -160,9 +159,7 @@
           <button onclick="setSearchKeyword('온라인헌금')" class="px-3 py-1.5 bg-white border border-slate-200 rounded-lg text-xs font-semibold text-slate-700 hover:border-[#F58220] hover:text-[#F58220] transition">온라인헌금</button>
           <button onclick="setSearchKeyword('새가족등록')" class="px-3 py-1.5 bg-white border border-slate-200 rounded-lg text-xs font-semibold text-slate-700 hover:border-[#0072CE] hover:text-[#0072CE] transition">새가족등록</button>
         </div>
-        <div id="search-results" class="hidden border-t border-slate-200 pt-4 space-y-2">
-          <!-- 동적 검색 결과 -->
-        </div>
+        <div id="search-results" class="hidden border-t border-slate-200 pt-4 space-y-2"></div>
       </div>
     </div>
   </div>
@@ -212,6 +209,7 @@
           </button>
         </div>
       </div>
+      <div class="py-6 text-center text-xs text-slate-400">© HANAM PRESBYTERIAN CHURCH. All rights reserved.</div>
     </section>
 
     <!-- VIEW 2: WELCOME (새가족 페이지) -->
@@ -252,13 +250,15 @@
         </div>
       </div>
 
-      <div class="text-center">
+      <div class="text-center pb-8">
         <button onclick="switchView('gateway')" class="text-xs font-medium text-slate-400 underline hover:text-slate-600">홈화면으로 돌아가기</button>
       </div>
     </section>
 
-    <!-- VIEW 3: MEMBER (성도 전용 포털) -->
+    <!-- VIEW 3: MEMBER (성도 전용 포털 - 충분한 콘텐츠 영역 구성으로 스크롤 정상 작동) -->
     <section id="view-member" class="hidden fade-enter max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      
+      <!-- 헤더 및 퀵 액션 -->
       <div class="mb-8 flex flex-col md:flex-row md:items-center md:justify-between border-b pb-6 border-slate-200 gap-4">
         <div>
           <span class="text-xs font-bold text-[#88BE1E] uppercase tracking-widest">MEMBER HUB</span>
@@ -270,7 +270,8 @@
         </div>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+      <!-- 설교 영상 & 교우 소식 -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
         <div class="bg-white p-6 rounded-2xl border border-slate-200 border-t-4 border-t-[#88BE1E] shadow-sm">
           <h3 class="font-bold text-slate-900 mb-4 flex items-center gap-2 text-lg"><span class="material-symbols-outlined text-[#88BE1E]">videocam</span> 주일 설교 영상</h3>
           <div class="aspect-video bg-slate-100 rounded-xl flex items-center justify-center text-slate-400 text-sm">설교 미디어 플레이어 영역</div>
@@ -280,12 +281,40 @@
           <ul class="text-sm text-slate-600 space-y-3.5">
             <li class="flex justify-between border-b pb-2.5"><span>2026년 하반기 제자훈련 모집</span><span class="text-slate-400 text-xs">08.15</span></li>
             <li class="flex justify-between border-b pb-2.5"><span>금요기도회 찬양팀 봉사자 모집</span><span class="text-slate-400 text-xs">08.12</span></li>
-            <li class="flex justify-between"><span>교회 시설 예약 규정 안내</span><span class="text-slate-400 text-xs">08.01</span></li>
+            <li class="flex justify-between border-b pb-2.5"><span>교회 시설 예약 규정 안내</span><span class="text-slate-400 text-xs">08.01</span></li>
+            <li class="flex justify-between"><span>하반기 성경대학 개강 안내</span><span class="text-slate-400 text-xs">07.28</span></li>
           </ul>
         </div>
       </div>
 
-      <div class="text-center">
+      <!-- 주간 모임 및 사역 바로가기 그리드 -->
+      <div class="mb-10">
+        <h3 class="font-bold text-slate-900 mb-4 text-lg">성도 참여 및 사역 신청</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div class="bg-white p-5 rounded-xl border border-slate-200 hover:border-[#88BE1E] transition shadow-sm">
+            <span class="material-symbols-outlined text-28 text-[#88BE1E] mb-2 block">menu_book</span>
+            <h4 class="font-bold text-slate-800 text-sm mb-1">일대일 제자양육</h4>
+            <p class="text-xs text-slate-500">말씀 중심의 1:1 동반자 훈련 신청</p>
+          </div>
+          <div class="bg-white p-5 rounded-xl border border-slate-200 hover:border-[#88BE1E] transition shadow-sm">
+            <span class="material-symbols-outlined text-28 text-[#88BE1E] mb-2 block">volunteer_activism</span>
+            <h4 class="font-bold text-slate-800 text-sm mb-1">봉사팀 사역 신청</h4>
+            <p class="text-xs text-slate-500">예배, 안내, 찬양, 차량 봉사 참여</p>
+          </div>
+          <div class="bg-white p-5 rounded-xl border border-slate-200 hover:border-[#88BE1E] transition shadow-sm">
+            <span class="material-symbols-outlined text-28 text-[#88BE1E] mb-2 block">meeting_room</span>
+            <h4 class="font-bold text-slate-800 text-sm mb-1">교회 시설 / 차량 예약</h4>
+            <p class="text-xs text-slate-500">모임실 및 교회 차량 온라인 신청</p>
+          </div>
+          <div class="bg-white p-5 rounded-xl border border-slate-200 hover:border-[#88BE1E] transition shadow-sm">
+            <span class="material-symbols-outlined text-28 text-[#88BE1E] mb-2 block">receipt_long</span>
+            <h4 class="font-bold text-slate-800 text-sm mb-1">기부금 영수증 발급</h4>
+            <p class="text-xs text-slate-500">연말정산 헌금 영수증 즉시 출력</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center pb-8">
         <button onclick="switchView('gateway')" class="text-xs font-medium text-slate-400 underline hover:text-slate-600">홈화면으로 돌아가기</button>
       </div>
     </section>
@@ -340,8 +369,8 @@
     </div>
   </footer>
 
-  <!-- FLOATING SCROLL TO TOP BUTTON -->
-  <button id="btn-scroll-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" aria-label="맨 위로 이동" class="fixed bottom-8 right-8 z-40 p-3.5 rounded-full bg-white border border-slate-200 text-slate-700 shadow-xl hover:bg-slate-50 hover:text-slate-900 transition-all duration-300 opacity-0 pointer-events-none translate-y-4 flex items-center justify-center">
+  <!-- FLOATING SCROLL TO TOP BUTTON (z-50 최상단 레이어, 스크롤 100px 이상 시 페이드인) -->
+  <button id="btn-scroll-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" aria-label="맨 위로 이동" class="fixed bottom-8 right-8 z-50 p-3.5 rounded-full bg-white border border-slate-200 text-slate-700 shadow-2xl hover:bg-slate-50 hover:text-slate-900 transition-all duration-300 opacity-0 pointer-events-none translate-y-4 flex items-center justify-center">
     <span class="material-symbols-outlined text-24 block">arrow_upward</span>
   </button>
 
@@ -549,9 +578,7 @@
 
   <!-- ROUTING & INTERACTIVE SCRIPT -->
   <script>
-    // 메뉴 데이터베이스 정의 (성도용 + 새가족용)
     const MENU_DATA = {
-      // --- 성도용 메뉴 ---
       church: {
         title: '교회안내',
         theme: '#0072CE',
@@ -605,7 +632,6 @@
           { title: '교육연구소', links: [{ label: '오르가가정예배지' }] }
         ]
       },
-      // --- 새가족용 메뉴 ---
       welcome_intro: {
         title: '교회소개',
         theme: '#0072CE',
@@ -753,7 +779,6 @@
       }, 150);
     }
 
-    // 마우스 호버 이벤트 바인딩
     document.querySelectorAll('.nav-item, .nav-item-welcome').forEach(item => {
       item.addEventListener('mouseenter', () => {
         const menuKey = item.getAttribute('data-menu');
@@ -804,7 +829,6 @@
         return;
       }
 
-      // 간이 인덱스 검색 매칭
       const indexList = [
         { label: '새가족 등록 안내 및 4주 과정', path: 'welcome', desc: '새가족 센터 > 새가족안내' },
         { label: '예배시간 및 본당 좌석 안내', path: 'welcome', desc: '새가족 센터 > 예배안내' },
@@ -832,17 +856,17 @@
       }
     }
 
-    // 패밀리 사이트 선택 핸들러
     function handleFamilySite(val) {
       if (!val) return;
       alert(`선택된 관련기관(${val}) 페이지로 이동합니다.`);
       document.getElementById('family-site-select').selectedIndex = 0;
     }
 
-    // 플로팅 최상단 스크롤 버튼 리스너
+    // 플로팅 최상단 스크롤 버튼 리스너 (100px 이상 스크롤 시 상시 감지 및 노출)
     const scrollTopBtn = document.getElementById('btn-scroll-top');
     window.addEventListener('scroll', () => {
-      if (window.scrollY > 200) {
+      const scrollPos = window.pageYOffset || document.documentElement.scrollTop;
+      if (scrollPos > 100) {
         scrollTopBtn.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-4');
         scrollTopBtn.classList.add('opacity-100', 'translate-y-0');
       } else {
@@ -851,7 +875,6 @@
       }
     });
 
-    // 전체화면 사이트맵 모달 제어
     function openSitemap() {
       hideMegaDropdown();
       const modal = document.getElementById('sitemap-modal');

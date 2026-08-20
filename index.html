@@ -307,11 +307,11 @@
 
 
   <!-- #################################################################### -->
-  <!-- [PROPOSAL B CONTAINER] 지저스교회 레퍼런스 원페이지 포털형 (A안 동일 메뉴·정보 적용) -->
+  <!-- [PROPOSAL B CONTAINER] 지저스교회 레퍼런스 원페이지 포털형 -->
   <!-- #################################################################### -->
   <div id="proposal-B" class="proposal-container hidden flex flex-col flex-grow bg-white">
     
-    <!-- B안 상단 최상위 유틸리티 퀵메뉴 (A안과 동일) -->
+    <!-- B안 상단 최상위 유틸리티 퀵메뉴 -->
     <div class="bg-slate-50 border-b border-slate-200/80">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-9 flex items-center justify-end">
         <div class="flex items-center space-x-4 text-xs font-medium text-slate-600">
@@ -332,7 +332,7 @@
       </div>
     </div>
 
-    <!-- B안 메인 GNB (A안과 동일한 6개 1Depth 메뉴 및 메가드롭다운 적용) -->
+    <!-- B안 메인 GNB -->
     <header class="w-full bg-white border-b border-slate-200 shadow-sm sticky top-9 z-40" id="global-header-B">
       <div class="max-w-7xl mx-auto px-4 sm:px-8 h-16 flex items-center justify-between">
         
@@ -348,7 +348,7 @@
           </div>
         </div>
 
-        <!-- A안과 동일한 1Depth 메뉴 (호버 시 메가드롭다운 노출) -->
+        <!-- 1Depth 메뉴 -->
         <nav class="hidden lg:flex items-center space-x-8 h-full">
           <div class="nav-item-b h-full flex items-center" data-menu="church">
             <button class="text-base font-bold text-slate-700 hover:text-[#0072CE] h-full transition flex items-center">교회안내</button>
@@ -370,7 +370,7 @@
           </div>
         </nav>
 
-        <!-- 우측 액션 버튼 + 햄버거 사이트맵 열기 -->
+        <!-- 우측 액션 버튼 + 햄버거 -->
         <div class="flex items-center space-x-3">
           <button onclick="document.getElementById('b-section-quick').scrollIntoView({behavior:'smooth'})" class="hidden sm:inline-block px-3.5 py-1.5 rounded-full bg-blue-50 text-[#0072CE] text-xs font-bold hover:bg-blue-100 transition">
             처음 오셨나요?
@@ -387,22 +387,23 @@
       </div>
     </header>
 
-    <!-- B안 Hero Section: 비주얼 슬라이더 + 우측 상단 분기 위젯 (지저스교회 핵심 스타일) -->
+    <!-- B안 Hero Section: 폰트 사이즈 축소 및 줄바꿈 보정 적용 -->
     <section class="relative w-full bg-[#111827] text-white overflow-hidden">
       <div class="absolute inset-0 opacity-40 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1548625361-195fe578cb26?auto=format&fit=crop&w=1600&q=80');"></div>
       <div class="absolute inset-0 bg-gradient-to-r from-black/85 via-black/40 to-transparent"></div>
 
-      <div class="relative max-w-7xl mx-auto px-4 sm:px-8 py-20 lg:py-28 min-h-[480px] flex flex-col lg:flex-row items-center justify-between gap-10">
-        <!-- 좌측: 말씀 캘리그라피 문구 -->
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-8 py-16 lg:py-24 min-h-[460px] flex flex-col lg:flex-row items-center justify-between gap-10">
+        <!-- 좌측: 말씀 문구 (폰트 사이즈 축소: text-xl sm:text-2xl lg:text-3xl 및 break-keep 적용) -->
         <div class="max-w-xl text-left">
-          <p class="text-sm font-semibold tracking-widest text-amber-400 mb-2 uppercase">하나님을 사랑하는 자</p>
-          <h2 class="text-3xl sm:text-5xl font-extrabold leading-tight tracking-tight mb-4 drop-shadow-md">
-           좋은 교회를 넘어 위대한 교회로!<br>건강한 교회를 넘어 세상을 변화시키는 교회로!
+          <p class="text-xs sm:text-sm font-semibold tracking-widest text-amber-400 mb-2 uppercase">하나님을 사랑하는 자</p>
+          <h2 class="text-xl sm:text-2xl lg:text-3xl font-extrabold leading-snug sm:leading-relaxed tracking-tight mb-4 drop-shadow-md break-keep">
+            좋은 교회를 넘어 위대한 교회로!<br>
+            건강한 교회를 넘어 세상을 변화시키는 교회로!
           </h2>
-          <p class="text-slate-300 text-sm font-medium">히브리서 12:2 | 하남교회 2026 표어</p>
+          <p class="text-slate-300 text-xs sm:text-sm font-medium">히브리서 12:2 | 하남교회 2026 표어</p>
         </div>
 
-        <!-- 우측: '처음 오셨나요? 기존 성도이신가요?' 2-Way 카드 박스 -->
+        <!-- 우측: 2-Way 카드 박스 -->
         <div class="w-full lg:w-96 bg-white/95 backdrop-blur-md rounded-2xl p-6 shadow-2xl text-slate-900 border border-white/40">
           <h3 class="text-center font-extrabold text-base mb-4 text-slate-800">
             처음 오셨나요? 기존 성도이신가요?
@@ -432,7 +433,7 @@
       </div>
     </section>
 
-    <!-- B안 Section 1: 6-Icon Quick Action Grid ("하남교회에 처음 오셨나요?") -->
+    <!-- B안 Section 1: 6-Icon Quick Action Grid -->
     <section id="b-section-quick" class="py-16 bg-white border-b border-slate-100">
       <div class="max-w-7xl mx-auto px-4 sm:px-8 text-center">
         <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-2">
@@ -607,7 +608,7 @@
       </div>
     </section>
 
-    <!-- B안 Footer (A안과 동일한 레이아웃, 관련기관 드롭다운 및 전체 상세 정보 일치) -->
+    <!-- B안 Footer -->
     <footer class="bg-white border-t border-slate-200 text-slate-600 py-10 mt-auto">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 pb-8 border-b border-slate-100">
@@ -683,7 +684,7 @@
     <span class="material-symbols-outlined text-24 block">arrow_upward</span>
   </button>
 
-  <!-- FULLSCREEN OVERLAY SITEMAP (A안과 B안 공통 연동, 7개 대분류 전체 반영) -->
+  <!-- FULLSCREEN OVERLAY SITEMAP -->
   <div id="sitemap-modal" class="fixed inset-0 z-50 bg-[#0B2038] text-white hidden opacity-0 transition-opacity duration-200 overflow-y-auto">
     <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-10 min-h-screen flex flex-col justify-between">
       
@@ -701,7 +702,7 @@
         </button>
       </div>
 
-      <!-- Sitemap Multi-Column Grid (A안과 100% 동일) -->
+      <!-- Sitemap Multi-Column Grid -->
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-12 py-12">
 
         <!-- Col 1: 교회안내 -->
@@ -890,9 +891,7 @@
   <!-- JAVASCRIPT CONTROLLERS (A/B SWITCH + PLAN A & B ROUTING) -->
   <!-- ================================================================= -->
   <script>
-    // -------------------------------------------------------------
     // 1. A/B Proposal Switcher Controller
-    // -------------------------------------------------------------
     function switchProposal(plan) {
       const planA = document.getElementById('proposal-A');
       const planB = document.getElementById('proposal-B');
@@ -914,9 +913,7 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // -------------------------------------------------------------
-    // 2. Common Menu Data (A안 & B안 공통 데이터베이스)
-    // -------------------------------------------------------------
+    // 2. Common Menu Data
     const MENU_DATA = {
       church: {
         title: '교회안내',
@@ -1005,9 +1002,7 @@
       }
     };
 
-    // -------------------------------------------------------------
     // 3. Plan A View Switch Controller
-    // -------------------------------------------------------------
     function switchView(viewName) {
       document.getElementById('view-gateway').classList.add('hidden');
       document.getElementById('view-welcome').classList.add('hidden');
@@ -1058,9 +1053,7 @@
       switchView(path);
     }
 
-    // -------------------------------------------------------------
-    // 4. Mega Menu Rendering Controller (A안 & B안 공통)
-    // -------------------------------------------------------------
+    // 4. Mega Menu Rendering Controller
     const megaDropdownA = document.getElementById('mega-dropdown');
     const megaDropdownContentA = document.getElementById('mega-dropdown-content');
     const globalHeaderA = document.getElementById('global-header-A');
@@ -1115,7 +1108,6 @@
       return html;
     }
 
-    // Plan A Dropdown
     function showMegaDropdownA(key) {
       clearTimeout(dropdownTimerA);
       megaDropdownContentA.innerHTML = buildMegaMenuHTML(key);
@@ -1125,7 +1117,6 @@
       dropdownTimerA = setTimeout(() => { megaDropdownA.classList.add('hidden'); }, 150);
     }
 
-    // Plan B Dropdown
     function showMegaDropdownB(key) {
       clearTimeout(dropdownTimerB);
       megaDropdownContentB.innerHTML = buildMegaMenuHTML(key);
@@ -1135,7 +1126,6 @@
       dropdownTimerB = setTimeout(() => { megaDropdownB.classList.add('hidden'); }, 150);
     }
 
-    // Attach Event Listeners for Plan A
     document.querySelectorAll('.nav-item, .nav-item-welcome').forEach(item => {
       item.addEventListener('mouseenter', () => {
         const menuKey = item.getAttribute('data-menu');
@@ -1146,7 +1136,6 @@
     megaDropdownA.addEventListener('mouseenter', () => clearTimeout(dropdownTimerA));
     megaDropdownA.addEventListener('mouseleave', hideMegaDropdown);
 
-    // Attach Event Listeners for Plan B
     document.querySelectorAll('.nav-item-b').forEach(item => {
       item.addEventListener('mouseenter', () => {
         const menuKey = item.getAttribute('data-menu');
@@ -1157,9 +1146,7 @@
     megaDropdownB.addEventListener('mouseenter', () => clearTimeout(dropdownTimerB));
     megaDropdownB.addEventListener('mouseleave', hideMegaDropdownB);
 
-    // -------------------------------------------------------------
     // 5. Search Modal & Family Site & Scroll Top Controls
-    // -------------------------------------------------------------
     const searchModal = document.getElementById('search-modal');
     const searchInput = document.getElementById('search-input');
     const searchResults = document.getElementById('search-results');

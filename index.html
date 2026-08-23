@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>하남교회 홈페이지 리뉴얼 시안 비교 뷰어</title>
+  <title>하남교회 - HANAM PRESBYTERIAN CHURCH</title>
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -38,10 +38,6 @@
       from { opacity: 0; transform: translateY(4px); }
       to { opacity: 1; transform: translateY(0); }
     }
-    .card-tilt { transition: transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s; }
-    .card-tilt:hover { transform: translateY(-6px); box-shadow: 0 20px 30px -10px rgba(0,0,0,.15); }
-    .panel { max-height: 0; overflow: hidden; transition: max-height .4s ease; }
-    .panel.open { max-height: 800px; }
     .bubble { animation: pop .3s ease both; }
     @keyframes pop { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
   </style>
@@ -49,31 +45,9 @@
 <body class="bg-slate-50 text-slate-900 antialiased selection:bg-[#0072CE] selection:text-white flex flex-col min-h-screen">
 
   <!-- ================================================================= -->
-  <!-- 0. TOP 6-PROPOSAL SELECTOR SWITCHER BAR (상단 고정 제어 바) -->
+  <!-- 1. UNIFIED COMMON HEADER (B안 기본 적용) -->
   <!-- ================================================================= -->
-  <div class="sticky top-0 z-50 bg-slate-950 text-white px-4 py-2.5 border-b border-slate-800 shadow-xl">
-    <div class="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-3 text-xs">
-      <div class="flex items-center space-x-2.5">
-        <span class="px-2.5 py-1 rounded bg-[#0072CE] text-white font-black tracking-wider">PROPOSAL</span>
-        <span class="font-bold text-slate-200 text-sm">하남교회 홈페이지 리뉴얼 시안 선택기</span>
-      </div>
-      <!-- 6 Buttons Grid / Flex -->
-      <div class="flex flex-wrap items-center justify-center gap-1.5 p-1 bg-slate-900 rounded-xl border border-slate-800">
-        <button onclick="setPlan('A1')" id="tab-A1" class="plan-tab px-3 py-1.5 rounded-lg font-bold transition">A-1. 분기</button>
-        <button onclick="setPlan('A2')" id="tab-A2" class="plan-tab px-3 py-1.5 rounded-lg font-bold transition">A-2. 스토리텔링</button>
-        <button onclick="setPlan('A3')" id="tab-A3" class="plan-tab px-3 py-1.5 rounded-lg font-bold transition">A-3. 대시보드</button>
-        <span class="text-slate-700 hidden sm:inline">|</span>
-        <button onclick="setPlan('B1')" id="tab-B1" class="plan-tab px-3 py-1.5 rounded-lg font-bold transition">B-1. 원페이지 포털</button>
-        <button onclick="setPlan('B2')" id="tab-B2" class="plan-tab px-3 py-1.5 rounded-lg font-bold transition">B-2. 매거진 벤토</button>
-        <button onclick="setPlan('B3')" id="tab-B3" class="plan-tab px-3 py-1.5 rounded-lg font-bold transition">B-3. 컨시어지</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- ================================================================= -->
-  <!-- 1. UNIFIED COMMON HEADER (모든 시안 동일 적용) -->
-  <!-- ================================================================= -->
-  <header class="sticky top-[53px] z-40 w-full bg-white border-b border-slate-200 shadow-sm" id="main-global-header">
+  <header class="sticky top-0 z-40 w-full bg-white border-b border-slate-200 shadow-sm" id="main-global-header">
     
     <!-- Top Utility Bar (온라인선교 제외됨)[cite: 1] -->
     <div class="bg-slate-50 border-b border-slate-200/80">
@@ -81,7 +55,7 @@
         <div class="flex items-center space-x-4 text-xs font-medium text-slate-600">
           <a href="#" class="hover:text-[#0072CE] transition">설교패키지</a>
           <span class="text-slate-300">|</span>
-          <a href="#" onclick="handleGnbAction('worship')" class="hover:text-[#0072CE] transition">예배생중계</a>
+          <a href="#b1-sermon" class="hover:text-[#0072CE] transition">예배생중계</a>
           <span class="text-slate-300">|</span>
           <a href="#" class="hover:text-[#F58220] transition font-semibold">온라인헌금</a>
           <span class="text-slate-300">|</span>
@@ -109,7 +83,7 @@
         </div>
       </div>
 
-      <!-- 6 Main 1Depth Menu Items (Hover triggers Mega Menu)[cite: 1] -->
+      <!-- 6 Main 1Depth Menu Items[cite: 1] -->
       <nav class="hidden lg:flex items-center space-x-8 h-full">
         <div class="nav-item h-full flex items-center" data-menu="church">
           <button class="text-base font-bold text-slate-700 hover:text-[#0072CE] h-full transition flex items-center">교회안내</button>
@@ -133,32 +107,31 @@
 
       <!-- Right Utility CTA & Hamburger[cite: 1] -->
       <div class="flex items-center space-x-3">
-        <div id="header-mode-toggle" class="inline-flex p-1 bg-slate-100 rounded-full border border-slate-200 text-xs font-semibold">
-          <button id="btn-head-welcome" onclick="selectPathA1('welcome')" class="px-3 py-1.5 rounded-full transition text-slate-600 hover:text-slate-900">새가족</button>
-          <button id="btn-head-member" onclick="selectPathA1('member')" class="px-3 py-1.5 rounded-full transition text-slate-600 hover:text-slate-900">성도</button>
-        </div>
+        <button onclick="document.getElementById('b1-quick').scrollIntoView({behavior:'smooth'})" class="hidden sm:inline-block px-3.5 py-1.5 rounded-full bg-blue-50 text-[#0072CE] text-xs font-bold hover:bg-blue-100 transition">
+          처음 오셨나요?
+        </button>
         <button onclick="openSitemap()" aria-label="전체 사이트맵 열기" class="p-2 rounded-lg text-slate-700 hover:bg-slate-100 transition">
           <span class="material-symbols-outlined text-28 block">menu</span>
         </button>
       </div>
     </div>
 
-    <!-- Mega Dropdown Panel (동적 렌더링)[cite: 1] -->
+    <!-- Mega Dropdown Panel[cite: 1] -->
     <div id="mega-dropdown" class="absolute top-[6.25rem] left-0 w-full bg-white border-b border-slate-200 shadow-2xl hidden z-30 transition-all duration-200">
       <div class="max-w-7xl mx-auto px-6 lg:px-8 py-8" id="mega-dropdown-content"></div>
     </div>
   </header>
 
   <!-- ================================================================= -->
-  <!-- 2. PROPOSAL BODY SECTIONS (6 DISTINCT PROPOSALS) -->
+  <!-- 2. PROPOSAL BODY SECTIONS -->
   <!-- ================================================================= -->
   <main class="flex-grow">
     
-    <!-- ------------------------------------------------------------- -->
-    <!-- [PLAN A-1] 게이트웨이 2-Card 분기형[cite: 1] -->
-    <!-- ------------------------------------------------------------- -->
+    <!-- ========================================================= -->
+    <!-- [A안 전체 주석 처리 영역 - 필요 시 주석 해제하여 사용 가능] -->
+    <!-- ========================================================= -->
+    <!--
     <section id="plan-A1" class="plan-body fade-enter">
-      <!-- A1 View 1: Gateway[cite: 1] -->
       <div id="a1-view-gateway" class="min-h-[calc(100vh-10rem)] flex flex-col justify-between">
         <div class="relative w-full py-16 sm:py-24 bg-[#0B2038] text-white overflow-hidden">
           <div class="absolute inset-0 opacity-20 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1548625361-195fe578cb26?auto=format&fit=crop&w=1600&q=80');"></div>
@@ -180,7 +153,7 @@
             <h2 class="text-xl font-bold text-slate-900 mb-1">처음 오셨나요?</h2>
             <p class="text-xs text-slate-400 font-medium mb-3">Are you new here?</p>
             <p class="text-sm text-slate-600 mb-6 flex-grow leading-relaxed">예배 시간, 오시는 길 및 새가족 등록 절차를 친절히 안내해 드립니다.</p>
-            <button onclick="selectPathA1('welcome')" class="w-full py-3.5 px-6 rounded-xl bg-[#0072CE] text-white font-bold text-sm hover:bg-[#005da8] transition shadow-md shadow-blue-500/20">
+            <button class="w-full py-3.5 px-6 rounded-xl bg-[#0072CE] text-white font-bold text-sm hover:bg-[#005da8] transition shadow-md shadow-blue-500/20">
               새가족 사이트 바로가기
             </button>
           </div>
@@ -192,73 +165,14 @@
             <h2 class="text-xl font-bold text-slate-900 mb-1">기존 성도님이신가요?</h2>
             <p class="text-xs text-slate-400 font-medium mb-3">Are you a current member?</p>
             <p class="text-sm text-slate-600 mb-6 flex-grow leading-relaxed">금주 설교, 온라인 주보, 사역 신청 및 교우 소식을 확인하세요.</p>
-            <button onclick="selectPathA1('member')" class="w-full py-3.5 px-6 rounded-xl bg-[#88BE1E] text-white font-bold text-sm hover:bg-[#72a017] transition shadow-md shadow-lime-500/20">
+            <button class="w-full py-3.5 px-6 rounded-xl bg-[#88BE1E] text-white font-bold text-sm hover:bg-[#72a017] transition shadow-md shadow-lime-500/20">
               성도용 사이트 바로가기
             </button>
           </div>
         </div>
       </div>
-
-      <!-- A1 View 2: Welcome (새가족)[cite: 1] -->
-      <div id="a1-view-welcome" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div class="mb-10 text-center">
-          <span class="text-xs font-bold text-[#0072CE] uppercase tracking-widest">Plan Your Visit</span>
-          <h2 class="text-3xl font-extrabold text-slate-900 mt-1">하남교회 새가족 안내 센터</h2>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-          <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm border-t-4 border-t-[#0072CE]">
-            <h3 class="font-bold text-slate-900 mb-2 flex items-center gap-2"><span class="material-symbols-outlined text-[#0072CE]">schedule</span> 예배 시간 안내</h3>
-            <p class="text-sm text-slate-600 leading-relaxed">주일 1부: 09:00 / 주일 2부: 11:00<br>청년부: 13:30 (본당 3층)</p>
-          </div>
-          <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm border-t-4 border-t-[#0072CE]">
-            <h3 class="font-bold text-slate-900 mb-2 flex items-center gap-2"><span class="material-symbols-outlined text-[#0072CE]">directions_car</span> 주차 및 오시는 길</h3>
-            <p class="text-sm text-slate-600 leading-relaxed">교회 지하 전용 주차장 완비<br>(새가족 전용 주차 안내 표지판 설치)</p>
-          </div>
-          <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm border-t-4 border-t-[#F58220]">
-            <h3 class="font-bold text-slate-900 mb-2 flex items-center gap-2"><span class="material-symbols-outlined text-[#F58220]">how_to_reg</span> 새가족 온라인 신청</h3>
-            <p class="text-sm text-slate-600 leading-relaxed">사전 방문 예약 시 전담 안내위원이 로비에서 따뜻하게 맞이해 드립니다.</p>
-          </div>
-        </div>
-        <div class="text-center pb-8">
-          <button onclick="switchViewA1('gateway')" class="text-xs font-medium text-slate-400 underline hover:text-slate-600">게이트웨이로 돌아가기</button>
-        </div>
-      </div>
-
-      <!-- A1 View 3: Member (성도 포털)[cite: 1] -->
-      <div id="a1-view-member" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div class="mb-8 flex flex-col md:flex-row md:items-center md:justify-between border-b pb-6 border-slate-200 gap-4">
-          <div>
-            <span class="text-xs font-bold text-[#88BE1E] uppercase tracking-widest">MEMBER HUB</span>
-            <h2 class="text-3xl font-extrabold text-slate-900 mt-1">성도 광장</h2>
-          </div>
-          <div class="flex gap-3">
-            <button class="px-5 py-2.5 bg-slate-900 text-white rounded-xl text-sm font-semibold hover:bg-slate-800 transition">금주 주보</button>
-            <button class="px-5 py-2.5 bg-[#F58220] text-white rounded-xl text-sm font-bold hover:bg-[#db7116] transition shadow-md shadow-orange-500/20">온라인 헌금</button>
-          </div>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
-          <div class="bg-white p-6 rounded-2xl border border-slate-200 border-t-4 border-t-[#88BE1E] shadow-sm">
-            <h3 class="font-bold text-slate-900 mb-4 flex items-center gap-2 text-lg"><span class="material-symbols-outlined text-[#88BE1E]">videocam</span> 주일 설교 영상</h3>
-            <div class="aspect-video bg-slate-100 rounded-xl flex items-center justify-center text-slate-400 text-sm">설교 미디어 플레이어 영역</div>
-          </div>
-          <div class="bg-white p-6 rounded-2xl border border-slate-200 border-t-4 border-t-[#88BE1E] shadow-sm">
-            <h3 class="font-bold text-slate-900 mb-4 flex items-center gap-2 text-lg"><span class="material-symbols-outlined text-[#88BE1E]">campaign</span> 교우 소식 및 공지</h3>
-            <ul class="text-sm text-slate-600 space-y-3.5">
-              <li class="flex justify-between border-b pb-2.5"><span>2026년 하반기 제자훈련 모집</span><span class="text-slate-400 text-xs">08.15</span></li>
-              <li class="flex justify-between border-b pb-2.5"><span>금요기도회 찬양팀 봉사자 모집</span><span class="text-slate-400 text-xs">08.12</span></li>
-              <li class="flex justify-between border-b pb-2.5"><span>교회 시설 예약 규정 안내</span><span class="text-slate-400 text-xs">08.01</span></li>
-            </ul>
-          </div>
-        </div>
-        <div class="text-center pb-8">
-          <button onclick="switchViewA1('gateway')" class="text-xs font-medium text-slate-400 underline hover:text-slate-600">게이트웨이로 돌아가기</button>
-        </div>
-      </div>
     </section>
 
-    <!-- ------------------------------------------------------------- -->
-    <!-- [PLAN A-2] 스토리텔링 스플릿형[cite: 2] -->
-    <!-- ------------------------------------------------------------- -->
     <section id="plan-A2" class="plan-body hidden fade-enter max-w-7xl mx-auto px-6 py-12">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-12">
         <div class="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl">
@@ -269,113 +183,35 @@
             <p class="text-2xl font-bold leading-snug">함께 걷는 신앙,<br>함께 짓는 공동체</p>
           </div>
         </div>
-
         <div>
           <p class="text-hblue font-bold text-sm tracking-widest uppercase mb-3">Since 1977</p>
           <h1 class="text-3xl sm:text-4xl font-extrabold leading-tight mb-5">당신의 자리는<br>이미 준비되어 있습니다</h1>
-          <p class="text-slate-600 leading-relaxed mb-8">누구든, 어떤 사연을 갖고 오시든 하남교회는 한 사람 한 사람을 소중히 맞이합니다. 지금 두 갈래 길 중 당신의 이야기를 골라주세요.</p>
-
-          <div class="grid grid-cols-2 gap-5">
-            <button onclick="openPanelA2('new')" class="card-tilt text-left bg-white rounded-2xl p-6 border border-slate-200 shadow-sm">
-              <span class="material-symbols-outlined text-[#0072CE] text-32 mb-3 block">emoji_people</span>
-              <p class="font-bold mb-1">처음이에요</p>
-              <p class="text-xs text-slate-500">새가족으로 시작하기</p>
-            </button>
-            <button onclick="openPanelA2('member')" class="card-tilt text-left bg-white rounded-2xl p-6 border border-slate-200 shadow-sm">
-              <span class="material-symbols-outlined text-[#88BE1E] text-32 mb-3 block">diversity_3</span>
-              <p class="font-bold mb-1">성도예요</p>
-              <p class="text-xs text-slate-500">교회 소식 확인하기</p>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Expandable Inline Panels[cite: 2] -->
-      <div class="space-y-4 mb-16">
-        <div id="panel-new" class="panel bg-blue-50/80 rounded-3xl border border-blue-100">
-          <div class="p-8 sm:p-10 grid sm:grid-cols-3 gap-6">
-            <div><p class="text-[#0072CE] font-bold mb-1">예배 시간</p><p class="text-sm text-slate-600">주일 1부 09:00 · 2부 11:00</p></div>
-            <div><p class="text-[#0072CE] font-bold mb-1">오시는 길</p><p class="text-sm text-slate-600">지하 전용 주차장, 새가족 안내석 운영</p></div>
-            <div><p class="text-[#0072CE] font-bold mb-1">등록 신청</p><p class="text-sm text-slate-600">온라인 사전 신청 시 전담 안내위원 배정</p></div>
-            <a href="#" class="sm:col-span-3 mt-2 inline-block text-center bg-[#0072CE] text-white font-bold py-3 rounded-xl shadow">새가족 등록 신청하기</a>
-          </div>
-        </div>
-        <div id="panel-member" class="panel bg-lime-50/80 rounded-3xl border border-lime-100">
-          <div class="p-8 sm:p-10 grid sm:grid-cols-3 gap-6">
-            <div><p class="text-[#88BE1E] font-bold mb-1">이번 주 설교</p><p class="text-sm text-slate-600">성장여정⑥ 넘버원에 목마른 세상</p></div>
-            <div><p class="text-[#88BE1E] font-bold mb-1">교우 소식</p><p class="text-sm text-slate-600">제자훈련 모집, 봉사자 모집 외 3건</p></div>
-            <div><p class="text-[#88BE1E] font-bold mb-1">온라인 헌금</p><p class="text-sm text-slate-600">간편 송금 및 계좌 이체 지원</p></div>
-            <a href="#" class="sm:col-span-3 mt-2 inline-block text-center bg-[#88BE1E] text-white font-bold py-3 rounded-xl shadow">성도 광장 전체 보기</a>
-          </div>
+          <p class="text-slate-600 leading-relaxed mb-8">누구든, 어떤 사연을 갖고 오시든 하남교회는 한 사람 한 사람을 소중히 맞이합니다.</p>
         </div>
       </div>
     </section>
 
-    <!-- ------------------------------------------------------------- -->
-    <!-- [PLAN A-3] 사이드바 대시보드형[cite: 3] -->
-    <!-- ------------------------------------------------------------- -->
     <section id="plan-A3" class="plan-body hidden fade-enter max-w-7xl mx-auto px-4 sm:px-8 py-10">
       <div class="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden flex flex-col md:flex-row min-h-[600px]">
-        
-        <!-- Sidebar Segment[cite: 3] -->
         <aside class="w-full md:w-64 bg-slate-50 border-r border-slate-200 p-6 flex flex-col justify-between">
-          <div>
-            <p class="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-3">모드 선택</p>
-            <div class="flex flex-col gap-2 mb-8">
-              <button onclick="setDashboardMode('new')" id="btn-dash-new" class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold transition bg-[#0072CE] text-white shadow">
-                <span class="material-symbols-outlined text-20">emoji_people</span>새가족 모드
-              </button>
-              <button onclick="setDashboardMode('member')" id="btn-dash-member" class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold transition text-slate-600 hover:bg-slate-200/60">
-                <span class="material-symbols-outlined text-20">diversity_3</span>성도 모드
-              </button>
-            </div>
-            <p class="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-2">바로가기</p>
-            <nav class="flex flex-col gap-1 text-sm font-medium text-slate-600">
-              <a href="#" class="flex items-center gap-2.5 px-3 py-2 rounded-lg hover:bg-white transition"><span class="material-symbols-outlined text-18">schedule</span>예배안내</a>
-              <a href="#" class="flex items-center gap-2.5 px-3 py-2 rounded-lg hover:bg-white transition"><span class="material-symbols-outlined text-18">pin_drop</span>오시는 길</a>
-              <a href="#" class="flex items-center gap-2.5 px-3 py-2 rounded-lg hover:bg-white transition"><span class="material-symbols-outlined text-18">newspaper</span>교회주보</a>
-            </nav>
-          </div>
-          <div class="text-[11px] text-slate-400 pt-6">하남교회 대시보드 뷰</div>
+          <p class="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-3">모드 선택</p>
         </aside>
-
-        <!-- Main Panel Segment[cite: 3] -->
-        <div class="flex-1 p-8 sm:p-10 flex flex-col justify-between">
-          <div>
-            <div class="mb-6">
-              <span class="text-xs font-bold text-[#0072CE] uppercase tracking-widest" id="dash-label">새가족 모드</span>
-              <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1" id="dash-title">처음 오신 것을 진심으로 환영합니다</h2>
-            </div>
-            <!-- Stat Cards[cite: 3] -->
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8" id="dash-stats"></div>
-            <!-- Lists & Actions[cite: 3] -->
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-              <div class="lg:col-span-2 bg-slate-50 rounded-2xl p-6 border border-slate-100">
-                <h3 class="font-bold text-slate-900 mb-4" id="dash-panel-title">추천 다음 단계</h3>
-                <ul class="space-y-3 text-sm text-slate-700" id="dash-list"></ul>
-              </div>
-              <div class="rounded-2xl p-6 flex flex-col justify-between bg-blue-50 border border-blue-100" id="dash-cta-box">
-                <div>
-                  <h4 class="font-bold text-slate-900 mb-2" id="dash-cta-title">온라인 등록 신청</h4>
-                  <p class="text-xs text-slate-600 leading-relaxed mb-6" id="dash-cta-desc">사전 접수 시 전담 안내위원이 동행합니다.</p>
-                </div>
-                <button class="w-full py-3 bg-[#0072CE] text-white font-bold rounded-xl shadow text-sm" id="dash-cta-btn">신청하기</button>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
+    -->
 
     <!-- ------------------------------------------------------------- -->
-    <!-- [PLAN B-1] 원페이지 포털 위젯형 (지저스교회 레퍼런스 스타일)[cite: 1] -->
+    <!-- [PLAN B-1] 기본 메인 페이지 (원페이지 포털 위젯형)[cite: 1] -->
     <!-- ------------------------------------------------------------- -->
-    <section id="plan-B1" class="plan-body hidden fade-enter">
-      <!-- Hero[cite: 1] -->
+    <section id="plan-B1" class="plan-body fade-enter">
+      
+      <!-- Hero Section[cite: 1] -->
       <div class="relative w-full bg-[#111827] text-white overflow-hidden">
         <div class="absolute inset-0 opacity-40 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1548625361-195fe578cb26?auto=format&fit=crop&w=1600&q=80');"></div>
         <div class="absolute inset-0 bg-gradient-to-r from-black/85 via-black/40 to-transparent"></div>
+        
         <div class="relative max-w-7xl mx-auto px-4 sm:px-8 py-16 lg:py-24 min-h-[460px] flex flex-col lg:flex-row items-center justify-between gap-10">
+          <!-- 좌측: 말씀 문구 (폰트 사이즈 축소 및 줄바꿈 보정 적용)[cite: 1] -->
           <div class="max-w-xl text-left">
             <p class="text-xs sm:text-sm font-semibold tracking-widest text-amber-400 mb-2 uppercase">하나님을 사랑하는 자</p>
             <h2 class="text-xl sm:text-2xl lg:text-3xl font-extrabold leading-snug sm:leading-relaxed tracking-tight mb-4 drop-shadow-md break-keep">
@@ -384,7 +220,8 @@
             </h2>
             <p class="text-slate-300 text-xs sm:text-sm font-medium">히브리서 12:2 | 하남교회 2026 표어</p>
           </div>
-          <!-- 2-Way Box[cite: 1] -->
+          
+          <!-- 우측: 2-Way 카드 박스[cite: 1] -->
           <div class="w-full lg:w-96 bg-white/95 backdrop-blur-md rounded-2xl p-6 shadow-2xl text-slate-900 border border-white/40">
             <h3 class="text-center font-extrabold text-base mb-4 text-slate-800">처음 오셨나요? 기존 성도이신가요?</h3>
             <div class="grid grid-cols-2 gap-4">
@@ -405,7 +242,7 @@
         </div>
       </div>
 
-      <!-- 6-Icon Grid[cite: 1] -->
+      <!-- 6-Icon Grid ("하남교회에 처음 오셨나요?")[cite: 1] -->
       <div id="b1-quick" class="py-16 bg-white border-b border-slate-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-8 text-center">
           <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-2"><span class="text-[#0072CE]">하남교회</span>에 처음 오셨나요?</h3>
@@ -439,7 +276,7 @@
         </div>
       </div>
 
-      <!-- Featured Sermon[cite: 1] -->
+      <!-- Featured Sermon Banner[cite: 1] -->
       <div id="b1-sermon" class="py-14 bg-slate-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-8">
           <div class="relative rounded-3xl overflow-hidden bg-slate-900 text-white p-8 sm:p-14 shadow-2xl flex flex-col items-center text-center">
@@ -447,110 +284,125 @@
             <div class="relative z-10 max-w-3xl">
               <span class="inline-block px-3 py-1 rounded-full bg-white/20 text-xs font-bold uppercase tracking-widest mb-4">주일설교</span>
               <h3 class="text-2xl sm:text-4xl font-extrabold mb-4 tracking-tight">성장여정⑥ 넘버원에 목마른 세상, 행복은 어디에 있는가?</h3>
-              <p class="text-xs sm:text-sm text-slate-300 font-medium mb-8">방성일 담임목사 · 갈라디아서 6:1-5 · 2026.07.26</p>
-              <button class="px-8 py-3.5 bg-[#88BE1E] hover:bg-[#72a017] text-white font-bold rounded-xl shadow-lg transition flex items-center gap-2 mx-auto">
+              <p class="text-xs sm:text-sm text-slate-300 font-medium mb-8">방성일 담임목사 · 갈라디아서 6장 1절-5절 (신 309) · 2026.07.26</p>
+              <button class="px-8 py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl shadow-lg transition flex items-center gap-2 mx-auto">
                 <span class="material-symbols-outlined text-20">play_circle</span> 영상보기
               </button>
             </div>
           </div>
         </div>
       </div>
-    </section>
 
-    <!-- ------------------------------------------------------------- -->
-    <!-- [PLAN B-2] 매거진 벤토그리드형[cite: 4] -->
-    <!-- ------------------------------------------------------------- -->
-    <section id="plan-B2" class="plan-body hidden fade-enter max-w-7xl mx-auto px-6 py-12">
-      <!-- Bento Hero[cite: 4] -->
-      <div class="grid grid-cols-1 sm:grid-cols-4 gap-4 auto-rows-[150px] mb-12">
-        <div class="sm:col-span-2 sm:row-span-2 rounded-3xl bg-[#0B2038] text-white p-8 flex flex-col justify-end relative overflow-hidden shadow-lg">
-          <div class="absolute inset-0 opacity-30 bg-cover bg-center" style="background-image:url('https://images.unsplash.com/photo-1548625361-195fe578cb26?auto=format&fit=crop&w=1200&q=80')"></div>
-          <p class="relative text-xs text-white/70 uppercase tracking-widest mb-2">2026 표어</p>
-          <p class="relative text-2xl sm:text-3xl font-extrabold leading-snug">좋은 교회를 넘어<br>위대한 교회로</p>
-        </div>
-        <div class="rounded-3xl bg-blue-50 p-6 flex flex-col justify-between border border-blue-100">
-          <span class="material-symbols-outlined text-[#0072CE] text-28">schedule</span>
-          <div><p class="font-bold text-sm">예배안내</p><p class="text-xs text-slate-500">주일 09:00 / 11:00</p></div>
-        </div>
-        <div class="rounded-3xl bg-lime-50 p-6 flex flex-col justify-between border border-lime-100">
-          <span class="material-symbols-outlined text-[#88BE1E] text-28">how_to_reg</span>
-          <div><p class="font-bold text-sm">새가족등록</p><p class="text-xs text-slate-500">온라인 사전 신청</p></div>
-        </div>
-        <div class="rounded-3xl bg-orange-50 p-6 flex flex-col justify-between border border-orange-100">
-          <span class="material-symbols-outlined text-[#F58220] text-28">volunteer_activism</span>
-          <div><p class="font-bold text-sm">온라인헌금</p><p class="text-xs text-slate-500">간편 송금 안내</p></div>
-        </div>
-        <div class="rounded-3xl bg-slate-100 p-6 flex flex-col justify-between border border-slate-200">
-          <span class="material-symbols-outlined text-slate-700 text-28">newspaper</span>
-          <div><p class="font-bold text-sm">교회주보</p><p class="text-xs text-slate-500">금주 소식 확인</p></div>
-        </div>
-      </div>
+      <!-- News Section[cite: 1] -->
+      <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-8">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+            <div>
+              <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900">하남교회 <span class="text-[#0072CE]">소식</span></h3>
+              <p class="text-xs sm:text-sm text-slate-500 mt-1">하남교회의 새로운 소식들을 전해드립니다. 가장 먼저 확인해 보세요.</p>
+            </div>
+            <div class="flex space-x-2">
+              <button class="px-4 py-2 rounded-lg bg-emerald-800 text-white text-xs font-bold shadow">교회소식</button>
+              <button class="px-4 py-2 rounded-lg bg-slate-100 text-slate-600 hover:bg-slate-200 text-xs font-bold transition">교우소식</button>
+            </div>
+          </div>
 
-      <!-- Magazine Pull Quote[cite: 4] -->
-      <div class="bg-white rounded-3xl border border-slate-200 p-10 sm:p-14 text-center mb-12 shadow-sm">
-        <p class="text-xs font-bold text-[#0072CE] uppercase tracking-widest mb-3">이번 주 주일설교</p>
-        <h3 class="text-2xl sm:text-3xl font-extrabold leading-snug mb-4">"넘버원에 목마른 세상, 행복은 어디에 있는가?"</h3>
-        <p class="text-sm text-slate-500 mb-6">방성일 담임목사 · 갈라디아서 6:1-5 · 2026.07.26</p>
-        <button class="inline-flex items-center gap-2 bg-slate-900 text-white font-bold px-7 py-3 rounded-full text-sm hover:bg-slate-800 transition shadow">
-          <span class="material-symbols-outlined text-20">play_circle</span> 설교 영상 보기
-        </button>
-      </div>
-    </section>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="p-6 rounded-2xl border border-slate-200 hover:border-emerald-700 hover:shadow-lg transition bg-white flex flex-col justify-between">
+              <div>
+                <div class="flex items-baseline space-x-2 mb-3">
+                  <span class="text-xs font-bold text-slate-400">26.08</span>
+                  <span class="text-2xl font-black text-emerald-800">19</span>
+                </div>
+                <h4 class="font-bold text-base text-slate-900 mb-2 line-clamp-1">매주 수요일 저녁, 성경공부</h4>
+                <p class="text-xs text-slate-500 leading-relaxed line-clamp-2">이번 주 주제는 "사도행전"입니다. 다정한 성경 구절들을 나누고 서로의 신앙을 격려합니다.</p>
+              </div>
+            </div>
 
-    <!-- ------------------------------------------------------------- -->
-    <!-- [PLAN B-3] 컨시어지 대화형[cite: 5] -->
-    <!-- ------------------------------------------------------------- -->
-    <section id="plan-B3" class="plan-body hidden fade-enter max-w-4xl mx-auto px-6 py-12">
-      <div class="text-center mb-8">
-        <span class="text-xs font-bold text-[#0072CE] uppercase tracking-widest">하남교회 스마트 도우미</span>
-        <h2 class="text-3xl font-extrabold text-slate-900 mt-1">무엇이 궁금하신가요?</h2>
-      </div>
+            <div class="p-6 rounded-2xl border border-slate-200 hover:border-emerald-700 hover:shadow-lg transition bg-white flex flex-col justify-between">
+              <div>
+                <div class="flex items-baseline space-x-2 mb-3">
+                  <span class="text-xs font-bold text-slate-400">26.08</span>
+                  <span class="text-2xl font-black text-emerald-800">16</span>
+                </div>
+                <h4 class="font-bold text-base text-slate-900 mb-2 line-clamp-1">모든 성도님들을 위한 기도회</h4>
+                <p class="text-xs text-slate-500 leading-relaxed line-clamp-2">주일 예배는 1부 07:45, 2부 09:15에 진행됩니다. 온 가족이 함께 모여 은혜를 나눕니다.</p>
+              </div>
+            </div>
 
-      <!-- Concierge Card[cite: 5] -->
-      <div class="bg-white rounded-3xl border border-slate-200 shadow-sm p-6 sm:p-8 text-left mb-12">
-        <div class="flex items-start gap-3 mb-6">
-          <div class="w-9 h-9 rounded-full bg-[#0072CE] flex items-center justify-center text-white text-xs font-bold flex-shrink-0">H</div>
-          <div class="bg-slate-100 rounded-2xl rounded-tl-none px-4 py-3 text-sm text-slate-800">
-            안녕하세요! 하남교회에 대해 궁금하신 내용을 아래 버튼에서 선택해 주세요.
+            <div class="p-6 rounded-2xl border border-slate-200 hover:border-emerald-700 hover:shadow-lg transition bg-white flex flex-col justify-between">
+              <div>
+                <div class="flex items-baseline space-x-2 mb-3">
+                  <span class="text-xs font-bold text-slate-400">26.08</span>
+                  <span class="text-2xl font-black text-emerald-800">14</span>
+                </div>
+                <h4 class="font-bold text-base text-slate-900 mb-2 line-clamp-1">결혼예식 소식</h4>
+                <p class="text-xs text-slate-500 leading-relaxed line-clamp-2">우리 교회 김진우 형제와 이진희 자매가 8월 29일(토) 오후 2시, 서울 모처에서 화촉을 밝힙니다.</p>
+              </div>
+            </div>
+
+            <div class="p-6 rounded-2xl border border-slate-200 hover:border-emerald-700 hover:shadow-lg transition bg-white flex flex-col justify-between">
+              <div>
+                <div class="flex items-baseline space-x-2 mb-3">
+                  <span class="text-xs font-bold text-slate-400">26.08</span>
+                  <span class="text-2xl font-black text-emerald-800">10</span>
+                </div>
+                <h4 class="font-bold text-base text-slate-900 mb-2 line-clamp-1">우리 교구 여름 사역 안내</h4>
+                <p class="text-xs text-slate-500 leading-relaxed line-clamp-2">매월 셋째 주 구역 모임 일정 및 연합 봉사 스케줄을 공지하오니 각 목자님들은 확인 바랍니다.</p>
+              </div>
+            </div>
           </div>
         </div>
-        <!-- FAQ Buttons[cite: 5] -->
-        <div class="flex flex-wrap gap-2 mb-6" id="faq-buttons">
-          <button onclick="askConcierge('time')" class="px-4 py-2 rounded-full bg-blue-50 text-[#0072CE] text-xs font-bold hover:bg-blue-100 transition">예배 시간이 궁금해요</button>
-          <button onclick="askConcierge('new')" class="px-4 py-2 rounded-full bg-lime-50 text-[#88BE1E] text-xs font-bold hover:bg-lime-100 transition">새가족 등록은 어떻게 하나요?</button>
-          <button onclick="askConcierge('give')" class="px-4 py-2 rounded-full bg-orange-50 text-[#F58220] text-xs font-bold hover:bg-orange-100 transition">온라인 헌금 방법이 궁금해요</button>
-          <button onclick="askConcierge('park')" class="px-4 py-2 rounded-full bg-slate-100 text-slate-600 text-xs font-bold hover:bg-slate-200 transition">주차는 어디로 하나요?</button>
-        </div>
-        <!-- Answer Box[cite: 5] -->
-        <div id="faq-answer"></div>
-      </div>
+      </section>
 
-      <!-- Weekly Schedule Strip[cite: 5] -->
-      <div class="bg-slate-100/70 rounded-3xl p-8 border border-slate-200">
-        <h3 class="text-lg font-bold text-slate-900 mb-6 flex items-center gap-2">
-          <span class="material-symbols-outlined text-[#0072CE]">calendar_month</span> 이번 주 주요 모임 안내
-        </h3>
-        <div class="space-y-4">
-          <div class="p-4 bg-white rounded-2xl flex justify-between items-center shadow-sm">
-            <div><p class="font-bold text-sm text-slate-800">수요 성경공부 (사도행전)</p><p class="text-xs text-slate-500">매주 수요일 저녁 7시 · 본당 2층</p></div>
-            <span class="px-3 py-1 bg-blue-50 text-[#0072CE] font-bold text-xs rounded-full">수요일</span>
+      <!-- Gallery Section[cite: 1] -->
+      <section class="py-16 bg-slate-50 border-t border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-8">
+          <div class="flex items-center justify-between mb-8">
+            <div>
+              <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900">하남교회 <span class="text-emerald-800">갤러리</span></h3>
+              <p class="text-xs sm:text-sm text-slate-500 mt-1">예배, 말씀과 기도, 교제와 사랑, 나눔과 섬김을 실천하고 있습니다.</p>
+            </div>
+            <div class="flex space-x-2">
+              <button class="w-8 h-8 rounded-full border border-slate-300 bg-white flex items-center justify-center text-slate-600 hover:bg-slate-100 shadow-sm"><span class="material-symbols-outlined text-18">arrow_back</span></button>
+              <button class="w-8 h-8 rounded-full border border-slate-300 bg-white flex items-center justify-center text-slate-600 hover:bg-slate-100 shadow-sm"><span class="material-symbols-outlined text-18">arrow_forward</span></button>
+            </div>
           </div>
-          <div class="p-4 bg-white rounded-2xl flex justify-between items-center shadow-sm">
-            <div><p class="font-bold text-sm text-slate-800">금요 성령 기도회</p><p class="text-xs text-slate-500">매주 금요일 저녁 9시 · 벧엘성전</p></div>
-            <span class="px-3 py-1 bg-orange-50 text-[#F58220] font-bold text-xs rounded-full">금요일</span>
-          </div>
-          <div class="p-4 bg-white rounded-2xl flex justify-between items-center shadow-sm">
-            <div><p class="font-bold text-sm text-slate-800">주일 대예배 (1부/2부)</p><p class="text-xs text-slate-500">매주 주일 07:45 / 09:15 · 벧엘성전</p></div>
-            <span class="px-3 py-1 bg-lime-50 text-[#88BE1E] font-bold text-xs rounded-full">주일</span>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-200 group">
+              <div class="aspect-video bg-cover bg-center overflow-hidden" style="background-image: url('https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=600&q=80');"></div>
+              <div class="p-4 text-center">
+                <span class="text-xs font-bold text-slate-800 group-hover:text-emerald-800 transition">2026년 신년 부흥회</span>
+              </div>
+            </div>
+            <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-200 group">
+              <div class="aspect-video bg-cover bg-center overflow-hidden" style="background-image: url('https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&w=600&q=80');"></div>
+              <div class="p-4 text-center">
+                <span class="text-xs font-bold text-slate-800 group-hover:text-emerald-800 transition">여름 성경학교</span>
+              </div>
+            </div>
+            <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-200 group">
+              <div class="aspect-video bg-cover bg-center overflow-hidden" style="background-image: url('https://images.unsplash.com/photo-1438232992991-995b7058bbb3?auto=format&fit=crop&w=600&q=80');"></div>
+              <div class="p-4 text-center">
+                <span class="text-xs font-bold text-slate-800 group-hover:text-emerald-800 transition">One Thing Night</span>
+              </div>
+            </div>
+            <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-200 group">
+              <div class="aspect-video bg-cover bg-center overflow-hidden" style="background-image: url('https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&w=600&q=80');"></div>
+              <div class="p-4 text-center">
+                <span class="text-xs font-bold text-slate-800 group-hover:text-emerald-800 transition">사랑의 김장 나눔</span>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
     </section>
 
   </main>
 
   <!-- ================================================================= -->
-  <!-- 3. UNIFIED COMMON FOOTER (모든 시안 동일 적용)[cite: 1] -->
+  <!-- 3. UNIFIED COMMON FOOTER (모든 메타데이터 일치)[cite: 1] -->
   <!-- ================================================================= -->
   <footer class="bg-white border-t border-slate-200 text-slate-600 py-10 mt-auto">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -599,7 +451,7 @@
   </footer>
 
   <!-- ================================================================= -->
-  <!-- 4. FLOATING TOP BUTTON & MODALS (모든 시안 공통) -->
+  <!-- 4. FLOATING TOP BUTTON & MODALS[cite: 1] -->
   <!-- ================================================================= -->
   
   <!-- Floating Scroll Top Button[cite: 1] -->
@@ -631,7 +483,7 @@
     </div>
   </div>
 
-  <!-- Fullscreen Sitemap Modal[cite: 1] -->
+  <!-- Fullscreen Sitemap Modal (4 Columns)[cite: 1] -->
   <div id="sitemap-modal" class="fixed inset-0 z-50 bg-[#0B2038] text-white hidden opacity-0 transition-opacity duration-200 overflow-y-auto">
     <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-10 min-h-screen flex flex-col justify-between">
       
@@ -743,40 +595,10 @@
   </div>
 
   <!-- ================================================================= -->
-  <!-- 5. JAVASCRIPT MASTER CONTROLLER -->
+  <!-- 5. JAVASCRIPT CONTROLLER -->
   <!-- ================================================================= -->
   <script>
-    let activePlan = 'A1';
-
-    // 1. Plan Switcher (6 Proposals)
-    function setPlan(planKey) {
-      activePlan = planKey;
-      document.querySelectorAll('.plan-body').forEach(el => el.classList.add('hidden'));
-      document.querySelectorAll('.plan-tab').forEach(btn => {
-        btn.className = 'plan-tab px-3 py-1.5 rounded-lg font-bold transition text-slate-400 hover:text-white';
-      });
-
-      const activeEl = document.getElementById(`plan-${planKey}`);
-      if (activeEl) activeEl.classList.remove('hidden');
-
-      const activeBtn = document.getElementById(`tab-${planKey}`);
-      if (activeBtn) {
-        activeBtn.className = 'plan-tab px-3 py-1.5 rounded-lg font-bold transition bg-[#0072CE] text-white shadow';
-      }
-
-      // Toggle Header segment indicator
-      const headToggle = document.getElementById('header-mode-toggle');
-      if (planKey === 'A1') {
-        headToggle.classList.remove('hidden');
-        switchViewA1('gateway');
-      } else {
-        headToggle.classList.add('hidden');
-      }
-
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    // 2. Common Master Menu Data[cite: 1]
+    // 1. Common Master Menu Data[cite: 1]
     const MENU_DATA = {
       church: {
         title: '교회안내', theme: '#0072CE',
@@ -821,12 +643,12 @@
           { title: '미취학부', links: [{ label: '영아부' }, { label: '유아부' }, { label: '유치부' }] },
           { title: '취학부', links: [{ label: '유년부' }, { label: '초등부' }, { label: '소년부' }] },
           { title: '청소년부', links: [{ label: '중등부' }, { label: '고등부' }] },
-          { title: '교육연구소', links: [{ label: '오르가가정예배지' }, { label: '캠핑치치' }] }
+          { title: '교육연구소', links: [{ label: '오르가가정예배지' }, { label: '캠핑처치' }] }
         ]
       }
     };
 
-    // 3. Mega Dropdown Controller[cite: 1]
+    // 2. Mega Dropdown Controller[cite: 1]
     const megaDropdown = document.getElementById('mega-dropdown');
     const megaDropdownContent = document.getElementById('mega-dropdown-content');
     const globalHeader = document.getElementById('main-global-header');
@@ -894,129 +716,16 @@
     megaDropdown.addEventListener('mouseenter', () => clearTimeout(dropdownTimer));
     megaDropdown.addEventListener('mouseleave', hideMegaDropdown);
 
-    // Common GNB Action Handler across proposals[cite: 1]
+    // GNB Click Router[cite: 1]
     function handleGnbAction(target) {
-      if (activePlan === 'A1') {
-        switchViewA1(target);
-      } else if (activePlan === 'A2') {
-        openPanelA2(target === 'welcome' ? 'new' : 'member');
-        document.getElementById('story').scrollIntoView({ behavior: 'smooth' });
-      } else if (activePlan === 'A3') {
-        setDashboardMode(target === 'welcome' ? 'new' : 'member');
-      } else if (activePlan === 'B1') {
-        if (target === 'welcome') document.getElementById('b1-quick').scrollIntoView({ behavior: 'smooth' });
-        else document.getElementById('b1-sermon').scrollIntoView({ behavior: 'smooth' });
-      }
-    }
-
-    // 4. Plan A1 Internal Router[cite: 1]
-    function switchViewA1(viewName) {
-      document.getElementById('a1-view-gateway').classList.add('hidden');
-      document.getElementById('a1-view-welcome').classList.add('hidden');
-      document.getElementById('a1-view-member').classList.add('hidden');
-
-      const targetEl = document.getElementById(`a1-view-${viewName}`);
-      if (targetEl) targetEl.classList.remove('hidden');
-
-      const btnWel = document.getElementById('btn-head-welcome');
-      const btnMem = document.getElementById('btn-head-member');
-
-      if (viewName === 'welcome') {
-        btnWel.className = 'px-3 py-1.5 rounded-full transition bg-[#0072CE] text-white shadow-sm font-bold';
-        btnMem.className = 'px-3 py-1.5 rounded-full transition text-slate-600 hover:text-slate-900';
-      } else if (viewName === 'member') {
-        btnWel.className = 'px-3 py-1.5 rounded-full transition text-slate-600 hover:text-slate-900';
-        btnMem.className = 'px-3 py-1.5 rounded-full transition bg-[#88BE1E] text-white shadow-sm font-bold';
+      if (target === 'welcome') {
+        document.getElementById('b1-quick').scrollIntoView({ behavior: 'smooth' });
       } else {
-        btnWel.className = 'px-3 py-1.5 rounded-full transition text-slate-600 hover:text-slate-900';
-        btnMem.className = 'px-3 py-1.5 rounded-full transition text-slate-600 hover:text-slate-900';
-      }
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-    function selectPathA1(path) { switchViewA1(path); }
-
-    // 5. Plan A2 Expandable Panel Controller[cite: 2]
-    function openPanelA2(which) {
-      const newP = document.getElementById('panel-new');
-      const memP = document.getElementById('panel-member');
-      if (which === 'new') {
-        memP.classList.remove('open');
-        newP.classList.toggle('open');
-      } else {
-        newP.classList.remove('open');
-        memP.classList.toggle('open');
+        document.getElementById('b1-sermon').scrollIntoView({ behavior: 'smooth' });
       }
     }
 
-    // 6. Plan A3 Dashboard Controller[cite: 3]
-    const DASH_DATA = {
-      new: {
-        label: '새가족 모드', title: '처음 오신 것을 환영합니다',
-        stats: [['09:00 / 11:00', '주일 예배 시간'], ['지하 전용', '주차장 안내'], ['4주 과정', '새가족 온보딩']],
-        panelTitle: '추천 다음 단계',
-        list: ['온라인 새가족 등록 신청서 작성', '1부 / 2부 예배 시간 선택', '담당 안내위원 사전 매칭 요청'],
-        ctaTitle: '등록이 처음이신가요?', ctaDesc: '온라인으로 간편하게 사전 등록을 도와드립니다.', ctaBtn: '새가족 등록하기',
-        theme: '#0072CE'
-      },
-      member: {
-        label: '성도 모드', title: '하남교회 성도 광장에 오신 것을 환영합니다',
-        stats: [['갈 6:1-5', '이번 주 본문 말씀'], ['3건', '새로운 교회 소식'], ['매주 수/금', '주중 기도회 모임']],
-        panelTitle: '최근 업데이트 소식',
-        list: ['주일 설교 영상 다시보기 (08.19)', '2026년 하반기 제자훈련 훈련생 모집', '금요기도회 찬양팀 봉사자 모집'],
-        ctaTitle: '온라인 헌금 안내', ctaDesc: '모바일 및 웹에서 간편하게 헌금에 동참하세요.', ctaBtn: '온라인 헌금하기',
-        theme: '#88BE1E'
-      }
-    };
-
-    function setDashboardMode(m) {
-      const d = DASH_DATA[m];
-      document.getElementById('dash-label').textContent = d.label;
-      document.getElementById('dash-label').style.color = d.theme;
-      document.getElementById('dash-title').textContent = d.title;
-      document.getElementById('dash-panel-title').textContent = d.panelTitle;
-      document.getElementById('dash-cta-title').textContent = d.ctaTitle;
-      document.getElementById('dash-cta-desc').textContent = d.ctaDesc;
-      document.getElementById('dash-cta-btn').textContent = d.ctaBtn;
-      document.getElementById('dash-cta-btn').style.backgroundColor = d.theme;
-
-      document.getElementById('dash-stats').innerHTML = d.stats.map(s => `
-        <div class="bg-slate-50 rounded-2xl border border-slate-200 p-5">
-          <p class="text-xl font-extrabold" style="color: ${d.theme}">${s[0]}</p>
-          <p class="text-xs text-slate-500 mt-1">${s[1]}</p>
-        </div>`).join('');
-
-      document.getElementById('dash-list').innerHTML = d.list.map(l => `
-        <li class="flex items-center gap-3 p-3 rounded-xl bg-white border border-slate-200">
-          <span class="material-symbols-outlined text-18" style="color: ${d.theme}">arrow_forward</span>${l}
-        </li>`).join('');
-
-      const btnNew = document.getElementById('btn-dash-new');
-      const btnMem = document.getElementById('btn-dash-member');
-      if (m === 'new') {
-        btnNew.className = 'flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold transition bg-[#0072CE] text-white shadow';
-        btnMem.className = 'flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold transition text-slate-600 hover:bg-slate-200/60';
-      } else {
-        btnMem.className = 'flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold transition bg-[#88BE1E] text-white shadow';
-        btnNew.className = 'flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold transition text-slate-600 hover:bg-slate-200/60';
-      }
-    }
-
-    // 7. Plan B3 Concierge FAQ Controller[cite: 5]
-    const CONCIERGE_ANSWERS = {
-      time: '주일 대예배는 1부 오전 7시 45분, 2부 오전 9시 15분에 2층 벧엘성전에서 드립니다. 청년부 예배는 오후 2시입니다.',
-      new: '상단 GNB 메뉴의 [새가족안내] 또는 사전 온라인 신청을 통해 방문하시면 전담 안내위원이 맞이해 드립니다.',
-      give: '온라인헌금 메뉴를 통해 교회 공식 계좌 또는 간편 계좌이체로 편리하게 동참하실 수 있습니다.',
-      park: '교회 지하 2~3층 전용 주차장을 이용하실 수 있습니다.'
-    };
-    function askConcierge(key) {
-      document.getElementById('faq-answer').innerHTML = `
-        <div class="flex items-start gap-3 bubble">
-          <div class="w-8 h-8 rounded-full bg-[#0072CE] flex items-center justify-center text-white text-xs font-bold flex-shrink-0">H</div>
-          <div class="bg-blue-50 rounded-2xl rounded-tl-none px-4 py-3 text-sm text-slate-700">${CONCIERGE_ANSWERS[key]}</div>
-        </div>`;
-    }
-
-    // 8. Search Modal Controller[cite: 1]
+    // 3. Search Modal Controller[cite: 1]
     const searchModal = document.getElementById('search-modal');
     const searchInput = document.getElementById('search-input');
     const searchResults = document.getElementById('search-results');
@@ -1064,7 +773,7 @@
       }
     }
 
-    // 9. Sitemap Modal Controller[cite: 1]
+    // 4. Sitemap Modal Controller[cite: 1]
     function openSitemap() {
       hideMegaDropdown();
       const modal = document.getElementById('sitemap-modal');
@@ -1079,7 +788,7 @@
       setTimeout(() => modal.classList.add('hidden'), 200);
     }
 
-    // 10. Family Site & Scroll Top[cite: 1]
+    // 5. Family Site & Scroll Top[cite: 1]
     function handleFamilySite(val) {
       if (!val) return;
       alert(`선택된 관련기관(${val}) 페이지로 이동합니다.`);
@@ -1099,12 +808,6 @@
 
     window.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') { closeSitemap(); closeSearchModal(); hideMegaDropdown(); }
-    });
-
-    // 11. Initializer
-    window.addEventListener('DOMContentLoaded', () => {
-      setPlan('A1');
-      setDashboardMode('new');
     });
   </script>
 </body>

@@ -38,24 +38,22 @@
       from { opacity: 0; transform: translateY(4px); }
       to { opacity: 1; transform: translateY(0); }
     }
-    .bubble { animation: pop .3s ease both; }
-    @keyframes pop { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
   </style>
 </head>
 <body class="bg-slate-50 text-slate-900 antialiased selection:bg-[#0072CE] selection:text-white flex flex-col min-h-screen">
 
   <!-- ================================================================= -->
-  <!-- 1. UNIFIED COMMON HEADER (B안 기본 적용) -->
+  <!-- 1. GNB HEADER (빠른서비스 유틸리티 + PDF 기준 5개 1Depth 메뉴) -->
   <!-- ================================================================= -->
   <header class="sticky top-0 z-40 w-full bg-white border-b border-slate-200 shadow-sm" id="main-global-header">
     
-    <!-- Top Utility Bar (온라인선교 제외됨)[cite: 1] -->
+    <!-- 빠른서비스 (Header Top Utility Link) -->
     <div class="bg-slate-50 border-b border-slate-200/80">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-9 flex items-center justify-end">
         <div class="flex items-center space-x-4 text-xs font-medium text-slate-600">
           <a href="#" class="hover:text-[#0072CE] transition">설교패키지</a>
           <span class="text-slate-300">|</span>
-          <a href="#b1-sermon" class="hover:text-[#0072CE] transition">예배생중계</a>
+          <a href="#b-sermon" class="hover:text-[#0072CE] transition">예배생중계</a>
           <span class="text-slate-300">|</span>
           <a href="#" class="hover:text-[#F58220] transition font-semibold">온라인헌금</a>
           <span class="text-slate-300">|</span>
@@ -68,10 +66,10 @@
       </div>
     </div>
 
-    <!-- Main Navigation Bar[cite: 1] -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+    <!-- Main Navigation Bar (PDF 5대 메뉴: 교회안내, 말씀·찬양, 양육·훈련, 다음세대, 소통·소식)[cite: 6] -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-8 h-16 flex items-center justify-between">
       
-      <!-- Brand Logo[cite: 1] -->
+      <!-- Brand Logo -->
       <div class="flex items-center space-x-3 cursor-pointer select-none" onclick="window.scrollTo({top:0, behavior:'smooth'})">
         <div class="relative w-9 h-9 rounded-lg bg-[#0072CE] flex items-center justify-center text-white overflow-hidden shadow-sm flex-shrink-0">
           <span class="material-symbols-outlined text-20 text-white">flutter</span>
@@ -83,19 +81,13 @@
         </div>
       </div>
 
-      <!-- 6 Main 1Depth Menu Items[cite: 1] -->
-      <nav class="hidden lg:flex items-center space-x-8 h-full">
+      <!-- 5 Main 1Depth Menu Items[cite: 6] -->
+      <nav class="hidden lg:flex items-center space-x-10 h-full">
         <div class="nav-item h-full flex items-center" data-menu="church">
           <button class="text-base font-bold text-slate-700 hover:text-[#0072CE] h-full transition flex items-center">교회안내</button>
         </div>
         <div class="nav-item h-full flex items-center" data-menu="worship">
           <button class="text-base font-bold text-slate-700 hover:text-[#88BE1E] h-full transition flex items-center">말씀 · 찬양</button>
-        </div>
-        <div class="nav-item h-full flex items-center" data-menu="today">
-          <button class="text-base font-bold text-slate-700 hover:text-[#88BE1E] h-full transition flex items-center">Today하남</button>
-        </div>
-        <div class="nav-item h-full flex items-center" data-menu="community">
-          <button class="text-base font-bold text-slate-700 hover:text-[#F58220] h-full transition flex items-center">교구</button>
         </div>
         <div class="nav-item h-full flex items-center" data-menu="training">
           <button class="text-base font-bold text-slate-700 hover:text-[#F58220] h-full transition flex items-center">양육 · 훈련</button>
@@ -103,11 +95,14 @@
         <div class="nav-item h-full flex items-center" data-menu="nextgen">
           <button class="text-base font-bold text-slate-700 hover:text-[#0072CE] h-full transition flex items-center">다음세대</button>
         </div>
+        <div class="nav-item h-full flex items-center" data-menu="news">
+          <button class="text-base font-bold text-slate-700 hover:text-[#88BE1E] h-full transition flex items-center">소통 · 소식</button>
+        </div>
       </nav>
 
-      <!-- Right Utility CTA & Hamburger[cite: 1] -->
+      <!-- Right Action & Sitemap Button -->
       <div class="flex items-center space-x-3">
-        <button onclick="document.getElementById('b1-quick').scrollIntoView({behavior:'smooth'})" class="hidden sm:inline-block px-3.5 py-1.5 rounded-full bg-blue-50 text-[#0072CE] text-xs font-bold hover:bg-blue-100 transition">
+        <button onclick="document.getElementById('b-quick').scrollIntoView({behavior:'smooth'})" class="hidden sm:inline-block px-3.5 py-1.5 rounded-full bg-blue-50 text-[#0072CE] text-xs font-bold hover:bg-blue-100 transition">
           처음 오셨나요?
         </button>
         <button onclick="openSitemap()" aria-label="전체 사이트맵 열기" class="p-2 rounded-lg text-slate-700 hover:bg-slate-100 transition">
@@ -116,299 +111,219 @@
       </div>
     </div>
 
-    <!-- Mega Dropdown Panel[cite: 1] -->
+    <!-- Mega Dropdown Panel (2Depth/3Depth 렌더링) -->
     <div id="mega-dropdown" class="absolute top-[6.25rem] left-0 w-full bg-white border-b border-slate-200 shadow-2xl hidden z-30 transition-all duration-200">
       <div class="max-w-7xl mx-auto px-6 lg:px-8 py-8" id="mega-dropdown-content"></div>
     </div>
   </header>
 
   <!-- ================================================================= -->
-  <!-- 2. PROPOSAL BODY SECTIONS -->
+  <!-- 2. PROPOSAL B BODY (원페이지 포털 위젯형) -->
   <!-- ================================================================= -->
   <main class="flex-grow">
     
-    <!-- ========================================================= -->
-    <!-- [A안 전체 주석 처리 영역 - 필요 시 주석 해제하여 사용 가능] -->
-    <!-- ========================================================= -->
-    <!--
-    <section id="plan-A1" class="plan-body fade-enter">
-      <div id="a1-view-gateway" class="min-h-[calc(100vh-10rem)] flex flex-col justify-between">
-        <div class="relative w-full py-16 sm:py-24 bg-[#0B2038] text-white overflow-hidden">
-          <div class="absolute inset-0 opacity-20 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1548625361-195fe578cb26?auto=format&fit=crop&w=1600&q=80');"></div>
-          <div class="relative max-w-4xl mx-auto px-4 text-center">
-            <span class="inline-block py-1 px-4 mb-4 text-xs font-bold tracking-wider uppercase bg-white text-[#0072CE] rounded-full shadow-sm">
-              HANAM PRESBYTERIAN CHURCH
-            </span>
-            <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight mb-3">하남교회에 오신 것을 환영합니다!</h1>
-            <p class="text-sm sm:text-base text-slate-300">좋은 교회를 넘어 위대한 교회로!</p>
-            <p class="text-sm sm:text-base text-slate-300">건강한 교회를 넘어 세상을 변화시키는 교회로!</p>
-          </div>
-        </div>
-
-        <div class="max-w-4xl mx-auto px-4 -mt-10 sm:-mt-14 mb-16 w-full grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div class="bg-white rounded-2xl shadow-xl border-t-4 border-t-[#0072CE] border-x border-b border-slate-100 p-8 flex flex-col items-center text-center transition hover:-translate-y-1 hover:shadow-2xl">
-            <div class="w-16 h-16 bg-blue-50 text-[#0072CE] rounded-2xl flex items-center justify-center mb-5 shadow-inner">
-              <span class="material-symbols-outlined text-36">map</span>
-            </div>
-            <h2 class="text-xl font-bold text-slate-900 mb-1">처음 오셨나요?</h2>
-            <p class="text-xs text-slate-400 font-medium mb-3">Are you new here?</p>
-            <p class="text-sm text-slate-600 mb-6 flex-grow leading-relaxed">예배 시간, 오시는 길 및 새가족 등록 절차를 친절히 안내해 드립니다.</p>
-            <button class="w-full py-3.5 px-6 rounded-xl bg-[#0072CE] text-white font-bold text-sm hover:bg-[#005da8] transition shadow-md shadow-blue-500/20">
-              새가족 사이트 바로가기
-            </button>
-          </div>
-
-          <div class="bg-white rounded-2xl shadow-xl border-t-4 border-t-[#88BE1E] border-x border-b border-slate-100 p-8 flex flex-col items-center text-center transition hover:-translate-y-1 hover:shadow-2xl">
-            <div class="w-16 h-16 bg-lime-50 text-[#88BE1E] rounded-2xl flex items-center justify-center mb-5 shadow-inner">
-              <span class="material-symbols-outlined text-36">diversity_3</span>
-            </div>
-            <h2 class="text-xl font-bold text-slate-900 mb-1">기존 성도님이신가요?</h2>
-            <p class="text-xs text-slate-400 font-medium mb-3">Are you a current member?</p>
-            <p class="text-sm text-slate-600 mb-6 flex-grow leading-relaxed">금주 설교, 온라인 주보, 사역 신청 및 교우 소식을 확인하세요.</p>
-            <button class="w-full py-3.5 px-6 rounded-xl bg-[#88BE1E] text-white font-bold text-sm hover:bg-[#72a017] transition shadow-md shadow-lime-500/20">
-              성도용 사이트 바로가기
-            </button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="plan-A2" class="plan-body hidden fade-enter max-w-7xl mx-auto px-6 py-12">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-12">
-        <div class="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl">
-          <div class="absolute inset-0 bg-cover bg-center" style="background-image:url('https://images.unsplash.com/photo-1445445290350-18a3b86e0b5a?auto=format&fit=crop&w=1200&q=80')"></div>
-          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
-          <div class="absolute bottom-8 left-8 right-8 text-white">
-            <p class="text-xs tracking-widest uppercase text-white/70 mb-2">HANAM PRESBYTERIAN CHURCH</p>
-            <p class="text-2xl font-bold leading-snug">함께 걷는 신앙,<br>함께 짓는 공동체</p>
-          </div>
-        </div>
-        <div>
-          <p class="text-hblue font-bold text-sm tracking-widest uppercase mb-3">Since 1977</p>
-          <h1 class="text-3xl sm:text-4xl font-extrabold leading-tight mb-5">당신의 자리는<br>이미 준비되어 있습니다</h1>
-          <p class="text-slate-600 leading-relaxed mb-8">누구든, 어떤 사연을 갖고 오시든 하남교회는 한 사람 한 사람을 소중히 맞이합니다.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="plan-A3" class="plan-body hidden fade-enter max-w-7xl mx-auto px-4 sm:px-8 py-10">
-      <div class="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden flex flex-col md:flex-row min-h-[600px]">
-        <aside class="w-full md:w-64 bg-slate-50 border-r border-slate-200 p-6 flex flex-col justify-between">
-          <p class="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-3">모드 선택</p>
-        </aside>
-      </div>
-    </section>
-    -->
-
-    <!-- ------------------------------------------------------------- -->
-    <!-- [PLAN B-1] 기본 메인 페이지 (원페이지 포털 위젯형)[cite: 1] -->
-    <!-- ------------------------------------------------------------- -->
-    <section id="plan-B1" class="plan-body fade-enter">
+    <!-- Hero Section: 표어 + 분기 위젯 -->
+    <div class="relative w-full bg-[#111827] text-white overflow-hidden">
+      <div class="absolute inset-0 opacity-40 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1548625361-195fe578cb26?auto=format&fit=crop&w=1600&q=80');"></div>
+      <div class="absolute inset-0 bg-gradient-to-r from-black/85 via-black/40 to-transparent"></div>
       
-      <!-- Hero Section[cite: 1] -->
-      <div class="relative w-full bg-[#111827] text-white overflow-hidden">
-        <div class="absolute inset-0 opacity-40 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1548625361-195fe578cb26?auto=format&fit=crop&w=1600&q=80');"></div>
-        <div class="absolute inset-0 bg-gradient-to-r from-black/85 via-black/40 to-transparent"></div>
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-8 py-16 lg:py-24 min-h-[460px] flex flex-col lg:flex-row items-center justify-between gap-10">
+        <!-- 좌측: 표어 문구 -->
+        <div class="max-w-xl text-left">
+          <p class="text-xs sm:text-sm font-semibold tracking-widest text-amber-400 mb-2 uppercase">하나님을 사랑하는 자</p>
+          <h2 class="text-xl sm:text-2xl lg:text-3xl font-extrabold leading-snug sm:leading-relaxed tracking-tight mb-4 drop-shadow-md break-keep">
+            좋은 교회를 넘어 위대한 교회로!<br>
+            건강한 교회를 넘어 세상을 변화시키는 교회로!
+          </h2>
+          <p class="text-slate-300 text-xs sm:text-sm font-medium">히브리서 12:2 | 하남교회 2026 표어</p>
+        </div>
         
-        <div class="relative max-w-7xl mx-auto px-4 sm:px-8 py-16 lg:py-24 min-h-[460px] flex flex-col lg:flex-row items-center justify-between gap-10">
-          <!-- 좌측: 말씀 문구 (폰트 사이즈 축소 및 줄바꿈 보정 적용)[cite: 1] -->
-          <div class="max-w-xl text-left">
-            <p class="text-xs sm:text-sm font-semibold tracking-widest text-amber-400 mb-2 uppercase">하나님을 사랑하는 자</p>
-            <h2 class="text-xl sm:text-2xl lg:text-3xl font-extrabold leading-snug sm:leading-relaxed tracking-tight mb-4 drop-shadow-md break-keep">
-              좋은 교회를 넘어 위대한 교회로!<br>
-              건강한 교회를 넘어 세상을 변화시키는 교회로!
-            </h2>
-            <p class="text-slate-300 text-xs sm:text-sm font-medium">히브리서 12:2 | 하남교회 2026 표어</p>
-          </div>
-          
-          <!-- 우측: 2-Way 카드 박스[cite: 1] -->
-          <div class="w-full lg:w-96 bg-white/95 backdrop-blur-md rounded-2xl p-6 shadow-2xl text-slate-900 border border-white/40">
-            <h3 class="text-center font-extrabold text-base mb-4 text-slate-800">처음 오셨나요? 기존 성도이신가요?</h3>
-            <div class="grid grid-cols-2 gap-4">
-              <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 flex flex-col items-center text-center hover:border-[#88BE1E] transition">
-                <span class="material-symbols-outlined text-32 text-[#88BE1E] mb-2">diversity_3</span>
-                <span class="font-bold text-sm text-slate-800 mb-1">기존성도</span>
-                <p class="text-[11px] text-slate-500 mb-3">설교·주보·소식</p>
-                <button onclick="document.getElementById('b1-sermon').scrollIntoView({behavior:'smooth'})" class="w-full py-2 bg-[#88BE1E] hover:bg-[#72a017] text-white text-xs font-bold rounded-lg transition">바로가기</button>
-              </div>
-              <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 flex flex-col items-center text-center hover:border-[#0072CE] transition">
-                <span class="material-symbols-outlined text-32 text-[#0072CE] mb-2">how_to_reg</span>
-                <span class="font-bold text-sm text-slate-800 mb-1">새가족</span>
-                <p class="text-[11px] text-slate-500 mb-3">등록·예배안내</p>
-                <button onclick="document.getElementById('b1-quick').scrollIntoView({behavior:'smooth'})" class="w-full py-2 bg-[#0072CE] hover:bg-[#005da8] text-white text-xs font-bold rounded-lg transition">바로가기</button>
-              </div>
+        <!-- 우측: 2-Way 카드 박스 -->
+        <div class="w-full lg:w-96 bg-white/95 backdrop-blur-md rounded-2xl p-6 shadow-2xl text-slate-900 border border-white/40">
+          <h3 class="text-center font-extrabold text-base mb-4 text-slate-800">처음 오셨나요? 기존 성도이신가요?</h3>
+          <div class="grid grid-cols-2 gap-4">
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 flex flex-col items-center text-center hover:border-[#88BE1E] transition">
+              <span class="material-symbols-outlined text-32 text-[#88BE1E] mb-2">diversity_3</span>
+              <span class="font-bold text-sm text-slate-800 mb-1">기존성도</span>
+              <p class="text-[11px] text-slate-500 mb-3">설교·주보·소식</p>
+              <button onclick="document.getElementById('b-sermon').scrollIntoView({behavior:'smooth'})" class="w-full py-2 bg-[#88BE1E] hover:bg-[#72a017] text-white text-xs font-bold rounded-lg transition">바로가기</button>
+            </div>
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 flex flex-col items-center text-center hover:border-[#0072CE] transition">
+              <span class="material-symbols-outlined text-32 text-[#0072CE] mb-2">how_to_reg</span>
+              <span class="font-bold text-sm text-slate-800 mb-1">새가족</span>
+              <p class="text-[11px] text-slate-500 mb-3">등록·예배안내</p>
+              <button onclick="document.getElementById('b-quick').scrollIntoView({behavior:'smooth'})" class="w-full py-2 bg-[#0072CE] hover:bg-[#005da8] text-white text-xs font-bold rounded-lg transition">바로가기</button>
             </div>
           </div>
         </div>
       </div>
+    </div>
 
-      <!-- 6-Icon Grid ("하남교회에 처음 오셨나요?")[cite: 1] -->
-      <div id="b1-quick" class="py-16 bg-white border-b border-slate-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-8 text-center">
-          <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-2"><span class="text-[#0072CE]">하남교회</span>에 처음 오셨나요?</h3>
-          <p class="text-xs sm:text-sm text-slate-500 mb-10">하남교회 홈페이지의 주요 메뉴를 안내해 드립니다</p>
-          <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
-            <a href="#" class="p-6 rounded-2xl bg-white border border-slate-200 hover:border-[#0072CE] hover:shadow-xl transition flex flex-col items-center group">
-              <span class="material-symbols-outlined text-32 text-slate-700 group-hover:text-[#0072CE] mb-3">church</span>
-              <span class="font-bold text-sm text-slate-800 group-hover:text-[#0072CE]">교회소개</span>
-            </a>
-            <a href="#" class="p-6 rounded-2xl bg-white border border-slate-200 hover:border-[#0072CE] hover:shadow-xl transition flex flex-col items-center group">
-              <span class="material-symbols-outlined text-32 text-slate-700 group-hover:text-[#0072CE] mb-3">schedule</span>
-              <span class="font-bold text-sm text-slate-800 group-hover:text-[#0072CE]">예배안내</span>
-            </a>
-            <a href="#" class="p-6 rounded-2xl bg-white border border-slate-200 hover:border-[#0072CE] hover:shadow-xl transition flex flex-col items-center group">
-              <span class="material-symbols-outlined text-32 text-slate-700 group-hover:text-[#0072CE] mb-3">person_apron</span>
-              <span class="font-bold text-sm text-slate-800 group-hover:text-[#0072CE]">섬기는 이들</span>
-            </a>
-            <a href="#" class="p-6 rounded-2xl bg-white border border-slate-200 hover:border-[#0072CE] hover:shadow-xl transition flex flex-col items-center group">
-              <span class="material-symbols-outlined text-32 text-slate-700 group-hover:text-[#0072CE] mb-3">pin_drop</span>
-              <span class="font-bold text-sm text-slate-800 group-hover:text-[#0072CE]">오시는 길</span>
-            </a>
-            <a href="#b1-sermon" class="p-6 rounded-2xl bg-white border border-slate-200 hover:border-[#88BE1E] hover:shadow-xl transition flex flex-col items-center group">
-              <span class="material-symbols-outlined text-32 text-slate-700 group-hover:text-[#88BE1E] mb-3">live_tv</span>
-              <span class="font-bold text-sm text-slate-800 group-hover:text-[#88BE1E]">말씀과 찬양</span>
-            </a>
-            <a href="#" class="p-6 rounded-2xl bg-white border border-slate-200 hover:border-[#0072CE] hover:shadow-xl transition flex flex-col items-center group">
-              <span class="material-symbols-outlined text-32 text-slate-700 group-hover:text-[#0072CE] mb-3">newspaper</span>
-              <span class="font-bold text-sm text-slate-800 group-hover:text-[#0072CE]">교회 주보</span>
-            </a>
+    <!-- 6-Icon Quick Action Grid ("하남교회에 처음 오셨나요?") -->
+    <div id="b-quick" class="py-16 bg-white border-b border-slate-100">
+      <div class="max-w-7xl mx-auto px-4 sm:px-8 text-center">
+        <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-2"><span class="text-[#0072CE]">하남교회</span>에 처음 오셨나요?</h3>
+        <p class="text-xs sm:text-sm text-slate-500 mb-10">하남교회 홈페이지의 주요 메뉴를 안내해 드립니다</p>
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+          <a href="#" class="p-6 rounded-2xl bg-white border border-slate-200 hover:border-[#0072CE] hover:shadow-xl transition flex flex-col items-center group">
+            <span class="material-symbols-outlined text-32 text-slate-700 group-hover:text-[#0072CE] mb-3">church</span>
+            <span class="font-bold text-sm text-slate-800 group-hover:text-[#0072CE]">교회소개</span>
+          </a>
+          <a href="#" class="p-6 rounded-2xl bg-white border border-slate-200 hover:border-[#0072CE] hover:shadow-xl transition flex flex-col items-center group">
+            <span class="material-symbols-outlined text-32 text-slate-700 group-hover:text-[#0072CE] mb-3">schedule</span>
+            <span class="font-bold text-sm text-slate-800 group-hover:text-[#0072CE]">예배안내</span>
+          </a>
+          <a href="#" class="p-6 rounded-2xl bg-white border border-slate-200 hover:border-[#0072CE] hover:shadow-xl transition flex flex-col items-center group">
+            <span class="material-symbols-outlined text-32 text-slate-700 group-hover:text-[#0072CE] mb-3">person_apron</span>
+            <span class="font-bold text-sm text-slate-800 group-hover:text-[#0072CE]">섬기는 이들</span>
+          </a>
+          <a href="#" class="p-6 rounded-2xl bg-white border border-slate-200 hover:border-[#0072CE] hover:shadow-xl transition flex flex-col items-center group">
+            <span class="material-symbols-outlined text-32 text-slate-700 group-hover:text-[#0072CE] mb-3">pin_drop</span>
+            <span class="font-bold text-sm text-slate-800 group-hover:text-[#0072CE]">오시는 길</span>
+          </a>
+          <a href="#b-sermon" class="p-6 rounded-2xl bg-white border border-slate-200 hover:border-[#88BE1E] hover:shadow-xl transition flex flex-col items-center group">
+            <span class="material-symbols-outlined text-32 text-slate-700 group-hover:text-[#88BE1E] mb-3">live_tv</span>
+            <span class="font-bold text-sm text-slate-800 group-hover:text-[#88BE1E]">말씀과 찬양</span>
+          </a>
+          <a href="#" class="p-6 rounded-2xl bg-white border border-slate-200 hover:border-[#0072CE] hover:shadow-xl transition flex flex-col items-center group">
+            <span class="material-symbols-outlined text-32 text-slate-700 group-hover:text-[#0072CE] mb-3">newspaper</span>
+            <span class="font-bold text-sm text-slate-800 group-hover:text-[#0072CE]">교회 주보</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 주일설교 대형 피처드 배너 -->
+    <div id="b-sermon" class="py-14 bg-slate-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-8">
+        <div class="relative rounded-3xl overflow-hidden bg-slate-900 text-white p-8 sm:p-14 shadow-2xl flex flex-col items-center text-center">
+          <div class="absolute inset-0 opacity-35 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1519817650390-64a93db51149?auto=format&fit=crop&w=1600&q=80');"></div>
+          <div class="relative z-10 max-w-3xl">
+            <span class="inline-block px-3 py-1 rounded-full bg-white/20 text-xs font-bold uppercase tracking-widest mb-4">주일설교</span>
+            <h3 class="text-2xl sm:text-4xl font-extrabold mb-4 tracking-tight">성장여정⑥ 넘버원에 목마른 세상, 행복은 어디에 있는가?</h3>
+            <p class="text-xs sm:text-sm text-slate-300 font-medium mb-8">방성일 담임목사 · 갈라디아서 6장 1절-5절 (신 309) · 2026.07.26</p>
+            <button class="px-8 py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl shadow-lg transition flex items-center gap-2 mx-auto">
+              <span class="material-symbols-outlined text-20">play_circle</span> 영상보기
+            </button>
           </div>
         </div>
       </div>
+    </div>
 
-      <!-- Featured Sermon Banner[cite: 1] -->
-      <div id="b1-sermon" class="py-14 bg-slate-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-8">
-          <div class="relative rounded-3xl overflow-hidden bg-slate-900 text-white p-8 sm:p-14 shadow-2xl flex flex-col items-center text-center">
-            <div class="absolute inset-0 opacity-35 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1519817650390-64a93db51149?auto=format&fit=crop&w=1600&q=80');"></div>
-            <div class="relative z-10 max-w-3xl">
-              <span class="inline-block px-3 py-1 rounded-full bg-white/20 text-xs font-bold uppercase tracking-widest mb-4">주일설교</span>
-              <h3 class="text-2xl sm:text-4xl font-extrabold mb-4 tracking-tight">성장여정⑥ 넘버원에 목마른 세상, 행복은 어디에 있는가?</h3>
-              <p class="text-xs sm:text-sm text-slate-300 font-medium mb-8">방성일 담임목사 · 갈라디아서 6장 1절-5절 (신 309) · 2026.07.26</p>
-              <button class="px-8 py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl shadow-lg transition flex items-center gap-2 mx-auto">
-                <span class="material-symbols-outlined text-20">play_circle</span> 영상보기
-              </button>
-            </div>
+    <!-- 하남교회 소식 섹션 -->
+    <section class="py-16 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-8">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+          <div>
+            <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900">하남교회 <span class="text-[#0072CE]">소식</span></h3>
+            <p class="text-xs sm:text-sm text-slate-500 mt-1">하남교회의 새로운 소식들을 전해드립니다. 가장 먼저 확인해 보세요.</p>
+          </div>
+          <div class="flex space-x-2">
+            <button class="px-4 py-2 rounded-lg bg-emerald-800 text-white text-xs font-bold shadow">교회소식</button>
+            <button class="px-4 py-2 rounded-lg bg-slate-100 text-slate-600 hover:bg-slate-200 text-xs font-bold transition">교우소식</button>
           </div>
         </div>
-      </div>
 
-      <!-- News Section[cite: 1] -->
-      <section class="py-16 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-8">
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div class="p-6 rounded-2xl border border-slate-200 hover:border-emerald-700 hover:shadow-lg transition bg-white flex flex-col justify-between">
             <div>
-              <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900">하남교회 <span class="text-[#0072CE]">소식</span></h3>
-              <p class="text-xs sm:text-sm text-slate-500 mt-1">하남교회의 새로운 소식들을 전해드립니다. 가장 먼저 확인해 보세요.</p>
-            </div>
-            <div class="flex space-x-2">
-              <button class="px-4 py-2 rounded-lg bg-emerald-800 text-white text-xs font-bold shadow">교회소식</button>
-              <button class="px-4 py-2 rounded-lg bg-slate-100 text-slate-600 hover:bg-slate-200 text-xs font-bold transition">교우소식</button>
+              <div class="flex items-baseline space-x-2 mb-3">
+                <span class="text-xs font-bold text-slate-400">26.08</span>
+                <span class="text-2xl font-black text-emerald-800">19</span>
+              </div>
+              <h4 class="font-bold text-base text-slate-900 mb-2 line-clamp-1">매주 수요일 저녁, 성경공부</h4>
+              <p class="text-xs text-slate-500 leading-relaxed line-clamp-2">이번 주 주제는 "사도행전"입니다. 다정한 성경 구절들을 나누고 서로의 신앙을 격려합니다.</p>
             </div>
           </div>
 
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div class="p-6 rounded-2xl border border-slate-200 hover:border-emerald-700 hover:shadow-lg transition bg-white flex flex-col justify-between">
-              <div>
-                <div class="flex items-baseline space-x-2 mb-3">
-                  <span class="text-xs font-bold text-slate-400">26.08</span>
-                  <span class="text-2xl font-black text-emerald-800">19</span>
-                </div>
-                <h4 class="font-bold text-base text-slate-900 mb-2 line-clamp-1">매주 수요일 저녁, 성경공부</h4>
-                <p class="text-xs text-slate-500 leading-relaxed line-clamp-2">이번 주 주제는 "사도행전"입니다. 다정한 성경 구절들을 나누고 서로의 신앙을 격려합니다.</p>
-              </div>
-            </div>
-
-            <div class="p-6 rounded-2xl border border-slate-200 hover:border-emerald-700 hover:shadow-lg transition bg-white flex flex-col justify-between">
-              <div>
-                <div class="flex items-baseline space-x-2 mb-3">
-                  <span class="text-xs font-bold text-slate-400">26.08</span>
-                  <span class="text-2xl font-black text-emerald-800">16</span>
-                </div>
-                <h4 class="font-bold text-base text-slate-900 mb-2 line-clamp-1">모든 성도님들을 위한 기도회</h4>
-                <p class="text-xs text-slate-500 leading-relaxed line-clamp-2">주일 예배는 1부 07:45, 2부 09:15에 진행됩니다. 온 가족이 함께 모여 은혜를 나눕니다.</p>
-              </div>
-            </div>
-
-            <div class="p-6 rounded-2xl border border-slate-200 hover:border-emerald-700 hover:shadow-lg transition bg-white flex flex-col justify-between">
-              <div>
-                <div class="flex items-baseline space-x-2 mb-3">
-                  <span class="text-xs font-bold text-slate-400">26.08</span>
-                  <span class="text-2xl font-black text-emerald-800">14</span>
-                </div>
-                <h4 class="font-bold text-base text-slate-900 mb-2 line-clamp-1">결혼예식 소식</h4>
-                <p class="text-xs text-slate-500 leading-relaxed line-clamp-2">우리 교회 김진우 형제와 이진희 자매가 8월 29일(토) 오후 2시, 서울 모처에서 화촉을 밝힙니다.</p>
-              </div>
-            </div>
-
-            <div class="p-6 rounded-2xl border border-slate-200 hover:border-emerald-700 hover:shadow-lg transition bg-white flex flex-col justify-between">
-              <div>
-                <div class="flex items-baseline space-x-2 mb-3">
-                  <span class="text-xs font-bold text-slate-400">26.08</span>
-                  <span class="text-2xl font-black text-emerald-800">10</span>
-                </div>
-                <h4 class="font-bold text-base text-slate-900 mb-2 line-clamp-1">우리 교구 여름 사역 안내</h4>
-                <p class="text-xs text-slate-500 leading-relaxed line-clamp-2">매월 셋째 주 구역 모임 일정 및 연합 봉사 스케줄을 공지하오니 각 목자님들은 확인 바랍니다.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Gallery Section[cite: 1] -->
-      <section class="py-16 bg-slate-50 border-t border-slate-200">
-        <div class="max-w-7xl mx-auto px-4 sm:px-8">
-          <div class="flex items-center justify-between mb-8">
+          <div class="p-6 rounded-2xl border border-slate-200 hover:border-emerald-700 hover:shadow-lg transition bg-white flex flex-col justify-between">
             <div>
-              <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900">하남교회 <span class="text-emerald-800">갤러리</span></h3>
-              <p class="text-xs sm:text-sm text-slate-500 mt-1">예배, 말씀과 기도, 교제와 사랑, 나눔과 섬김을 실천하고 있습니다.</p>
-            </div>
-            <div class="flex space-x-2">
-              <button class="w-8 h-8 rounded-full border border-slate-300 bg-white flex items-center justify-center text-slate-600 hover:bg-slate-100 shadow-sm"><span class="material-symbols-outlined text-18">arrow_back</span></button>
-              <button class="w-8 h-8 rounded-full border border-slate-300 bg-white flex items-center justify-center text-slate-600 hover:bg-slate-100 shadow-sm"><span class="material-symbols-outlined text-18">arrow_forward</span></button>
+              <div class="flex items-baseline space-x-2 mb-3">
+                <span class="text-xs font-bold text-slate-400">26.08</span>
+                <span class="text-2xl font-black text-emerald-800">16</span>
+              </div>
+              <h4 class="font-bold text-base text-slate-900 mb-2 line-clamp-1">모든 성도님들을 위한 기도회</h4>
+              <p class="text-xs text-slate-500 leading-relaxed line-clamp-2">주일 예배는 1부 07:45, 2부 09:15에 진행됩니다. 온 가족이 함께 모여 은혜를 나눕니다.</p>
             </div>
           </div>
 
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-200 group">
-              <div class="aspect-video bg-cover bg-center overflow-hidden" style="background-image: url('https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=600&q=80');"></div>
-              <div class="p-4 text-center">
-                <span class="text-xs font-bold text-slate-800 group-hover:text-emerald-800 transition">2026년 신년 부흥회</span>
+          <div class="p-6 rounded-2xl border border-slate-200 hover:border-emerald-700 hover:shadow-lg transition bg-white flex flex-col justify-between">
+            <div>
+              <div class="flex items-baseline space-x-2 mb-3">
+                <span class="text-xs font-bold text-slate-400">26.08</span>
+                <span class="text-2xl font-black text-emerald-800">14</span>
               </div>
+              <h4 class="font-bold text-base text-slate-900 mb-2 line-clamp-1">결혼예식 소식</h4>
+              <p class="text-xs text-slate-500 leading-relaxed line-clamp-2">우리 교회 김진우 형제와 이진희 자매가 8월 29일(토) 오후 2시, 서울 모처에서 화촉을 밝힙니다.</p>
             </div>
-            <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-200 group">
-              <div class="aspect-video bg-cover bg-center overflow-hidden" style="background-image: url('https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&w=600&q=80');"></div>
-              <div class="p-4 text-center">
-                <span class="text-xs font-bold text-slate-800 group-hover:text-emerald-800 transition">여름 성경학교</span>
+          </div>
+
+          <div class="p-6 rounded-2xl border border-slate-200 hover:border-emerald-700 hover:shadow-lg transition bg-white flex flex-col justify-between">
+            <div>
+              <div class="flex items-baseline space-x-2 mb-3">
+                <span class="text-xs font-bold text-slate-400">26.08</span>
+                <span class="text-2xl font-black text-emerald-800">10</span>
               </div>
-            </div>
-            <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-200 group">
-              <div class="aspect-video bg-cover bg-center overflow-hidden" style="background-image: url('https://images.unsplash.com/photo-1438232992991-995b7058bbb3?auto=format&fit=crop&w=600&q=80');"></div>
-              <div class="p-4 text-center">
-                <span class="text-xs font-bold text-slate-800 group-hover:text-emerald-800 transition">One Thing Night</span>
-              </div>
-            </div>
-            <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-200 group">
-              <div class="aspect-video bg-cover bg-center overflow-hidden" style="background-image: url('https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&w=600&q=80');"></div>
-              <div class="p-4 text-center">
-                <span class="text-xs font-bold text-slate-800 group-hover:text-emerald-800 transition">사랑의 김장 나눔</span>
-              </div>
+              <h4 class="font-bold text-base text-slate-900 mb-2 line-clamp-1">우리 교구 여름 사역 안내</h4>
+              <p class="text-xs text-slate-500 leading-relaxed line-clamp-2">매월 셋째 주 구역 모임 일정 및 연합 봉사 스케줄을 공지하오니 각 목자님들은 확인 바랍니다.</p>
             </div>
           </div>
         </div>
-      </section>
+      </div>
     </section>
 
+    <!-- 하남교회 갤러리 섹션 -->
+    <section class="py-16 bg-slate-50 border-t border-slate-200">
+      <div class="max-w-7xl mx-auto px-4 sm:px-8">
+        <div class="flex items-center justify-between mb-8">
+          <div>
+            <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900">하남교회 <span class="text-emerald-800">갤러리</span></h3>
+            <p class="text-xs sm:text-sm text-slate-500 mt-1">예배, 말씀과 기도, 교제와 사랑, 나눔과 섬김을 실천하고 있습니다.</p>
+          </div>
+          <div class="flex space-x-2">
+            <button class="w-8 h-8 rounded-full border border-slate-300 bg-white flex items-center justify-center text-slate-600 hover:bg-slate-100 shadow-sm"><span class="material-symbols-outlined text-18">arrow_back</span></button>
+            <button class="w-8 h-8 rounded-full border border-slate-300 bg-white flex items-center justify-center text-slate-600 hover:bg-slate-100 shadow-sm"><span class="material-symbols-outlined text-18">arrow_forward</span></button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-200 group">
+            <div class="aspect-video bg-cover bg-center overflow-hidden" style="background-image: url('https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=600&q=80');"></div>
+            <div class="p-4 text-center">
+              <span class="text-xs font-bold text-slate-800 group-hover:text-emerald-800 transition">2026년 신년 부흥회</span>
+            </div>
+          </div>
+          <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-200 group">
+            <div class="aspect-video bg-cover bg-center overflow-hidden" style="background-image: url('https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&w=600&q=80');"></div>
+            <div class="p-4 text-center">
+              <span class="text-xs font-bold text-slate-800 group-hover:text-emerald-800 transition">여름 성경학교</span>
+            </div>
+          </div>
+          <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-200 group">
+            <div class="aspect-video bg-cover bg-center overflow-hidden" style="background-image: url('https://images.unsplash.com/photo-1438232992991-995b7058bbb3?auto=format&fit=crop&w=600&q=80');"></div>
+            <div class="p-4 text-center">
+              <span class="text-xs font-bold text-slate-800 group-hover:text-emerald-800 transition">One Thing Night</span>
+            </div>
+          </div>
+          <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-200 group">
+            <div class="aspect-video bg-cover bg-center overflow-hidden" style="background-image: url('https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&w=600&q=80');"></div>
+            <div class="p-4 text-center">
+              <span class="text-xs font-bold text-slate-800 group-hover:text-emerald-800 transition">사랑의 김장 나눔</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
   <!-- ================================================================= -->
-  <!-- 3. UNIFIED COMMON FOOTER (모든 메타데이터 일치)[cite: 1] -->
+  <!-- 3. UNIFIED COMMON FOOTER (패밀리사이트: PDF 기준 5개 기관)[cite: 6] -->
   <!-- ================================================================= -->
   <footer class="bg-white border-t border-slate-200 text-slate-600 py-10 mt-auto">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 pb-8 border-b border-slate-100">
-        <!-- Policy & Sitemap Links[cite: 1] -->
+        <!-- 정책 링크 -->
         <div class="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-slate-700 font-medium">
           <a href="#" class="hover:text-slate-900">자주하는 질문</a>
           <span class="text-slate-300">|</span>
@@ -419,11 +334,11 @@
           <a href="#" class="font-bold text-slate-900 hover:underline">개인정보처리방침</a>
         </div>
 
-        <!-- Family Site Dropdown[cite: 1] -->
+        <!-- 패밀리사이트 (PDF 5개 기관: 써니힐국제학교, 써니힐유치원, 하남장애주간보호시설, 하남시립초등어린이집, 느티나무마을)[cite: 6] -->
         <div class="relative w-full sm:w-64">
           <label for="family-site-select" class="sr-only">관련기관 선택</label>
           <select id="family-site-select" onchange="handleFamilySite(this.value)" class="w-full appearance-none bg-white border border-slate-300 rounded-lg px-4 py-2.5 text-sm font-semibold text-slate-700 hover:border-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0072CE] transition cursor-pointer">
-            <option value="" disabled selected>관련기관 (Family Site)</option>
+            <option value="" disabled selected>패밀리사이트 (관련기관)</option>
             <option value="sunnyhill_school">써니힐국제학교</option>
             <option value="sunnyhill_kinder">써니힐유치원</option>
             <option value="hanam_daycare">하남장애주간보호시설</option>
@@ -436,7 +351,7 @@
         </div>
       </div>
 
-      <!-- Church Metadata & Copyright[cite: 1] -->
+      <!-- 하남교회 상세 메타데이터 -->
       <div class="pt-8 flex flex-col lg:flex-row items-start justify-between gap-6 text-xs text-slate-500 leading-relaxed">
         <div class="space-y-1.5 max-w-4xl">
           <p class="font-bold text-slate-800 text-sm mb-2">대한예수교장로회 하남교회 (HANAM PRESBYTERIAN CHURCH)</p>
@@ -451,20 +366,20 @@
   </footer>
 
   <!-- ================================================================= -->
-  <!-- 4. FLOATING TOP BUTTON & MODALS[cite: 1] -->
+  <!-- 4. FLOATING TOP BUTTON & SEARCH / SITEMAP MODALS -->
   <!-- ================================================================= -->
   
-  <!-- Floating Scroll Top Button[cite: 1] -->
+  <!-- Floating Top Button -->
   <button id="btn-scroll-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" aria-label="맨 위로 이동" class="fixed bottom-8 right-8 z-50 p-3.5 rounded-full bg-white border border-slate-200 text-slate-700 shadow-2xl hover:bg-slate-50 hover:text-slate-900 transition-all duration-300 opacity-0 pointer-events-none translate-y-4 flex items-center justify-center">
     <span class="material-symbols-outlined text-24 block">arrow_upward</span>
   </button>
 
-  <!-- Search Modal Overlay[cite: 1] -->
+  <!-- Search Modal Overlay -->
   <div id="search-modal" class="fixed inset-0 z-50 bg-slate-900/80 backdrop-blur-sm hidden opacity-0 transition-opacity duration-200 flex items-start justify-center pt-24 px-4">
     <div class="bg-white w-full max-w-2xl rounded-2xl shadow-2xl overflow-hidden border border-slate-200">
       <div class="p-6 border-b border-slate-100 flex items-center gap-3">
         <span class="material-symbols-outlined text-24 text-[#0072CE]">search</span>
-        <input type="text" id="search-input" placeholder="검색어를 입력하세요 (예: 예배시간, 주보, 주일설교, 등록)" class="w-full text-base font-medium text-slate-800 placeholder-slate-400 focus:outline-none" oninput="handleSearch(this.value)">
+        <input type="text" id="search-input" placeholder="검색어를 입력하세요 (예: 예배시간, 주보, 주일설교, 새가족)" class="w-full text-base font-medium text-slate-800 placeholder-slate-400 focus:outline-none" oninput="handleSearch(this.value)">
         <button onclick="closeSearchModal()" class="p-1 rounded-lg text-slate-400 hover:text-slate-700 transition">
           <span class="material-symbols-outlined text-24 block">close</span>
         </button>
@@ -476,17 +391,18 @@
           <button onclick="setSearchKeyword('오시는 길')" class="px-3 py-1.5 bg-white border border-slate-200 rounded-lg text-xs font-semibold text-slate-700 hover:border-[#0072CE] hover:text-[#0072CE] transition">오시는 길</button>
           <button onclick="setSearchKeyword('주일설교')" class="px-3 py-1.5 bg-white border border-slate-200 rounded-lg text-xs font-semibold text-slate-700 hover:border-[#88BE1E] hover:text-[#88BE1E] transition">주일설교</button>
           <button onclick="setSearchKeyword('온라인헌금')" class="px-3 py-1.5 bg-white border border-slate-200 rounded-lg text-xs font-semibold text-slate-700 hover:border-[#F58220] hover:text-[#F58220] transition">온라인헌금</button>
-          <button onclick="setSearchKeyword('새가족등록')" class="px-3 py-1.5 bg-white border border-slate-200 rounded-lg text-xs font-semibold text-slate-700 hover:border-[#0072CE] hover:text-[#0072CE] transition">새가족등록</button>
+          <button onclick="setSearchKeyword('새가족안내')" class="px-3 py-1.5 bg-white border border-slate-200 rounded-lg text-xs font-semibold text-slate-700 hover:border-[#0072CE] hover:text-[#0072CE] transition">새가족안내</button>
         </div>
         <div id="search-results" class="hidden border-t border-slate-200 pt-4 space-y-2"></div>
       </div>
     </div>
   </div>
 
-  <!-- Fullscreen Sitemap Modal (4 Columns)[cite: 1] -->
+  <!-- Fullscreen Sitemap Modal (PDF 메뉴 구조 100% 반영: 5개 대분류 컬럼)[cite: 6] -->
   <div id="sitemap-modal" class="fixed inset-0 z-50 bg-[#0B2038] text-white hidden opacity-0 transition-opacity duration-200 overflow-y-auto">
     <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-10 min-h-screen flex flex-col justify-between">
       
+      <!-- Sitemap Header -->
       <div class="flex items-center justify-between border-b border-slate-700 pb-8">
         <div class="flex items-center space-x-3 cursor-pointer" onclick="closeSitemap()">
           <div class="w-10 h-10 rounded bg-[#0072CE] flex items-center justify-center text-white font-bold text-base">H</div>
@@ -500,141 +416,200 @@
         </button>
       </div>
 
-      <!-- Sitemap Multi-Column Grid (4 Columns)[cite: 1] -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-12 py-12">
-        <!-- Col 1 -->
+      <!-- Sitemap 5-Column Grid (PDF 기준 전체 항목 구조화)[cite: 6] -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 py-12">
+        
+        <!-- Col 1: 교회안내[cite: 6] -->
         <div>
-          <h4 class="text-[#0072CE] font-extrabold text-lg sm:text-xl tracking-wider uppercase mb-6 border-b-2 border-[#0072CE] pb-3">교회안내</h4>
-          <div class="mb-5">
-            <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">환영합니다</p>
-            <ul class="space-y-2.5 text-base text-slate-200 font-medium">
-              <li><a href="#" onclick="handleGnbAction('welcome')" class="hover:text-white hover:underline transition">새가족안내</a></li>
-              <li><a href="#" class="hover:text-white hover:underline transition">교육소개</a></li>
+          <h4 class="text-[#0072CE] font-extrabold text-lg tracking-wider uppercase mb-6 border-b-2 border-[#0072CE] pb-3">교회안내</h4>
+          <div class="mb-4">
+            <p class="text-xs font-bold text-slate-400 uppercase mb-2">환영 및 등록</p>
+            <ul class="space-y-2 text-sm text-slate-200">
+              <li><a href="#" class="hover:text-white hover:underline transition">새가족안내</a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">온라인등록</a></li>
             </ul>
           </div>
-          <div class="mb-5">
-            <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">예배안내</p>
-            <ul class="space-y-2.5 text-base text-slate-200 font-medium">
-              <li><a href="#" class="hover:text-white hover:underline transition">예배안내</a></li>
+          <div class="mb-4">
+            <p class="text-xs font-bold text-slate-400 uppercase mb-2">예배안내</p>
+            <ul class="space-y-2 text-sm text-slate-200">
+              <li><a href="#" class="hover:text-white hover:underline transition">예배시간 및 안내</a></li>
             </ul>
           </div>
-          <div class="mb-5">
-            <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">하남교회 소개</p>
-            <ul class="space-y-2.5 text-base text-slate-200 font-medium">
-              <li><a href="#" class="hover:text-white hover:underline transition">담임목사님 인사말</a></li>
+          <div class="mb-4">
+            <p class="text-xs font-bold text-slate-400 uppercase mb-2">교회 소개</p>
+            <ul class="space-y-2 text-sm text-slate-200">
+              <li><a href="#" class="hover:text-white hover:underline transition">담임목사 인사말</a></li>
               <li><a href="#" class="hover:text-white hover:underline transition">목회서신</a></li>
-              <li><a href="#" class="hover:text-white hover:underline transition">교회를 섬기는 이들</a></li>
-              <li><a href="#" class="hover:text-white hover:underline transition">하남교회 발자취</a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">섬기는 이들</a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">교회 발자취</a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">교회 둘러보기</a></li>
+            </ul>
+          </div>
+          <div class="mb-4">
+            <p class="text-xs font-bold text-slate-400 uppercase mb-2">신앙 지원</p>
+            <ul class="space-y-2 text-sm text-slate-200">
+              <li><a href="#" class="hover:text-white hover:underline transition">추천도서</a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">신앙상담실</a></li>
+            </ul>
+          </div>
+          <div>
+            <p class="text-xs font-bold text-slate-400 uppercase mb-2">오시는 길</p>
+            <ul class="space-y-2 text-sm text-slate-200">
+              <li><a href="#" class="hover:text-white hover:underline transition">오시는 길/지도</a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">셔틀버스 안내</a></li>
             </ul>
           </div>
         </div>
 
-        <!-- Col 2 -->
+        <!-- Col 2: 말씀·찬양[cite: 6] -->
         <div>
-          <h4 class="text-[#88BE1E] font-extrabold text-lg sm:text-xl tracking-wider uppercase mb-6 border-b-2 border-[#88BE1E] pb-3">말씀 · 찬양</h4>
+          <h4 class="text-[#88BE1E] font-extrabold text-lg tracking-wider uppercase mb-6 border-b-2 border-[#88BE1E] pb-3">말씀 · 찬양</h4>
           <div class="mb-5">
-            <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">설교</p>
-            <ul class="space-y-2.5 text-base text-slate-200 font-medium">
-              <li><a href="#" onclick="handleGnbAction('member')" class="hover:text-white hover:underline transition">주일설교</a></li>
+            <p class="text-xs font-bold text-slate-400 uppercase mb-2">설교</p>
+            <ul class="space-y-2 text-sm text-slate-200">
+              <li><a href="#" onclick="handleGnbAction('sermon'); closeSitemap();" class="hover:text-white hover:underline transition">주일설교</a></li>
               <li><a href="#" class="hover:text-white hover:underline transition">3분터치</a></li>
               <li><a href="#" class="hover:text-white hover:underline transition">간증영상</a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">설교패키지</a></li>
             </ul>
           </div>
-          <div class="mb-10">
-            <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">찬양</p>
-            <ul class="space-y-2.5 text-base text-slate-200 font-medium">
-              <li><a href="#" class="hover:text-white hover:underline transition">찬양대</a></li>
+          <div>
+            <p class="text-xs font-bold text-slate-400 uppercase mb-2">찬양</p>
+            <ul class="space-y-2 text-sm text-slate-200">
+              <li><a href="#" class="hover:text-white hover:underline transition">예배찬양 (찬양대/찬양팀)</a></li>
               <li><a href="#" class="hover:text-white hover:underline transition">OTN찬양</a></li>
             </ul>
           </div>
-          <h4 class="text-[#88BE1E] font-extrabold text-lg sm:text-xl tracking-wider uppercase mb-6 border-b-2 border-[#88BE1E] pb-3">Today하남</h4>
-          <ul class="space-y-2.5 text-base text-slate-200 font-medium">
-            <li><a href="#" class="hover:text-white hover:underline transition">교회주보</a></li>
-            <li><a href="#" class="hover:text-white hover:underline transition">아름다운신문</a></li>
-          </ul>
         </div>
 
-        <!-- Col 3 -->
+        <!-- Col 3: 양육·훈련[cite: 6] -->
         <div>
-          <h4 class="text-[#F58220] font-extrabold text-lg sm:text-xl tracking-wider uppercase mb-6 border-b-2 border-[#F58220] pb-3">교구</h4>
-          <ul class="space-y-2.5 text-base text-slate-200 font-medium mb-10">
-            <li><a href="#" class="hover:text-white hover:underline transition">장년교구</a></li>
-            <li><a href="#" class="hover:text-white hover:underline transition">청년교구</a></li>
-          </ul>
-          <h4 class="text-[#F58220] font-extrabold text-lg sm:text-xl tracking-wider uppercase mb-6 border-b-2 border-[#F58220] pb-3">양육 · 훈련</h4>
-          <ul class="space-y-2.5 text-base text-slate-200 font-medium">
-            <li><a href="#" class="hover:text-white hover:underline transition">일대일제자 양육</a></li>
-            <li><a href="#" class="hover:text-white hover:underline transition">목자학교</a></li>
-            <li><a href="#" class="hover:text-white hover:underline transition">중보기도학교</a></li>
-            <li><a href="#" class="hover:text-white hover:underline transition">실버대학</a></li>
-          </ul>
+          <h4 class="text-[#F58220] font-extrabold text-lg tracking-wider uppercase mb-6 border-b-2 border-[#F58220] pb-3">양육 · 훈련</h4>
+          <div class="mb-5">
+            <p class="text-xs font-bold text-slate-400 uppercase mb-2">교구</p>
+            <ul class="space-y-2 text-sm text-slate-200">
+              <li><a href="#" class="hover:text-white hover:underline transition">장년교구</a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">청년교구</a></li>
+            </ul>
+          </div>
+          <div class="mb-5">
+            <p class="text-xs font-bold text-slate-400 uppercase mb-2">양육</p>
+            <ul class="space-y-2 text-sm text-slate-200">
+              <li><a href="#" class="hover:text-white hover:underline transition">일대일제자양육</a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">상담아카데미</a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">실버대학</a></li>
+            </ul>
+          </div>
+          <div>
+            <p class="text-xs font-bold text-slate-400 uppercase mb-2">훈련 (HDTS)</p>
+            <ul class="space-y-2 text-sm text-slate-200">
+              <li><a href="#" class="hover:text-white hover:underline transition">목자학교</a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">중보기도학교</a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">큐티학교</a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">행복전도</a></li>
+            </ul>
+          </div>
         </div>
 
-        <!-- Col 4 -->
+        <!-- Col 4: 다음세대[cite: 6] -->
         <div>
-          <h4 class="text-[#0072CE] font-extrabold text-lg sm:text-xl tracking-wider uppercase mb-6 border-b-2 border-[#0072CE] pb-3">다음세대</h4>
-          <ul class="space-y-2.5 text-base text-slate-200 font-medium">
-            <li><a href="#" class="hover:text-white hover:underline transition">미취학부 (영아/유아/유치)</a></li>
-            <li><a href="#" class="hover:text-white hover:underline transition">취학부 (유년/초등/소년)</a></li>
-            <li><a href="#" class="hover:text-white hover:underline transition">청소년부 (중등/고등)</a></li>
-            <li><a href="#" class="hover:text-white hover:underline transition">캠핑처치</a></li>
-            <li><a href="#" class="hover:text-white hover:underline transition">오르가가정예배지</a></li>
-          </ul>
+          <h4 class="text-[#0072CE] font-extrabold text-lg tracking-wider uppercase mb-6 border-b-2 border-[#0072CE] pb-3">다음세대</h4>
+          <div class="mb-4">
+            <p class="text-xs font-bold text-slate-400 uppercase mb-2">미취학부</p>
+            <ul class="space-y-2 text-sm text-slate-200">
+              <li><a href="#" class="hover:text-white hover:underline transition">영아부</a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">유아부</a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">유치부</a></li>
+            </ul>
+          </div>
+          <div class="mb-4">
+            <p class="text-xs font-bold text-slate-400 uppercase mb-2">취학부</p>
+            <ul class="space-y-2 text-sm text-slate-200">
+              <li><a href="#" class="hover:text-white hover:underline transition">유년부</a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">초등부</a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">소년부</a></li>
+            </ul>
+          </div>
+          <div class="mb-4">
+            <p class="text-xs font-bold text-slate-400 uppercase mb-2">청소년부</p>
+            <ul class="space-y-2 text-sm text-slate-200">
+              <li><a href="#" class="hover:text-white hover:underline transition">중등부</a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">고등부</a></li>
+            </ul>
+          </div>
+          <div>
+            <p class="text-xs font-bold text-slate-400 uppercase mb-2">특별 프로그램</p>
+            <ul class="space-y-2 text-sm text-slate-200">
+              <li><a href="#" class="hover:text-white hover:underline transition">오르가가정예배지</a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">캠핑처치</a></li>
+            </ul>
+          </div>
         </div>
+
+        <!-- Col 5: 소통·소식[cite: 6] -->
+        <div>
+          <h4 class="text-[#88BE1E] font-extrabold text-lg tracking-wider uppercase mb-6 border-b-2 border-[#88BE1E] pb-3">소통 · 소식</h4>
+          <div class="mb-5">
+            <p class="text-xs font-bold text-slate-400 uppercase mb-2">교회소식</p>
+            <ul class="space-y-2 text-sm text-slate-200">
+              <li><a href="#" class="hover:text-white hover:underline transition">교회주보</a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">아름다운신문</a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">교회 자료실</a></li>
+            </ul>
+          </div>
+          <div>
+            <p class="text-xs font-bold text-slate-400 uppercase mb-2">나눔과 묵상</p>
+            <ul class="space-y-2 text-sm text-slate-200">
+              <li><a href="#" class="hover:text-white hover:underline transition">감사노트</a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">큐티노트</a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">예배생중계</a></li>
+            </ul>
+          </div>
+        </div>
+
       </div>
 
+      <!-- Sitemap Footer -->
       <div class="border-t border-slate-700 pt-8 flex flex-col sm:flex-row items-center justify-between text-sm text-slate-400 gap-4">
         <p>하남교회 (HANAM PRESBYTERIAN CHURCH) | 경기도 하남시 덕풍동로 45</p>
         <div class="flex space-x-6 text-slate-300 font-medium">
-          <a href="#" onclick="handleGnbAction('welcome'); closeSitemap();" class="hover:text-[#0072CE]">새가족 센터</a>
+          <a href="#" onclick="handleGnbAction('welcome'); closeSitemap();" class="hover:text-[#0072CE]">새가족 안내</a>
           <span>|</span>
-          <a href="#" onclick="handleGnbAction('member'); closeSitemap();" class="hover:text-[#88BE1E]">성도 광장</a>
+          <a href="#" onclick="handleGnbAction('sermon'); closeSitemap();" class="hover:text-[#88BE1E]">주일 설교</a>
         </div>
       </div>
     </div>
   </div>
 
   <!-- ================================================================= -->
-  <!-- 5. JAVASCRIPT CONTROLLER -->
+  <!-- 5. JAVASCRIPT CONTROLLER (PDF 전체 메뉴 매핑) -->
   <!-- ================================================================= -->
   <script>
-    // 1. Common Master Menu Data[cite: 1]
+    // PDF 기반 1Depth -> 2Depth -> 3Depth 전체 데이터셋[cite: 6]
     const MENU_DATA = {
       church: {
         title: '교회안내', theme: '#0072CE',
         sections: [
-          { title: '환영합니다', links: [{ label: '새가족안내', target: 'welcome' }, { label: '교육소개' }] },
-          { title: '예배안내', links: [{ label: '예배시간/안내' }] },
-          { title: '하남교회 소개', links: [{ label: '담임목사님 인사말' }, { label: '목회서신' }, { label: '추천도서' }, { label: '교회를 섬기는 이들' }, { label: '하남교회 발자취' }] },
-          { title: '오시는 길', links: [{ label: '지도 안내' }, { label: '셔틀버스 안내' }] }
+          { title: '환영 및 등록', links: [{ label: '새가족안내', target: 'welcome' }, { label: '온라인등록' }] },
+          { title: '예배안내', links: [{ label: '예배시간 및 안내' }] },
+          { title: '교회 소개', links: [{ label: '담임목사 인사말' }, { label: '목회서신' }, { label: '섬기는 이들' }, { label: '교회 발자취' }, { label: '교회 둘러보기' }] },
+          { title: '신앙 지원', links: [{ label: '추천도서' }, { label: '신앙상담실' }] },
+          { title: '오시는 길', links: [{ label: '오시는 길/지도' }, { label: '셔틀버스 안내' }] }
         ]
       },
       worship: {
         title: '말씀 · 찬양', theme: '#88BE1E',
         sections: [
-          { title: '설교', links: [{ label: '주일설교', target: 'member' }, { label: '3분터치' }, { label: '간증영상' }] },
-          { title: '찬양', links: [{ label: '찬양대' }, { label: '주일찬양' }, { label: 'OTN찬양' }] }
-        ]
-      },
-      today: {
-        title: 'Today하남', theme: '#88BE1E',
-        sections: [
-          { title: '하남소식', links: [{ label: '교회주보' }, { label: '자료실' }, { label: '아름다운신문' }] },
-          { title: '하남라이프', links: [{ label: '감사노트' }, { label: '큐티노트' }] }
-        ]
-      },
-      community: {
-        title: '교구', theme: '#F58220',
-        sections: [
-          { title: '장년교구', links: [{ label: '장년교구 소개' }, { label: '활동 갤러리' }] },
-          { title: '청년교구', links: [{ label: '청년교구 소개' }, { label: '활동 갤러리' }] }
+          { title: '설교', links: [{ label: '주일설교', target: 'sermon' }, { label: '3분터치' }, { label: '간증영상' }, { label: '설교패키지' }] },
+          { title: '찬양', links: [{ label: '예배찬양 (찬양대/찬양팀)' }, { label: 'OTN찬양' }] }
         ]
       },
       training: {
         title: '양육 · 훈련', theme: '#F58220',
         sections: [
-          { title: '양육', links: [{ label: '일대일제자' }, { label: '상담아카데미' }, { label: '실버대학' }] },
-          { title: '훈련 (HDTS)', links: [{ label: '목자학교' }, { label: '중보기도학교' }, { label: '큐티학교' }] }
+          { title: '교구', links: [{ label: '장년교구' }, { label: '청년교구' }] },
+          { title: '양육', links: [{ label: '일대일제자양육' }, { label: '상담아카데미' }, { label: '실버대학' }] },
+          { title: '훈련 (HDTS)', links: [{ label: '목자학교' }, { label: '중보기도학교' }, { label: '큐티학교' }, { label: '행복전도' }] }
         ]
       },
       nextgen: {
@@ -643,12 +618,19 @@
           { title: '미취학부', links: [{ label: '영아부' }, { label: '유아부' }, { label: '유치부' }] },
           { title: '취학부', links: [{ label: '유년부' }, { label: '초등부' }, { label: '소년부' }] },
           { title: '청소년부', links: [{ label: '중등부' }, { label: '고등부' }] },
-          { title: '교육연구소', links: [{ label: '오르가가정예배지' }, { label: '캠핑처치' }] }
+          { title: '특별 프로그램', links: [{ label: '오르가가정예배지' }, { label: '캠핑처치' }] }
+        ]
+      },
+      news: {
+        title: '소통 · 소식', theme: '#88BE1E',
+        sections: [
+          { title: '교회소식', links: [{ label: '교회주보' }, { label: '아름다운신문' }, { label: '교회 자료실' }] },
+          { title: '나눔과 묵상', links: [{ label: '감사노트' }, { label: '큐티노트' }, { label: '예배생중계' }] }
         ]
       }
     };
 
-    // 2. Mega Dropdown Controller[cite: 1]
+    // Mega Dropdown Controller
     const megaDropdown = document.getElementById('mega-dropdown');
     const megaDropdownContent = document.getElementById('mega-dropdown-content');
     const globalHeader = document.getElementById('main-global-header');
@@ -663,6 +645,7 @@
       if (colCount === 2) gridColsClass = 'grid-cols-1 md:grid-cols-2 max-w-2xl';
       if (colCount === 3) gridColsClass = 'grid-cols-1 md:grid-cols-3 max-w-4xl';
       if (colCount === 4) gridColsClass = 'grid-cols-1 md:grid-cols-4 max-w-6xl';
+      if (colCount >= 5) gridColsClass = 'grid-cols-1 md:grid-cols-5 max-w-7xl';
 
       let html = `
         <div class="border-b border-slate-100 pb-3 mb-6 flex items-center justify-between">
@@ -716,16 +699,16 @@
     megaDropdown.addEventListener('mouseenter', () => clearTimeout(dropdownTimer));
     megaDropdown.addEventListener('mouseleave', hideMegaDropdown);
 
-    // GNB Click Router[cite: 1]
+    // GNB Click Router
     function handleGnbAction(target) {
       if (target === 'welcome') {
-        document.getElementById('b1-quick').scrollIntoView({ behavior: 'smooth' });
+        document.getElementById('b-quick').scrollIntoView({ behavior: 'smooth' });
       } else {
-        document.getElementById('b1-sermon').scrollIntoView({ behavior: 'smooth' });
+        document.getElementById('b-sermon').scrollIntoView({ behavior: 'smooth' });
       }
     }
 
-    // 3. Search Modal Controller[cite: 1]
+    // Search Modal Controller
     const searchModal = document.getElementById('search-modal');
     const searchInput = document.getElementById('search-input');
     const searchResults = document.getElementById('search-results');
@@ -752,10 +735,11 @@
       if (!q) { searchResults.classList.add('hidden'); return; }
 
       const indexList = [
-        { label: '새가족 등록 안내 및 4주 온보딩', target: 'welcome', desc: '교회안내 > 새가족안내' },
-        { label: '주일 대예배 시간 및 본당 좌석 안내', target: 'welcome', desc: '교회안내 > 예배안내' },
-        { label: '주일 설교 영상 다시보기', target: 'member', desc: '말씀·찬양 > 주일설교' },
-        { label: '온라인 헌금 계좌 및 영수증 발급 안내', target: 'member', desc: '성도광장 > 퀵메뉴' }
+        { label: '새가족안내 및 온라인등록', target: 'welcome', desc: '교회안내 > 환영 및 등록' },
+        { label: '예배시간 및 안내 (주일 대예배)', target: 'welcome', desc: '교회안내 > 예배안내' },
+        { label: '주일설교 영상 및 다시보기', target: 'sermon', desc: '말씀·찬양 > 설교' },
+        { label: '온라인헌금 및 행정 서비스', target: 'sermon', desc: '빠른서비스' },
+        { label: '교회주보 및 아름다운신문', target: 'sermon', desc: '소통·소식 > 교회소식' }
       ];
       const filtered = indexList.filter(i => i.label.includes(q) || i.desc.includes(q));
       searchResults.classList.remove('hidden');
@@ -773,7 +757,7 @@
       }
     }
 
-    // 4. Sitemap Modal Controller[cite: 1]
+    // Sitemap Modal Controller
     function openSitemap() {
       hideMegaDropdown();
       const modal = document.getElementById('sitemap-modal');
@@ -788,7 +772,7 @@
       setTimeout(() => modal.classList.add('hidden'), 200);
     }
 
-    // 5. Family Site & Scroll Top[cite: 1]
+    // Family Site & Scroll Top
     function handleFamilySite(val) {
       if (!val) return;
       alert(`선택된 관련기관(${val}) 페이지로 이동합니다.`);

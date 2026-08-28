@@ -21,7 +21,10 @@
               orange: '#F58220',
               dark: '#0B2038',
               cardDark: '#0f2942',
-              borderDark: '#1e3a5f'
+              borderDark: '#1e3a5f',
+              pastelGreen: '#F3F8EC',       // 부드럽고 옅은 파스텔 그린 헤더 배경색
+              pastelGreenSoft: '#E8F2DC',   // 상단 퀵메뉴 배경색
+              pastelBorder: '#D8E8C5'       // 헤더 경계선 컬러
             }
           }
         }
@@ -43,23 +46,23 @@
 <body class="bg-slate-50 text-slate-900 antialiased selection:bg-[#0072CE] selection:text-white flex flex-col min-h-screen">
 
   <!-- ================================================================= -->
-  <!-- 1. GNB HEADER -->
+  <!-- 1. GNB HEADER (헤더 전체 영역 옅은 파스텔 그린 톤 통일 적용) -->
   <!-- ================================================================= -->
-  <header class="sticky top-0 z-40 w-full bg-white/95 backdrop-blur border-b border-slate-200" id="main-global-header">
+  <header class="sticky top-0 z-40 w-full bg-[#F3F8EC]/95 backdrop-blur border-b border-[#D8E8C5] shadow-sm" id="main-global-header">
     
     <!-- 빠른서비스 (Header Quick Link)[cite: 6] -->
-    <div class="bg-slate-50 border-b border-slate-200/80">
+    <div class="bg-[#E8F2DC]/90 border-b border-[#D8E8C5]/80">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-9 flex items-center justify-end">
-        <div class="flex items-center space-x-4 text-xs font-medium text-slate-600">
+        <div class="flex items-center space-x-4 text-xs font-medium text-slate-700">
           <a href="https://www.youtube.com/@Hanam_online_church/featured" target="_blank" rel="noopener noreferrer" class="hover:text-[#0072CE] transition flex items-center gap-1">
             <span class="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></span> 예배생중계
           </a>
-          <span class="text-slate-300">|</span>
+          <span class="text-[#C4DCAC]">|</span>
           <a href="#" class="hover:text-[#F58220] transition font-semibold">온라인헌금</a>
-          <span class="text-slate-300">|</span>
+          <span class="text-[#C4DCAC]">|</span>
           <a href="#" class="hover:text-[#0072CE] transition">온라인행정</a>
           
-          <button onclick="openSearchModal()" aria-label="통합검색" class="p-1 text-slate-500 hover:text-slate-900 flex items-center transition ml-1">
+          <button onclick="openSearchModal()" aria-label="통합검색" class="p-1 text-slate-600 hover:text-slate-900 flex items-center transition ml-1">
             <span class="material-symbols-outlined text-18 block leading-none">search</span>
           </button>
         </div>
@@ -69,43 +72,43 @@
     <!-- Main Navigation Bar -->
     <div class="max-w-7xl mx-auto px-4 sm:px-8 h-20 flex items-center justify-between">
 
-      <!-- Brand Logo -->
-      <a href="#" class="flex items-center flex-shrink-0 bg-slate-800/95 hover:bg-slate-900 px-3.5 py-2 rounded-xl border border-slate-700/60 shadow-sm transition" onclick="window.scrollTo({top:0, behavior:'smooth'}); return false;">
-        <img src="./logo.png" alt="하남교회 로고" class="h-8 w-auto object-contain">
+      <!-- Brand Logo (박스 제거, 전체 파스텔 배경에 자연스럽게 노출)[cite: 1] -->
+      <a href="#" class="flex items-center flex-shrink-0" onclick="window.scrollTo({top:0, behavior:'smooth'}); return false;">
+        <img src="./logo.png" alt="하남교회 로고" class="h-10 w-auto object-contain">
       </a>
 
       <!-- 5 Main 1Depth Menu Items[cite: 6] -->
       <nav class="hidden lg:flex items-center space-x-9 h-full">
         <div class="nav-item h-full flex items-center" data-menu="church">
-          <button class="text-sm font-bold text-slate-700 hover:text-[#0072CE] h-full transition flex items-center">교회안내</button>
+          <button class="text-sm font-bold text-slate-800 hover:text-[#0072CE] h-full transition flex items-center">교회안내</button>
         </div>
         <div class="nav-item h-full flex items-center" data-menu="worship">
-          <button class="text-sm font-bold text-slate-700 hover:text-[#88BE1E] h-full transition flex items-center">말씀 · 찬양</button>
+          <button class="text-sm font-bold text-slate-800 hover:text-[#88BE1E] h-full transition flex items-center">말씀 · 찬양</button>
         </div>
         <div class="nav-item h-full flex items-center" data-menu="training">
-          <button class="text-sm font-bold text-slate-700 hover:text-[#F58220] h-full transition flex items-center">양육 · 훈련</button>
+          <button class="text-sm font-bold text-slate-800 hover:text-[#F58220] h-full transition flex items-center">양육 · 훈련</button>
         </div>
         <div class="nav-item h-full flex items-center" data-menu="nextgen">
-          <button class="text-sm font-bold text-slate-700 hover:text-[#0072CE] h-full transition flex items-center">다음세대</button>
+          <button class="text-sm font-bold text-slate-800 hover:text-[#0072CE] h-full transition flex items-center">다음세대</button>
         </div>
         <div class="nav-item h-full flex items-center" data-menu="news">
-          <button class="text-sm font-bold text-slate-700 hover:text-[#88BE1E] h-full transition flex items-center">소통 · 소식</button>
+          <button class="text-sm font-bold text-slate-800 hover:text-[#88BE1E] h-full transition flex items-center">소통 · 소식</button>
         </div>
       </nav>
 
-      <!-- Right Action (1. 상단 우측 '처음 오셨나요?' 링크 연결) -->
+      <!-- Right Action[cite: 1] -->
       <div class="flex items-center space-x-2">
-        <a href="http://www.hanam.or.kr/about-hanam/new-family/" class="hidden sm:inline-flex px-4 py-2 rounded-full bg-[#0072CE] text-white text-xs font-bold hover:bg-[#005da8] transition">
+        <a href="http://www.hanam.or.kr/about-hanam/new-family/" class="hidden sm:inline-flex px-4 py-2 rounded-full bg-[#0072CE] text-white text-xs font-bold hover:bg-[#005da8] transition shadow-sm">
           처음 오셨나요?
         </a>
-        <button onclick="openSitemap()" aria-label="전체 사이트맵 열기" class="p-2 rounded-lg text-slate-700 hover:bg-slate-100 transition">
+        <button onclick="openSitemap()" aria-label="전체 사이트맵 열기" class="p-2 rounded-lg text-slate-700 hover:bg-[#E8F2DC] transition">
           <span class="material-symbols-outlined text-26 block">menu</span>
         </button>
       </div>
     </div>
 
-    <!-- Mega Dropdown Panel -->
-    <div id="mega-dropdown" class="absolute top-[7.25rem] left-0 w-full bg-white border-b border-slate-200 shadow-2xl hidden z-30 transition-all duration-200">
+    <!-- Mega Dropdown Panel[cite: 1] -->
+    <div id="mega-dropdown" class="absolute top-[7.25rem] left-0 w-full bg-[#F3F8EC] border-b border-[#D8E8C5] shadow-2xl hidden z-30 transition-all duration-200">
       <div class="max-w-7xl mx-auto px-6 lg:px-8 py-8" id="mega-dropdown-content"></div>
     </div>
   </header>
@@ -117,7 +120,6 @@
 
     <!-- 2-1. HERO -->
     <section class="relative w-full h-[80vh] min-h-[520px] bg-[#111827] text-white overflow-hidden flex items-end">
-      <!-- 배경 이미지 -->
       <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('./main.png');"></div>
       <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/20"></div>
 
@@ -130,7 +132,6 @@
           <a href="https://www.youtube.com/@Hanam_online_church/featured" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white text-slate-900 text-sm font-bold hover:bg-slate-100 transition">
             <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span> 지금 예배 보기
           </a>
-          <!-- 2. 히어로 영역 '처음 오셨나요?' 링크 연결 -->
           <a href="http://www.hanam.or.kr/about-hanam/new-family/" class="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white/60 text-white text-sm font-bold hover:bg-white/10 transition">
             처음 오셨나요?
           </a>
@@ -172,7 +173,6 @@
             하남교회는 여러 세대가 함께 예배하는 하나의 공동체입니다. 처음 교회 문을 두드리셨든, 다른 곳에서 신앙생활을 하다 하남교회로 오셨든, 여러분을 진심으로 환영합니다.
           </p>
           <div class="grid grid-cols-2 gap-4 max-w-md">
-            <!-- 3. '새가족' 카드 영역 링크 연결 -->
             <a href="http://www.hanam.or.kr/about-hanam/new-family/" class="bg-white border border-slate-200 rounded-2xl p-5 hover:border-[#0072CE] transition block group">
               <span class="material-symbols-outlined text-28 text-[#0072CE] mb-2 block">how_to_reg</span>
               <span class="font-bold text-sm text-slate-800 block mb-1">새가족</span>
@@ -558,9 +558,7 @@
       <!-- Sitemap Header -->
       <div class="flex items-center justify-between border-b border-slate-700 pb-8">
         <div class="flex items-center space-x-3 cursor-pointer" onclick="closeSitemap()">
-          <div class="bg-slate-800/90 px-3 py-1.5 rounded-lg border border-slate-700/60 flex items-center">
-            <img src="./logo.png" alt="하남교회 로고" class="h-8 w-auto object-contain">
-          </div>
+          <img src="./logo.png" alt="하남교회 로고" class="h-8 w-auto object-contain">
           <div>
             <span class="text-2xl font-bold tracking-tight block">하남교회 전체 사이트맵</span>
             <span class="text-xs tracking-wider text-slate-400 uppercase block">HANAM PRESBYTERIAN CHURCH</span>
@@ -807,9 +805,9 @@
       if (colCount >= 5) gridColsClass = 'grid-cols-1 md:grid-cols-5 max-w-7xl';
 
       let html = `
-        <div class="border-b border-slate-100 pb-3 mb-6 flex items-center justify-between">
+        <div class="border-b border-[#D8E8C5] pb-3 mb-6 flex items-center justify-between">
           <span class="text-xl font-extrabold" style="color: ${data.theme}">${data.title}</span>
-          <span class="text-xs text-slate-400 font-medium">HANAM PRESBYTERIAN CHURCH</span>
+          <span class="text-xs text-slate-500 font-medium">HANAM PRESBYTERIAN CHURCH</span>
         </div>
         <div class="grid ${gridColsClass} gap-8">
       `;
@@ -817,7 +815,7 @@
       data.sections.forEach(section => {
         html += `
           <div>
-            <h5 class="text-sm font-extrabold text-slate-900 tracking-wide pb-2 mb-3 border-b border-slate-200">
+            <h5 class="text-sm font-extrabold text-slate-900 tracking-wide pb-2 mb-3 border-b border-[#D8E8C5]">
               ${section.title}
             </h5>
             <ul class="space-y-2.5">
@@ -832,7 +830,7 @@
           }
           html += `
             <li>
-              <a href="${hrefAttr}" ${clickAction} class="text-sm text-slate-600 font-medium hover:text-[${data.theme}] hover:underline transition block">
+              <a href="${hrefAttr}" ${clickAction} class="text-sm text-slate-700 font-medium hover:text-[${data.theme}] hover:underline transition block">
                 ${link.label}
               </a>
             </li>

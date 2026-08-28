@@ -69,7 +69,7 @@
     <!-- Main Navigation Bar -->
     <div class="max-w-7xl mx-auto px-4 sm:px-8 h-20 flex items-center justify-between">
 
-      <!-- Brand Logo (로컬 파일 ./logo.png 연결) -->
+      <!-- Brand Logo -->
       <a href="#" class="flex items-center flex-shrink-0 bg-slate-800/95 hover:bg-slate-900 px-3.5 py-2 rounded-xl border border-slate-700/60 shadow-sm transition" onclick="window.scrollTo({top:0, behavior:'smooth'}); return false;">
         <img src="./logo.png" alt="하남교회 로고" class="h-8 w-auto object-contain">
       </a>
@@ -93,11 +93,11 @@
         </div>
       </nav>
 
-      <!-- Right Action -->
+      <!-- Right Action (1. 상단 우측 '처음 오셨나요?' 링크 연결) -->
       <div class="flex items-center space-x-2">
-        <button onclick="document.getElementById('b-quick').scrollIntoView({behavior:'smooth'})" class="hidden sm:inline-flex px-4 py-2 rounded-full bg-[#0072CE] text-white text-xs font-bold hover:bg-[#005da8] transition">
+        <a href="http://www.hanam.or.kr/about-hanam/new-family/" class="hidden sm:inline-flex px-4 py-2 rounded-full bg-[#0072CE] text-white text-xs font-bold hover:bg-[#005da8] transition">
           처음 오셨나요?
-        </button>
+        </a>
         <button onclick="openSitemap()" aria-label="전체 사이트맵 열기" class="p-2 rounded-lg text-slate-700 hover:bg-slate-100 transition">
           <span class="material-symbols-outlined text-26 block">menu</span>
         </button>
@@ -115,9 +115,9 @@
   <!-- ================================================================= -->
   <main class="flex-grow">
 
-    <!-- 2-1. HERO: ./main.png 정상 경로 수정 적용 -->
+    <!-- 2-1. HERO -->
     <section class="relative w-full h-[80vh] min-h-[520px] bg-[#111827] text-white overflow-hidden flex items-end">
-      <!-- 배경 이미지 올바른 CSS 속성 적용 -->
+      <!-- 배경 이미지 -->
       <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('./main.png');"></div>
       <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/20"></div>
 
@@ -130,9 +130,10 @@
           <a href="https://www.youtube.com/@Hanam_online_church/featured" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white text-slate-900 text-sm font-bold hover:bg-slate-100 transition">
             <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span> 지금 예배 보기
           </a>
-          <button onclick="document.getElementById('b-quick').scrollIntoView({behavior:'smooth'})" class="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white/60 text-white text-sm font-bold hover:bg-white/10 transition">
+          <!-- 2. 히어로 영역 '처음 오셨나요?' 링크 연결 -->
+          <a href="http://www.hanam.or.kr/about-hanam/new-family/" class="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white/60 text-white text-sm font-bold hover:bg-white/10 transition">
             처음 오셨나요?
-          </button>
+          </a>
         </div>
       </div>
     </section>
@@ -171,12 +172,13 @@
             하남교회는 여러 세대가 함께 예배하는 하나의 공동체입니다. 처음 교회 문을 두드리셨든, 다른 곳에서 신앙생활을 하다 하남교회로 오셨든, 여러분을 진심으로 환영합니다.
           </p>
           <div class="grid grid-cols-2 gap-4 max-w-md">
-            <div class="bg-white border border-slate-200 rounded-2xl p-5 hover:border-[#0072CE] transition">
+            <!-- 3. '새가족' 카드 영역 링크 연결 -->
+            <a href="http://www.hanam.or.kr/about-hanam/new-family/" class="bg-white border border-slate-200 rounded-2xl p-5 hover:border-[#0072CE] transition block group">
               <span class="material-symbols-outlined text-28 text-[#0072CE] mb-2 block">how_to_reg</span>
               <span class="font-bold text-sm text-slate-800 block mb-1">새가족</span>
               <p class="text-xs text-slate-500 mb-3">등록 · 교육 안내</p>
-              <a href="#" class="text-xs font-bold text-[#0072CE] hover:underline">바로가기 →</a>
-            </div>
+              <span class="text-xs font-bold text-[#0072CE] group-hover:underline">바로가기 →</span>
+            </a>
             <div class="bg-white border border-slate-200 rounded-2xl p-5 hover:border-[#88BE1E] transition">
               <span class="material-symbols-outlined text-28 text-[#88BE1E] mb-2 block">diversity_3</span>
               <span class="font-bold text-sm text-slate-800 block mb-1">기존성도</span>
@@ -459,9 +461,9 @@
       <div class="absolute inset-0 bg-black/60"></div>
       <div class="relative z-10 px-4">
         <h2 class="text-3xl sm:text-4xl font-extrabold mb-6">교회에서 <span class="text-amber-400">만나요</span></h2>
-        <button onclick="document.getElementById('b-quick').scrollIntoView({behavior:'smooth'})" class="px-8 py-3.5 bg-white text-slate-900 font-bold rounded-full hover:bg-slate-100 transition">
+        <a href="http://www.hanam.or.kr/about-hanam/new-family/" class="px-8 py-3.5 bg-white text-slate-900 font-bold rounded-full hover:bg-slate-100 transition inline-block">
           예배 시간 확인하기
-        </button>
+        </a>
       </div>
     </section>
 
@@ -578,7 +580,7 @@
           <div class="mb-4">
             <p class="text-xs font-bold text-slate-400 uppercase mb-2">환영 및 등록</p>
             <ul class="space-y-2 text-sm text-slate-200">
-              <li><a href="#" class="hover:text-white hover:underline transition">새가족안내</a></li>
+              <li><a href="http://www.hanam.or.kr/about-hanam/new-family/" class="hover:text-white hover:underline transition">새가족안내</a></li>
               <li><a href="#" class="hover:text-white hover:underline transition">교육소개</a></li>
               <li><a href="#" class="hover:text-white hover:underline transition">온라인등록</a></li>
             </ul>
@@ -655,7 +657,7 @@
               <li><a href="#" class="hover:text-white hover:underline transition">일대일제자 양육</a></li>
               <li><a href="#" class="hover:text-white hover:underline transition">상담아카데미</a></li>
               <li><a href="#" class="hover:text-white hover:underline transition">실버대학</a></li>
-              <li><a href="#" class="hover:text-white hover:underline transition">온라인선교</a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">온라인 마케팅</a></li>
             </ul>
           </div>
           <div>
@@ -730,9 +732,9 @@
       <div class="border-t border-slate-700 pt-8 flex flex-col sm:flex-row items-center justify-between text-sm text-slate-400 gap-4">
         <p>하남교회 (HANAM PRESBYTERIAN CHURCH) | 경기도 하남시 덕풍동로 45</p>
         <div class="flex space-x-6 text-slate-300 font-medium">
-          <a href="#" onclick="handleGnbAction('welcome'); closeSitemap();" class="hover:text-[#0072CE]">새가족 안내</a>
+          <a href="http://www.hanam.or.kr/about-hanam/new-family/" class="hover:text-[#0072CE]">새가족 안내</a>
           <span>|</span>
-          <a href="#" onclick="handleGnbAction('sermon'); closeSitemap();" class="hover:text-[#88BE1E]">주일 설교</a>
+          <a href="#b-sermon" onclick="closeSitemap()" class="hover:text-[#88BE1E]">주일 설교</a>
         </div>
       </div>
     </div>
@@ -747,7 +749,7 @@
       church: {
         title: '교회안내', theme: '#0072CE',
         sections: [
-          { title: '환영 및 등록', links: [{ label: '새가족안내', target: 'welcome' }, { label: '교육소개' }, { label: '온라인등록' }] },
+          { title: '환영 및 등록', links: [{ label: '새가족안내', href: 'http://www.hanam.or.kr/about-hanam/new-family/' }, { label: '교육소개' }, { label: '온라인등록' }] },
           { title: '예배안내', links: [{ label: '예배안내/시간' }, { label: '예배생중계' }] },
           { title: '하남교회 소개', links: [{ label: '담임목사님 인사말' }, { label: '목회서신' }, { label: '교회를 섬기는 이들' }, { label: '하남교회 발자취' }, { label: '교회 둘러보기' }] },
           { title: '신앙/상담 지원', links: [{ label: '추천도서' }, { label: '신앙상담실' }] },
@@ -765,7 +767,7 @@
         title: '양육 · 훈련', theme: '#F58220',
         sections: [
           { title: '교구', links: [{ label: '장년교구' }, { label: '청년교구' }] },
-          { title: '양육', links: [{ label: '일대일제자 양육' }, { label: '상담아카데미' }, { label: '실버대학' }, { label: '온라인선교' }] },
+          { title: '양육', links: [{ label: '일대일제자 양육' }, { label: '상담아카데미' }, { label: '실버대학' }, { label: '온라인 마케팅' }] },
           { title: '훈련 (HDTS)', links: [{ label: '목자학교' }, { label: '중보기도학교' }, { label: '큐티학교' }, { label: '행복전도' }] }
         ]
       },
@@ -821,10 +823,16 @@
             <ul class="space-y-2.5">
         `;
         section.links.forEach(link => {
-          const clickAction = link.target ? `onclick="handleGnbAction('${link.target}'); hideMegaDropdown();"` : '';
+          let clickAction = '';
+          let hrefAttr = '#';
+          if (link.href) {
+            hrefAttr = link.href;
+          } else if (link.target) {
+            clickAction = `onclick="handleGnbAction('${link.target}'); hideMegaDropdown();"`;
+          }
           html += `
             <li>
-              <a href="#" ${clickAction} class="text-sm text-slate-600 font-medium hover:text-[${data.theme}] hover:underline transition block">
+              <a href="${hrefAttr}" ${clickAction} class="text-sm text-slate-600 font-medium hover:text-[${data.theme}] hover:underline transition block">
                 ${link.label}
               </a>
             </li>
@@ -859,7 +867,7 @@
     // GNB Click Router
     function handleGnbAction(target) {
       if (target === 'welcome') {
-        document.getElementById('b-quick').scrollIntoView({ behavior: 'smooth' });
+        window.location.href = "http://www.hanam.or.kr/about-hanam/new-family/";
       } else {
         document.getElementById('b-sermon').scrollIntoView({ behavior: 'smooth' });
       }
@@ -892,7 +900,7 @@
       if (!q) { searchResults.classList.add('hidden'); return; }
 
       const indexList = [
-        { label: '새가족안내 및 온라인등록', target: 'welcome', desc: '교회안내 > 환영 및 등록' },
+        { label: '새가족안내 및 온라인등록', href: 'http://www.hanam.or.kr/about-hanam/new-family/', desc: '교회안내 > 환영 및 등록' },
         { label: '예배시간 및 안내 (주일 대예배)', target: 'welcome', desc: '교회안내 > 예배안내' },
         { label: '주일설교 영상 및 다시보기', target: 'sermon', desc: '말씀·찬양 > 설교' },
         { label: '온라인헌금 및 행정 서비스', target: 'sermon', desc: '빠른서비스' },
@@ -904,7 +912,7 @@
         searchResults.innerHTML = `<p class="text-xs text-slate-400 py-2">검색 결과가 없습니다.</p>`;
       } else {
         searchResults.innerHTML = filtered.map(item => `
-          <div onclick="handleGnbAction('${item.target}'); closeSearchModal();" class="p-2.5 rounded-lg hover:bg-white border border-transparent hover:border-slate-200 transition cursor-pointer flex justify-between items-center">
+          <div onclick="${item.href ? `window.location.href='${item.href}'` : `handleGnbAction('${item.target}')`}; closeSearchModal();" class="p-2.5 rounded-lg hover:bg-white border border-transparent hover:border-slate-200 transition cursor-pointer flex justify-between items-center">
             <div>
               <p class="text-sm font-bold text-slate-800">${item.label}</p>
               <p class="text-xs text-slate-400">${item.desc}</p>
@@ -929,7 +937,7 @@
       setTimeout(() => modal.classList.add('hidden'), 200);
     }
 
-    // Family Site Controller (새 창 열기 및 셀렉트박스 리셋)
+    // Family Site Controller
     function handleFamilySite(selectElement) {
       const url = selectElement.value;
       if (url) {

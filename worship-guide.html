@@ -3,192 +3,63 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>예배 및 교통 안내 - 하남교회</title>
-  <!-- Material Symbols for Icons -->
+  <title>예배 및 모임 안내 - 하남교회</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            hblue: '#0072CE',
+            hgreen: '#88BE1E',
+            horange: '#F58220',
+            hdark: '#0B2038',
+            hnam: {
+              blue: '#0072CE',
+              green: '#88BE1E',
+              orange: '#F58220',
+              dark: '#0B2038',
+              cardDark: '#0f2942',
+              borderDark: '#1e3a5f'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <!-- Google Material Symbols -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   <style>
-    /* Reset & Typography */
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-    body {
-      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Segoe UI", sans-serif;
-      background-color: #f8fafc;
-      color: #1e293b;
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    /* Section Layout */
-    .worship-section {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 60px 20px 80px;
-    }
-
-    /* Section Header */
-    .section-header {
-      text-align: center;
-      margin-bottom: 40px;
-    }
-    .section-header .sub-title {
-      font-size: 13px;
-      font-weight: 700;
-      color: #1d4ed8;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      display: inline-block;
-      margin-bottom: 8px;
-    }
-    .section-header .main-title {
-      font-size: 32px;
-      font-weight: 800;
-      color: #0f172a;
-      letter-spacing: -0.5px;
-      margin-bottom: 12px;
-    }
-    .section-header .desc {
-      font-size: 16px;
-      color: #64748b;
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
-    /* Tabs Navigation */
-    .category-tabs {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 36px;
-    }
-    .tab-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 10px 22px;
-      border-radius: 9999px;
-      border: 1px solid #e2e8f0;
-      background-color: #ffffff;
-      color: #475569;
-      font-size: 15px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    .tab-btn .material-symbols-outlined {
-      font-size: 18px;
-    }
-    .tab-btn:hover {
-      background-color: #f1f5f9;
-      color: #0f172a;
-    }
-    .tab-btn.active {
-      background-color: #1d4ed8;
-      color: #ffffff;
-      border-color: #1d4ed8;
-      box-shadow: 0 4px 12px rgba(29, 78, 216, 0.25);
-    }
-
-    /* Tab Contents Panel */
-    .schedule-group {
-      display: none;
-      animation: fadeIn 0.3s ease-in-out;
-    }
-    .schedule-group.active {
-      display: block;
-    }
+    @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+    body { font-family: 'Pretendard', sans-serif; }
+    
+    .fade-enter { animation: fadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(6px); }
+      from { opacity: 0; transform: translateY(4px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Card Wrapper */
-    .schedule-card-wrapper {
-      background: #ffffff;
-      border-radius: 16px;
-      border: 1px solid #e2e8f0;
-      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
-      padding: 28px;
-      margin-bottom: 28px;
+    /* Tab Controls */
+    .tab-btn.active {
+      background-color: #0072CE;
+      color: #ffffff;
+      border-color: #0072CE;
+      box-shadow: 0 4px 12px rgba(0, 114, 206, 0.25);
     }
-    .card-header {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 20px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid #f1f5f9;
-    }
-    .card-header h3 {
-      font-size: 20px;
-      font-weight: 700;
-      color: #0f172a;
-      letter-spacing: -0.3px;
-    }
+    .schedule-group { display: none; animation: fadeIn 0.3s ease-in-out; }
+    .schedule-group.active { display: block; }
 
-    /* Badges & Tags */
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      padding: 4px 10px;
-      border-radius: 6px;
-      font-size: 12px;
-      font-weight: 700;
-    }
-    .badge-primary { background: #dbeafe; color: #1e40af; }
-    .badge-secondary { background: #f1f5f9; color: #334155; }
-    .badge-accent { background: #e0f2fe; color: #0369a1; }
-    .badge-warning { background: #fef3c7; color: #92400e; }
-    .tag {
-      display: inline-block;
-      background: #f1f5f9;
-      color: #475569;
-      padding: 2px 8px;
-      border-radius: 4px;
-      font-size: 12px;
-      font-weight: 500;
-    }
-
-    /* Table Styles (Desktop) */
-    .table-responsive {
-      width: 100%;
-    }
-    .schedule-table {
-      width: 100%;
-      border-collapse: collapse;
-      text-align: left;
-    }
-    .schedule-table th, .schedule-table td {
-      padding: 14px 16px;
-      border-bottom: 1px solid #f1f5f9;
-      font-size: 15px;
-      vertical-align: middle;
-    }
-    .schedule-table th {
-      background-color: #f8fafc;
-      color: #64748b;
-      font-weight: 600;
-      font-size: 14px;
-    }
-    .schedule-table tr:hover td {
-      background-color: #fcfdfe;
-    }
-
-    /* Responsive Mobile Table Card View (Breakpoints <= 768px) */
+    /* Mobile Responsive Card Table */
     @media (max-width: 768px) {
       .schedule-table, .schedule-table thead, .schedule-table tbody, .schedule-table th, .schedule-table td, .schedule-table tr {
         display: block;
       }
-      .schedule-table thead {
-        display: none;
-      }
+      .schedule-table thead { display: none; }
       .schedule-table tr {
         background: #ffffff;
         border: 1px solid #e2e8f0;
-        border-radius: 12px;
+        border-radius: 14px;
         padding: 16px;
         margin-bottom: 14px;
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
@@ -201,9 +72,7 @@
         border-bottom: 1px dashed #f1f5f9;
         font-size: 14px;
       }
-      .schedule-table td:last-child {
-        border-bottom: none;
-      }
+      .schedule-table td:last-child { border-bottom: none; padding-top: 10px; }
       .schedule-table td::before {
         content: attr(data-label);
         font-weight: 600;
@@ -217,455 +86,985 @@
         font-weight: 700;
         color: #0f172a;
         border-bottom: 1px solid #e2e8f0;
-        padding-bottom: 10px;
+        padding-bottom: 8px;
       }
-      .schedule-table td:first-child::before {
-        display: none;
-      }
-      .schedule-card-wrapper {
-        padding: 18px;
-      }
-    }
-
-    /* Cards Grid (Next Generation) */
-    .grid-cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 20px;
-    }
-    .info-card {
-      background: #ffffff;
-      border: 1px solid #e2e8f0;
-      border-radius: 14px;
-      padding: 22px;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .info-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 20px -3px rgba(0, 0, 0, 0.08);
-      border-color: #cbd5e1;
-    }
-    .info-card .card-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 14px;
-    }
-    .info-card .card-target {
-      font-size: 13px;
-      color: #94a3b8;
-      font-weight: 500;
-    }
-    .info-card .card-time {
-      font-size: 15px;
-      font-weight: 700;
-      color: #1e293b;
-      margin-bottom: 6px;
-    }
-    .info-card .card-loc {
-      font-size: 13px;
-      color: #64748b;
-    }
-
-    /* Training Cards Grid */
-    .training-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 20px;
-    }
-    .training-card {
-      background: #ffffff;
-      border-left: 4px solid #1d4ed8;
-      border-radius: 12px;
-      padding: 20px;
-      border-top: 1px solid #e2e8f0;
-      border-right: 1px solid #e2e8f0;
-      border-bottom: 1px solid #e2e8f0;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.03);
-    }
-    .training-card h4 {
-      font-size: 17px;
-      font-weight: 700;
-      color: #0f172a;
-      margin-bottom: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .training-card .t-time {
-      font-size: 14px;
-      font-weight: 600;
-      color: #334155;
-      margin-bottom: 4px;
-    }
-    .training-card .t-place {
-      font-size: 13px;
-      color: #64748b;
-    }
-
-    /* Transport & Directions Tab */
-    .transit-block {
-      margin-bottom: 24px;
-    }
-    .transit-block h4 {
-      font-size: 16px;
-      font-weight: 700;
-      color: #0f172a;
-      margin-bottom: 8px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .transit-block p {
-      font-size: 14px;
-      color: #475569;
-    }
-    .map-btn-group {
-      display: flex;
-      gap: 10px;
-      margin-top: 16px;
-      flex-wrap: wrap;
-    }
-    .map-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 10px 18px;
-      border-radius: 8px;
-      font-size: 14px;
-      font-weight: 600;
-      text-decoration: none;
-      transition: background 0.2s;
-    }
-    .map-btn-naver {
-      background-color: #03c75a;
-      color: #ffffff;
-    }
-    .map-btn-kakao {
-      background-color: #fee500;
-      color: #191919;
+      .schedule-table td:first-child::before { display: none; }
     }
   </style>
 </head>
-<body>
+<body class="bg-slate-50 text-slate-900 antialiased selection:bg-[#0072CE] selection:text-white flex flex-col min-h-screen">
 
-<section class="worship-section">
-  <!-- 섹션 헤더 -->
-  <div class="section-header">
-    <span class="sub-title">Worship & Community</span>
-    <h2 class="main-title">예배 및 모임 안내</h2>
-    <p class="desc">온전한 예배와 말씀, 기도의 회복이 있는 하남교회로 여러분을 초대합니다.</p>
-  </div>
+  <!-- ================================================================= -->
+  <!-- 1. GNB HEADER (index.html과 동일한 1열 반투명 오버레이) -->
+  <!-- ================================================================= -->
+  <header class="absolute top-0 left-0 w-full z-40 bg-black/40 backdrop-blur-md border-b border-white/10 transition-all duration-300" id="main-global-header">
+    <div class="max-w-[1720px] mx-auto px-4 sm:px-8 h-20 flex items-center justify-between text-white">
 
-  <!-- 탭 메뉴 -->
-  <div class="category-tabs">
-    <button class="tab-btn active" data-target="tab-adult">
-      <span class="material-symbols-outlined">church</span>장년 예배
-    </button>
-    <button class="tab-btn" data-target="tab-nextgen">
-      <span class="material-symbols-outlined">escalator_warning</span>다음세대(교육부)
-    </button>
-    <button class="tab-btn" data-target="tab-training">
-      <span class="material-symbols-outlined">menu_book</span>양육 및 아카데미
-    </button>
-    <button class="tab-btn" data-target="tab-transit">
-      <span class="material-symbols-outlined">directions_bus</span>오시는 길 & 셔틀버스
-    </button>
-  </div>
+      <!-- Left: Logo -->
+      <a href="./index.html" class="flex items-center flex-shrink-0">
+        <img src="./logo.png" alt="하남교회 로고" class="h-10 w-auto object-contain drop-shadow-md">
+      </a>
 
-  <!-- 1. 장년 예배 탭 -->
-  <div class="schedule-group active" id="tab-adult">
-    <!-- 주일 예배 -->
-    <div class="schedule-card-wrapper">
-      <div class="card-header">
-        <span class="badge badge-primary">큰나무 비전학교</span>
-        <h3>주일예배 안내</h3>
-      </div>
-      <div class="table-responsive">
-        <table class="schedule-table">
-          <thead>
-            <tr>
-              <th>예배구분</th>
-              <th>예배시간</th>
-              <th>예배장소</th>
-              <th>특이사항 / 대상</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td data-label="구분"><strong>1부 경건의 예배</strong></td>
-              <td data-label="시간">오전 07:45</td>
-              <td data-label="장소">벧엘성전</td>
-              <td data-label="비고">-</td>
-            </tr>
-            <tr>
-              <td data-label="구분"><strong>2부 은혜의 예배</strong></td>
-              <td data-label="시간">오전 09:15</td>
-              <td data-label="장소">벧엘성전</td>
-              <td data-label="비고">-</td>
-            </tr>
-            <tr>
-              <td data-label="구분"><strong>3부 감동의 예배</strong></td>
-              <td data-label="시간">오전 10:45</td>
-              <td data-label="장소">벧엘성전</td>
-              <td data-label="비고"><span class="tag">수어 통역</span></td>
-            </tr>
-            <tr>
-              <td data-label="구분"><strong>4부 열정의 예배</strong></td>
-              <td data-label="시간">낮 12:15</td>
-              <td data-label="장소">벧엘성전</td>
-              <td data-label="비고"><span class="tag">영어 통역</span></td>
-            </tr>
-            <tr>
-              <td data-label="구분"><strong>5부 젊은이 예배</strong></td>
-              <td data-label="시간">오후 02:00</td>
-              <td data-label="장소">프라미스홀</td>
-              <td data-label="비고">청년교구</td>
-            </tr>
-            <tr>
-              <td data-label="구분"><strong>6부 직장인 예배</strong></td>
-              <td data-label="시간">오후 07:00</td>
-              <td data-label="장소">프라미스홀</td>
-              <td data-label="비고">-</td>
-            </tr>
-            <tr>
-              <td data-label="구분"><strong>E.M Service</strong></td>
-              <td data-label="시간">오후 03:30</td>
-              <td data-label="장소">프라미스홀</td>
-              <td data-label="비고">장년영어예배</td>
-            </tr>
-            <tr>
-              <td data-label="구분"><strong>메타하남 (온라인)</strong></td>
-              <td data-label="시간">1부 10:45 / 2부 12:15</td>
-              <td data-label="장소">meta.hanam.or.kr</td>
-              <td data-label="비고">메타버스 가상예배</td>
-            </tr>
-          </tbody>
-        </table>
+      <!-- Center: 1Depth GNB Menu -->
+      <nav class="hidden xl:flex items-center space-x-10 h-full">
+        <div class="nav-item h-full flex items-center" data-menu="church">
+          <button class="text-[16px] font-bold text-white hover:text-amber-300 h-full transition flex items-center tracking-tight drop-shadow">교회안내</button>
+        </div>
+        <div class="nav-item h-full flex items-center" data-menu="worship">
+          <button class="text-[16px] font-bold text-white hover:text-amber-300 h-full transition flex items-center tracking-tight drop-shadow">말씀 · 찬양</button>
+        </div>
+        <div class="nav-item h-full flex items-center" data-menu="training">
+          <button class="text-[16px] font-bold text-white hover:text-amber-300 h-full transition flex items-center tracking-tight drop-shadow">양육 · 훈련</button>
+        </div>
+        <div class="nav-item h-full flex items-center" data-menu="nextgen">
+          <button class="text-[16px] font-bold text-white hover:text-amber-300 h-full transition flex items-center tracking-tight drop-shadow">다음세대</button>
+        </div>
+        <div class="nav-item h-full flex items-center" data-menu="news">
+          <button class="text-[16px] font-bold text-white hover:text-amber-300 h-full transition flex items-center tracking-tight drop-shadow">소통 · 소식</button>
+        </div>
+      </nav>
+
+      <!-- Right: Utility Links + CTA Button + Search + Sitemap -->
+      <div class="flex items-center space-x-4">
+        <div class="hidden lg:flex items-center space-x-3 text-xs font-semibold text-white/90">
+          <a href="https://www.youtube.com/@Hanam_online_church/featured" target="_blank" rel="noopener noreferrer" class="hover:text-amber-300 transition flex items-center gap-1">
+            <span class="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></span> 예배생중계
+          </a>
+          <span class="text-white/30 text-xs">|</span>
+          <a href="./index.html" class="hover:text-amber-300 transition">온라인선교</a>
+          <a href="./index.html" class="hover:text-amber-300 transition">온라인헌금</a>
+          <a href="./index.html" class="hover:text-amber-300 transition">온라인행정</a>
+        </div>
+
+        <!-- Search Icon Button -->
+        <button onclick="openSearchModal()" aria-label="통합검색" class="p-2 rounded-full text-white hover:bg-white/20 transition flex items-center justify-center">
+          <span class="material-symbols-outlined text-22 block leading-none">search</span>
+        </button>
+
+        <!-- Sitemap Hamburger Button -->
+        <button onclick="openSitemap()" aria-label="전체 사이트맵 열기" class="p-2 rounded-lg text-white hover:bg-white/20 transition">
+          <span class="material-symbols-outlined text-26 block">menu</span>
+        </button>
       </div>
     </div>
 
-    <!-- 주중 예배 -->
-    <div class="schedule-card-wrapper">
-      <div class="card-header">
-        <span class="badge badge-secondary">기도회 및 주중 집회</span>
-        <h3>주중예배 안내</h3>
-      </div>
-      <div class="table-responsive">
-        <table class="schedule-table">
-          <thead>
-            <tr>
-              <th>구분</th>
-              <th>시간</th>
-              <th>장소</th>
-              <th>비고</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td data-label="구분"><strong>새벽기도회 (월~금)</strong></td>
-              <td data-label="시간">오전 05:00</td>
-              <td data-label="장소">벧엘성전</td>
-              <td data-label="비고">매일 아침 은혜 나눔</td>
-            </tr>
-            <tr>
-              <td data-label="구분"><strong>수요여성예배 WOW</strong></td>
-              <td data-label="시간">수요일 오전 10:30</td>
-              <td data-label="장소">프라미스홀</td>
-              <td data-label="비고">학기제 운영 (4~6월 / 9~11월)</td>
-            </tr>
-            <tr>
-              <td data-label="구분"><strong>금요성령집회 (One Thing Night)</strong></td>
-              <td data-label="시간">금요일 저녁 09:00</td>
-              <td data-label="장소">벧엘성전</td>
-              <td data-label="비고">찬양과 뜨거운 기도</td>
-            </tr>
-            <tr>
-              <td data-label="구분"><strong>목장 모임</strong></td>
-              <td data-label="시간">월~토 상시</td>
-              <td data-label="장소">각 가정 및 지정장소</td>
-              <td data-label="비고">교구별 목장 모임</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+    <!-- Mega Dropdown Panel -->
+    <div id="mega-dropdown" class="absolute top-20 left-0 w-full bg-[#0B2038]/95 backdrop-blur-xl border-t border-b border-white/10 shadow-2xl hidden z-30 transition-all duration-200 text-white">
+      <div class="max-w-[1720px] mx-auto px-8 py-8" id="mega-dropdown-content"></div>
     </div>
-  </div>
+  </header>
 
-  <!-- 2. 차세대 비전학교(교육부) 탭 -->
-  <div class="schedule-group" id="tab-nextgen">
-    <div class="grid-cards">
-      <div class="info-card">
-        <div class="card-top">
-          <span class="badge badge-accent">영아부</span>
-          <span class="card-target">~3세</span>
-        </div>
-        <p class="card-time">1부 09:15 / 2부 10:45 / 3부 12:15</p>
-        <p class="card-loc"><span class="material-symbols-outlined" style="font-size:14px; vertical-align:middle;">location_on</span> 써니힐 1층 영아부실</p>
-      </div>
+  <!-- ================================================================= -->
+  <!-- 2. SUB-HERO BANNER -->
+  <!-- ================================================================= -->
+  <section class="relative w-full h-[380px] sm:h-[440px] bg-[#111827] text-white overflow-hidden flex items-end">
+    <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('./main.png');"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-[#0B2038] via-black/50 to-black/30"></div>
 
-      <div class="info-card">
-        <div class="card-top">
-          <span class="badge badge-accent">유아부</span>
-          <span class="card-target">4~5세</span>
-        </div>
-        <p class="card-time">1부 09:15 / 2부 10:45 / 3부 12:15</p>
-        <p class="card-loc"><span class="material-symbols-outlined" style="font-size:14px; vertical-align:middle;">location_on</span> 써니힐 2층 유아부실</p>
-      </div>
-
-      <div class="info-card">
-        <div class="card-top">
-          <span class="badge badge-accent">유치부</span>
-          <span class="card-target">6~7세</span>
-        </div>
-        <p class="card-time">1부 09:15 / 2부 10:45 / 3부 12:15</p>
-        <p class="card-loc"><span class="material-symbols-outlined" style="font-size:14px; vertical-align:middle;">location_on</span> 본관 유치부실</p>
-      </div>
-
-      <div class="info-card">
-        <div class="card-top">
-          <span class="badge badge-accent">유년부</span>
-          <span class="card-target">초등 1~2학년</span>
-        </div>
-        <p class="card-time">1부 09:15 / 2부 10:45 / 3부 12:15</p>
-        <p class="card-loc"><span class="material-symbols-outlined" style="font-size:14px; vertical-align:middle;">location_on</span> 본관 유년부실</p>
-      </div>
-
-      <div class="info-card">
-        <div class="card-top">
-          <span class="badge badge-accent">초등부</span>
-          <span class="card-target">초등 3~4학년</span>
-        </div>
-        <p class="card-time">1부 09:15 / 2부 10:45 / 3부 12:15</p>
-        <p class="card-loc"><span class="material-symbols-outlined" style="font-size:14px; vertical-align:middle;">location_on</span> 본관 초등부실</p>
-      </div>
-
-      <div class="info-card">
-        <div class="card-top">
-          <span class="badge badge-accent">소년부</span>
-          <span class="card-target">초등 5~6학년</span>
-        </div>
-        <p class="card-time">1부 09:15 / 2부 10:45 / 3부 12:15</p>
-        <p class="card-loc"><span class="material-symbols-outlined" style="font-size:14px; vertical-align:middle;">location_on</span> 본관 소년부실</p>
-      </div>
-
-      <div class="info-card">
-        <div class="card-top">
-          <span class="badge badge-accent">중등부</span>
-          <span class="card-target">중등 1~3학년</span>
-        </div>
-        <p class="card-time">1부 10:45 / 2부 12:15</p>
-        <p class="card-loc"><span class="material-symbols-outlined" style="font-size:14px; vertical-align:middle;">location_on</span> 써니힐 3층 / 프라미스홀</p>
-      </div>
-
-      <div class="info-card">
-        <div class="card-top">
-          <span class="badge badge-accent">고등부</span>
-          <span class="card-target">고등 1~3학년</span>
-        </div>
-        <p class="card-time">주일 오전 10:45</p>
-        <p class="card-loc"><span class="material-symbols-outlined" style="font-size:14px; vertical-align:middle;">location_on</span> 프라미스홀</p>
-      </div>
+    <div class="relative z-10 max-w-7xl mx-auto w-full px-4 sm:px-8 pb-12 text-center">
+      <span class="text-xs sm:text-sm font-bold tracking-[0.2em] text-[#88BE1E] uppercase mb-2 block drop-shadow">Worship & Community</span>
+      <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight mb-3 drop-shadow-md break-keep">
+        예배 및 모임 안내
+      </h1>
+      <p class="text-sm sm:text-base text-slate-200 max-w-xl mx-auto break-keep">
+        온전한 예배와 말씀, 기도의 회복이 있는 하남교회로 여러분을 초대합니다.
+      </p>
     </div>
-  </div>
+  </section>
 
-  <!-- 3. 양육 및 아카데미 탭 -->
-  <div class="schedule-group" id="tab-training">
-    <div class="training-grid">
-      <div class="training-card">
-        <h4>새가족 교육 <span class="badge badge-warning">필수과정</span></h4>
-        <p class="t-time">매주일 오전 10:30 / 오후 01:30 (5주 과정)</p>
-        <p class="t-place">1팀: 4층 새가족실 / 2팀: 3층 / 3팀: 2층</p>
+  <!-- ================================================================= -->
+  <!-- 3. WORSHIP CONTENT BODY -->
+  <!-- ================================================================= -->
+  <main class="flex-grow py-12 sm:py-16 bg-slate-50">
+    <div class="max-w-6xl mx-auto px-4 sm:px-8">
+
+      <!-- Category Tab Buttons -->
+      <div class="flex justify-center flex-wrap gap-2 sm:gap-3 mb-10">
+        <button class="tab-btn active inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-slate-200 bg-white text-slate-700 text-sm font-bold hover:bg-slate-100 transition shadow-sm" data-target="tab-adult">
+          <span class="material-symbols-outlined text-18 text-[#0072CE]">church</span>장년 예배
+        </button>
+        <button class="tab-btn inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-slate-200 bg-white text-slate-700 text-sm font-bold hover:bg-slate-100 transition shadow-sm" data-target="tab-nextgen">
+          <span class="material-symbols-outlined text-18 text-[#0072CE]">escalator_warning</span>다음세대(교육부)
+        </button>
+        <button class="tab-btn inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-slate-200 bg-white text-slate-700 text-sm font-bold hover:bg-slate-100 transition shadow-sm" data-target="tab-training">
+          <span class="material-symbols-outlined text-18 text-[#F58220]">menu_book</span>양육 및 아카데미
+        </button>
+        <button class="tab-btn inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-slate-200 bg-white text-slate-700 text-sm font-bold hover:bg-slate-100 transition shadow-sm" data-target="tab-transit">
+          <span class="material-symbols-outlined text-18 text-[#88BE1E]">directions_bus</span>오시는 길 & 셔틀버스
+        </button>
       </div>
-      <div class="training-card">
-        <h4>목자학교</h4>
-        <p class="t-time">3~4월, 9~10월 매주일 오후 04:00</p>
-        <p class="t-place">프라미스홀 (목자 및 예비목자)</p>
+
+      <!-- 1. 장년 예배 탭 -->
+      <div class="schedule-group active" id="tab-adult">
+        <!-- 주일 대예배 -->
+        <div class="bg-white rounded-3xl border border-slate-200 shadow-sm p-6 sm:p-8 mb-8">
+          <div class="flex items-center gap-3 mb-6 pb-4 border-b border-slate-100">
+            <span class="px-3 py-1 rounded-md bg-blue-50 text-[#0072CE] text-xs font-extrabold">주일 대예배</span>
+            <h3 class="text-xl font-extrabold text-slate-900">주일예배 안내</h3>
+          </div>
+          
+          <div class="w-full overflow-hidden">
+            <table class="schedule-table w-full text-left border-collapse">
+              <thead>
+                <tr class="bg-slate-50 text-slate-500 text-xs font-bold uppercase tracking-wider border-b border-slate-100">
+                  <th class="p-3.5">예배구분</th>
+                  <th class="p-3.5">예배시간</th>
+                  <th class="p-3.5">예배장소</th>
+                  <th class="p-3.5">특이사항 / 대상</th>
+                  <th class="p-3.5 text-right">온라인 생중계</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100 text-sm text-slate-700">
+                <tr class="hover:bg-slate-50/70 transition">
+                  <td class="p-3.5" data-label="구분"><strong class="text-slate-900">1부 경건의 예배</strong></td>
+                  <td class="p-3.5 font-semibold text-[#0072CE]" data-label="시간">오전 07:45</td>
+                  <td class="p-3.5" data-label="장소">벧엘성전</td>
+                  <td class="p-3.5 text-slate-400" data-label="비고">-</td>
+                  <td class="p-3.5 text-right" data-label="생중계">
+                    <a href="https://www.youtube.com/@Hanam_online_church/featured" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-red-50 text-red-600 border border-red-200 text-xs font-bold hover:bg-red-600 hover:text-white transition">
+                      <span class="material-symbols-outlined text-16">play_circle</span>생중계 보기
+                    </a>
+                  </td>
+                </tr>
+                <tr class="hover:bg-slate-50/70 transition">
+                  <td class="p-3.5" data-label="구분"><strong class="text-slate-900">2부 은혜의 예배</strong></td>
+                  <td class="p-3.5 font-semibold text-[#0072CE]" data-label="시간">오전 09:15</td>
+                  <td class="p-3.5" data-label="장소">벧엘성전</td>
+                  <td class="p-3.5 text-slate-400" data-label="비고">-</td>
+                  <td class="p-3.5 text-right" data-label="생중계">
+                    <a href="https://www.youtube.com/@Hanam_online_church/featured" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-red-50 text-red-600 border border-red-200 text-xs font-bold hover:bg-red-600 hover:text-white transition">
+                      <span class="material-symbols-outlined text-16">play_circle</span>생중계 보기
+                    </a>
+                  </td>
+                </tr>
+                <tr class="hover:bg-slate-50/70 transition">
+                  <td class="p-3.5" data-label="구분"><strong class="text-slate-900">3부 감동의 예배</strong></td>
+                  <td class="p-3.5 font-semibold text-[#0072CE]" data-label="시간">오전 10:45</td>
+                  <td class="p-3.5" data-label="장소">벧엘성전</td>
+                  <td class="p-3.5" data-label="비고"><span class="px-2 py-0.5 rounded bg-slate-100 text-slate-600 text-xs font-medium">수어 통역</span></td>
+                  <td class="p-3.5 text-right" data-label="생중계">
+                    <a href="https://www.youtube.com/@Hanam_online_church/featured" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-red-50 text-red-600 border border-red-200 text-xs font-bold hover:bg-red-600 hover:text-white transition">
+                      <span class="material-symbols-outlined text-16">play_circle</span>생중계 보기
+                    </a>
+                  </td>
+                </tr>
+                <tr class="hover:bg-slate-50/70 transition">
+                  <td class="p-3.5" data-label="구분"><strong class="text-slate-900">4부 열정의 예배</strong></td>
+                  <td class="p-3.5 font-semibold text-[#0072CE]" data-label="시간">낮 12:15</td>
+                  <td class="p-3.5" data-label="장소">벧엘성전</td>
+                  <td class="p-3.5" data-label="비고"><span class="px-2 py-0.5 rounded bg-slate-100 text-slate-600 text-xs font-medium">영어 통역</span></td>
+                  <td class="p-3.5 text-right" data-label="생중계">
+                    <a href="https://www.youtube.com/@Hanam_online_church/featured" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-red-50 text-red-600 border border-red-200 text-xs font-bold hover:bg-red-600 hover:text-white transition">
+                      <span class="material-symbols-outlined text-16">play_circle</span>생중계 보기
+                    </a>
+                  </td>
+                </tr>
+                <tr class="hover:bg-slate-50/70 transition">
+                  <td class="p-3.5" data-label="구분"><strong class="text-slate-900">5부 젊은이 예배</strong></td>
+                  <td class="p-3.5 font-semibold text-[#0072CE]" data-label="시간">오후 02:00</td>
+                  <td class="p-3.5" data-label="장소">프라미스홀</td>
+                  <td class="p-3.5" data-label="비고"><span class="px-2 py-0.5 rounded bg-blue-50 text-[#0072CE] text-xs font-bold">청년교구</span></td>
+                  <td class="p-3.5 text-right" data-label="생중계">
+                    <a href="https://www.youtube.com/@Hanam_online_church/featured" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-red-50 text-red-600 border border-red-200 text-xs font-bold hover:bg-red-600 hover:text-white transition">
+                      <span class="material-symbols-outlined text-16">play_circle</span>생중계 보기
+                    </a>
+                  </td>
+                </tr>
+                <tr class="hover:bg-slate-50/70 transition">
+                  <td class="p-3.5" data-label="구분"><strong class="text-slate-900">6부 직장인 예배</strong></td>
+                  <td class="p-3.5 font-semibold text-[#0072CE]" data-label="시간">오후 07:00</td>
+                  <td class="p-3.5" data-label="장소">프라미스홀</td>
+                  <td class="p-3.5 text-slate-400" data-label="비고">-</td>
+                  <td class="p-3.5 text-right" data-label="생중계">
+                    <a href="https://www.youtube.com/@Hanam_online_church/featured" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-red-50 text-red-600 border border-red-200 text-xs font-bold hover:bg-red-600 hover:text-white transition">
+                      <span class="material-symbols-outlined text-16">play_circle</span>생중계 보기
+                    </a>
+                  </td>
+                </tr>
+                <tr class="hover:bg-slate-50/70 transition">
+                  <td class="p-3.5" data-label="구분"><strong class="text-slate-900">E.M Service</strong></td>
+                  <td class="p-3.5 font-semibold text-[#0072CE]" data-label="시간">오후 03:30</td>
+                  <td class="p-3.5" data-label="장소">프라미스홀</td>
+                  <td class="p-3.5" data-label="비고">장년영어예배</td>
+                  <td class="p-3.5 text-right" data-label="생중계">
+                    <a href="https://www.youtube.com/@Hanam_online_church/featured" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-red-50 text-red-600 border border-red-200 text-xs font-bold hover:bg-red-600 hover:text-white transition">
+                      <span class="material-symbols-outlined text-16">play_circle</span>생중계 보기
+                    </a>
+                  </td>
+                </tr>
+                <tr class="hover:bg-slate-50/70 transition">
+                  <td class="p-3.5" data-label="구분"><strong class="text-slate-900">메타하남 (온라인)</strong></td>
+                  <td class="p-3.5 font-semibold text-[#0072CE]" data-label="시간">1부 10:45 / 2부 12:15</td>
+                  <td class="p-3.5" data-label="장소">meta.hanam.or.kr</td>
+                  <td class="p-3.5" data-label="비고">메타버스 가상예배</td>
+                  <td class="p-3.5 text-right" data-label="생중계">
+                    <a href="https://meta.hanam.or.kr" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 text-slate-700 border border-slate-300 text-xs font-bold hover:bg-slate-800 hover:text-white transition">
+                      <span class="material-symbols-outlined text-16">open_in_new</span>메타버스 접속
+                    </a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 주중 기도회 -->
+        <div class="bg-white rounded-3xl border border-slate-200 shadow-sm p-6 sm:p-8">
+          <div class="flex items-center gap-3 mb-6 pb-4 border-b border-slate-100">
+            <span class="px-3 py-1 rounded-md bg-emerald-50 text-emerald-800 text-xs font-extrabold">주중 기도회</span>
+            <h3 class="text-xl font-extrabold text-slate-900">주중예배 안내</h3>
+          </div>
+          
+          <div class="w-full overflow-hidden">
+            <table class="schedule-table w-full text-left border-collapse">
+              <thead>
+                <tr class="bg-slate-50 text-slate-500 text-xs font-bold uppercase tracking-wider border-b border-slate-100">
+                  <th class="p-3.5">구분</th>
+                  <th class="p-3.5">시간</th>
+                  <th class="p-3.5">장소</th>
+                  <th class="p-3.5">비고</th>
+                  <th class="p-3.5 text-right">생중계</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100 text-sm text-slate-700">
+                <tr class="hover:bg-slate-50/70 transition">
+                  <td class="p-3.5" data-label="구분"><strong class="text-slate-900">새벽기도회 (월~금)</strong></td>
+                  <td class="p-3.5 font-semibold text-emerald-800" data-label="시간">오전 05:00</td>
+                  <td class="p-3.5" data-label="장소">벧엘성전</td>
+                  <td class="p-3.5 text-slate-500" data-label="비고">매일 아침 은혜 나눔</td>
+                  <td class="p-3.5 text-right" data-label="생중계">
+                    <a href="https://www.youtube.com/@Hanam_online_church/featured" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-red-50 text-red-600 border border-red-200 text-xs font-bold hover:bg-red-600 hover:text-white transition">
+                      <span class="material-symbols-outlined text-16">play_circle</span>생중계 보기
+                    </a>
+                  </td>
+                </tr>
+                <tr class="hover:bg-slate-50/70 transition">
+                  <td class="p-3.5" data-label="구분"><strong class="text-slate-900">수요여성예배 WOW</strong></td>
+                  <td class="p-3.5 font-semibold text-emerald-800" data-label="시간">수요일 오전 10:30</td>
+                  <td class="p-3.5" data-label="장소">프라미스홀</td>
+                  <td class="p-3.5 text-slate-500" data-label="비고">학기제 운영 (4~6월 / 9~11월)</td>
+                  <td class="p-3.5 text-right" data-label="생중계">
+                    <a href="https://www.youtube.com/@Hanam_online_church/featured" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-red-50 text-red-600 border border-red-200 text-xs font-bold hover:bg-red-600 hover:text-white transition">
+                      <span class="material-symbols-outlined text-16">play_circle</span>생중계 보기
+                    </a>
+                  </td>
+                </tr>
+                <tr class="hover:bg-slate-50/70 transition">
+                  <td class="p-3.5" data-label="구분"><strong class="text-slate-900">금요성령집회 (One Thing Night)</strong></td>
+                  <td class="p-3.5 font-semibold text-emerald-800" data-label="시간">금요일 저녁 09:00</td>
+                  <td class="p-3.5" data-label="장소">벧엘성전</td>
+                  <td class="p-3.5 text-slate-500" data-label="비고">찬양과 뜨거운 기도</td>
+                  <td class="p-3.5 text-right" data-label="생중계">
+                    <a href="https://www.youtube.com/@Hanam_online_church/featured" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-red-50 text-red-600 border border-red-200 text-xs font-bold hover:bg-red-600 hover:text-white transition">
+                      <span class="material-symbols-outlined text-16">play_circle</span>생중계 보기
+                    </a>
+                  </td>
+                </tr>
+                <tr class="hover:bg-slate-50/70 transition">
+                  <td class="p-3.5" data-label="구분"><strong class="text-slate-900">목장 모임</strong></td>
+                  <td class="p-3.5 font-semibold text-slate-600" data-label="시간">월~토 상시</td>
+                  <td class="p-3.5" data-label="장소">각 가정 및 지정장소</td>
+                  <td class="p-3.5 text-slate-500" data-label="비고">교구별 목장 모임</td>
+                  <td class="p-3.5 text-right" data-label="생중계">
+                    <span class="px-2.5 py-1 rounded bg-slate-100 text-slate-500 text-xs font-semibold">오프라인</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
-      <div class="training-card">
-        <h4>중보기도 아카데미</h4>
-        <p class="t-time">3~4월, 9~10월 매주 금요일 오전 10:30</p>
-        <p class="t-place">프라미스홀</p>
+
+      <!-- 2. 다음세대 탭 -->
+      <div class="schedule-group" id="tab-nextgen">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm hover:border-[#0072CE] transition flex flex-col justify-between">
+            <div>
+              <div class="flex justify-between items-center mb-3">
+                <span class="px-3 py-1 rounded-md bg-blue-50 text-[#0072CE] text-xs font-extrabold">영아부</span>
+                <span class="text-xs text-slate-400 font-medium">~3세</span>
+              </div>
+              <p class="text-sm font-bold text-slate-800 mb-1">1부 09:15 / 2부 10:45 / 3부 12:15</p>
+            </div>
+            <p class="text-xs text-slate-500 mt-4 flex items-center gap-1">
+              <span class="material-symbols-outlined text-14 text-slate-400">location_on</span> 써니힐 1층 영아부실
+            </p>
+          </div>
+
+          <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm hover:border-[#0072CE] transition flex flex-col justify-between">
+            <div>
+              <div class="flex justify-between items-center mb-3">
+                <span class="px-3 py-1 rounded-md bg-blue-50 text-[#0072CE] text-xs font-extrabold">유아부</span>
+                <span class="text-xs text-slate-400 font-medium">4~5세</span>
+              </div>
+              <p class="text-sm font-bold text-slate-800 mb-1">1부 09:15 / 2부 10:45 / 3부 12:15</p>
+            </div>
+            <p class="text-xs text-slate-500 mt-4 flex items-center gap-1">
+              <span class="material-symbols-outlined text-14 text-slate-400">location_on</span> 써니힐 2층 유아부실
+            </p>
+          </div>
+
+          <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm hover:border-[#0072CE] transition flex flex-col justify-between">
+            <div>
+              <div class="flex justify-between items-center mb-3">
+                <span class="px-3 py-1 rounded-md bg-blue-50 text-[#0072CE] text-xs font-extrabold">유치부</span>
+                <span class="text-xs text-slate-400 font-medium">6~7세</span>
+              </div>
+              <p class="text-sm font-bold text-slate-800 mb-1">1부 09:15 / 2부 10:45 / 3부 12:15</p>
+            </div>
+            <p class="text-xs text-slate-500 mt-4 flex items-center gap-1">
+              <span class="material-symbols-outlined text-14 text-slate-400">location_on</span> 본관 유치부실
+            </p>
+          </div>
+
+          <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm hover:border-[#0072CE] transition flex flex-col justify-between">
+            <div>
+              <div class="flex justify-between items-center mb-3">
+                <span class="px-3 py-1 rounded-md bg-blue-50 text-[#0072CE] text-xs font-extrabold">유년부</span>
+                <span class="text-xs text-slate-400 font-medium">초등 1~2학년</span>
+              </div>
+              <p class="text-sm font-bold text-slate-800 mb-1">1부 09:15 / 2부 10:45 / 3부 12:15</p>
+            </div>
+            <p class="text-xs text-slate-500 mt-4 flex items-center gap-1">
+              <span class="material-symbols-outlined text-14 text-slate-400">location_on</span> 본관 유년부실
+            </p>
+          </div>
+
+          <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm hover:border-[#0072CE] transition flex flex-col justify-between">
+            <div>
+              <div class="flex justify-between items-center mb-3">
+                <span class="px-3 py-1 rounded-md bg-blue-50 text-[#0072CE] text-xs font-extrabold">초등부</span>
+                <span class="text-xs text-slate-400 font-medium">초등 3~4학년</span>
+              </div>
+              <p class="text-sm font-bold text-slate-800 mb-1">1부 09:15 / 2부 10:45 / 3부 12:15</p>
+            </div>
+            <p class="text-xs text-slate-500 mt-4 flex items-center gap-1">
+              <span class="material-symbols-outlined text-14 text-slate-400">location_on</span> 본관 초등부실
+            </p>
+          </div>
+
+          <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm hover:border-[#0072CE] transition flex flex-col justify-between">
+            <div>
+              <div class="flex justify-between items-center mb-3">
+                <span class="px-3 py-1 rounded-md bg-blue-50 text-[#0072CE] text-xs font-extrabold">소년부</span>
+                <span class="text-xs text-slate-400 font-medium">초등 5~6학년</span>
+              </div>
+              <p class="text-sm font-bold text-slate-800 mb-1">1부 09:15 / 2부 10:45 / 3부 12:15</p>
+            </div>
+            <p class="text-xs text-slate-500 mt-4 flex items-center gap-1">
+              <span class="material-symbols-outlined text-14 text-slate-400">location_on</span> 본관 소년부실
+            </p>
+          </div>
+
+          <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm hover:border-[#0072CE] transition flex flex-col justify-between">
+            <div>
+              <div class="flex justify-between items-center mb-3">
+                <span class="px-3 py-1 rounded-md bg-blue-50 text-[#0072CE] text-xs font-extrabold">중등부</span>
+                <span class="text-xs text-slate-400 font-medium">중등 1~3학년</span>
+              </div>
+              <p class="text-sm font-bold text-slate-800 mb-1">1부 10:45 / 2부 12:15</p>
+            </div>
+            <p class="text-xs text-slate-500 mt-4 flex items-center gap-1">
+              <span class="material-symbols-outlined text-14 text-slate-400">location_on</span> 써니힐 3층 / 프라미스홀
+            </p>
+          </div>
+
+          <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm hover:border-[#0072CE] transition flex flex-col justify-between">
+            <div>
+              <div class="flex justify-between items-center mb-3">
+                <span class="px-3 py-1 rounded-md bg-blue-50 text-[#0072CE] text-xs font-extrabold">고등부</span>
+                <span class="text-xs text-slate-400 font-medium">고등 1~3학년</span>
+              </div>
+              <p class="text-sm font-bold text-slate-800 mb-1">주일 오전 10:45</p>
+            </div>
+            <p class="text-xs text-slate-500 mt-4 flex items-center gap-1">
+              <span class="material-symbols-outlined text-14 text-slate-400">location_on</span> 프라미스홀
+            </p>
+          </div>
+        </div>
       </div>
-      <div class="training-card">
-        <h4>상담 아카데미</h4>
-        <p class="t-time">화요일 저녁 07:00 (학기제 운영)</p>
-        <p class="t-place">프라미스홀 (성도 및 목회자 대상)</p>
+
+      <!-- 3. 양육 및 아카데미 탭 -->
+      <div class="schedule-group" id="tab-training">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="bg-white p-6 rounded-3xl border-l-4 border-l-[#0072CE] border-y border-r border-slate-200 shadow-sm">
+            <h4 class="text-base font-bold text-slate-900 mb-2 flex items-center justify-between">
+              새가족 교육 <span class="px-2.5 py-0.5 rounded bg-amber-100 text-amber-800 text-xs font-extrabold">5주 과정</span>
+            </h4>
+            <p class="text-sm text-slate-700 font-semibold mb-1">매주일 오전 10:30 / 오후 01:30</p>
+            <p class="text-xs text-slate-500">1팀: 4층 새가족실 / 2팀: 3층 / 3팀: 2층</p>
+          </div>
+
+          <div class="bg-white p-6 rounded-3xl border-l-4 border-l-[#0072CE] border-y border-r border-slate-200 shadow-sm">
+            <h4 class="text-base font-bold text-slate-900 mb-2">목자학교</h4>
+            <p class="text-sm text-slate-700 font-semibold mb-1">3~4월, 9~10월 주일 오후 04:00</p>
+            <p class="text-xs text-slate-500">프라미스홀 (목자 및 예비목자 대상)</p>
+          </div>
+
+          <div class="bg-white p-6 rounded-3xl border-l-4 border-l-[#0072CE] border-y border-r border-slate-200 shadow-sm">
+            <h4 class="text-base font-bold text-slate-900 mb-2">중보기도 아카데미</h4>
+            <p class="text-sm text-slate-700 font-semibold mb-1">3~4월, 9~10월 금요일 오전 10:30</p>
+            <p class="text-xs text-slate-500">프라미스홀</p>
+          </div>
+
+          <div class="bg-white p-6 rounded-3xl border-l-4 border-l-[#F58220] border-y border-r border-slate-200 shadow-sm">
+            <h4 class="text-base font-bold text-slate-900 mb-2">상담 아카데미</h4>
+            <p class="text-sm text-slate-700 font-semibold mb-1">화요일 저녁 07:00 (학기제 운영)</p>
+            <p class="text-xs text-slate-500">프라미스홀 (성도 및 목회자 대상)</p>
+          </div>
+
+          <div class="bg-white p-6 rounded-3xl border-l-4 border-l-[#F58220] border-y border-r border-slate-200 shadow-sm">
+            <h4 class="text-base font-bold text-slate-900 mb-2">실버대학</h4>
+            <p class="text-sm text-slate-700 font-semibold mb-1">목요일 오전 10:00 (학기제 운영)</p>
+            <p class="text-xs text-slate-500">1층 프라미스홀 (만 65세~80세 어르신)</p>
+          </div>
+
+          <div class="bg-white p-6 rounded-3xl border-l-4 border-l-[#88BE1E] border-y border-r border-slate-200 shadow-sm">
+            <h4 class="text-base font-bold text-slate-900 mb-2">써니힐 국제학교</h4>
+            <p class="text-sm text-slate-700 font-semibold mb-1">월~금 08:40 ~ 16:00 (초·중·고)</p>
+            <p class="text-xs text-slate-500">글로벌 드림센터 (문의: 031-795-2226)</p>
+          </div>
+        </div>
       </div>
-      <div class="training-card">
-        <h4>실버대학</h4>
-        <p class="t-time">목요일 오전 10:00 (학기제 운영)</p>
-        <p class="t-place">1층 프라미스홀 (만 65세~80세 지역 어르신)</p>
+
+      <!-- 4. 오시는 길 & 셔틀버스 탭 -->
+      <div class="schedule-group" id="tab-transit">
+        <div class="bg-white rounded-3xl border border-slate-200 shadow-sm p-6 sm:p-10">
+          <div class="mb-8 pb-6 border-b border-slate-100">
+            <h4 class="text-lg font-extrabold text-slate-900 mb-3 flex items-center gap-2">
+              <span class="material-symbols-outlined text-[#0072CE]">pin_drop</span> 교회 주소 및 대표 연락처
+            </h4>
+            <p class="text-sm text-slate-700 mb-1.5"><strong>도로명 주소:</strong> 경기도 하남시 덕풍동로 45 (우편번호 12936)</p>
+            <p class="text-sm text-slate-700 mb-1.5"><strong>지번 주소:</strong> 경기도 하남시 덕풍3동 827번지</p>
+            <p class="text-sm text-slate-700 mb-6"><strong>대표전화:</strong> 031-792-5004 | <strong>FAX:</strong> 031-794-7566</p>
+
+            <div class="flex flex-wrap gap-3">
+              <a href="https://map.naver.com/p/search/%ED%95%98%EB%82%A8%EA%B5%90%ED%9A%8C/place/12301789" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#03c75a] hover:bg-[#02b350] text-white text-xs font-bold transition shadow-sm">
+                네이버 지도로 보기
+              </a>
+              <a href="https://map.kakao.com/link/search/%ED%95%98%EB%82%A8%EA%B5%90%ED%9A%8C" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#fee500] hover:bg-[#ebd300] text-slate-900 text-xs font-bold transition shadow-sm">
+                카카오맵으로 보기
+              </a>
+            </div>
+          </div>
+
+          <div>
+            <h4 class="text-lg font-extrabold text-slate-900 mb-3 flex items-center gap-2">
+              <span class="material-symbols-outlined text-[#0072CE]">airport_shuttle</span> 주일 셔틀버스 노선 요약
+            </h4>
+            <p class="text-xs sm:text-sm text-slate-500 mb-4">성도님들의 편리한 예배 참석을 위해 주일 주요 거점별 셔틀버스를 운행하고 있습니다.</p>
+            
+            <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200">
+              <ul class="space-y-2.5 text-xs sm:text-sm text-slate-700">
+                <li class="flex items-start gap-2">
+                  <span class="px-2 py-0.5 rounded bg-blue-100 text-[#0072CE] font-bold text-[11px] flex-shrink-0 mt-0.5">1호차</span>
+                  <span><strong>미사강변 방면:</strong> 미사역 → 풍산동 주민센터 → 하남교회</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="px-2 py-0.5 rounded bg-blue-100 text-[#0072CE] font-bold text-[11px] flex-shrink-0 mt-0.5">2호차</span>
+                  <span><strong>신장/창우 방면:</strong> 하남시청역 → 신장초교 → 부영아파트 → 하남교회</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="px-2 py-0.5 rounded bg-blue-100 text-[#0072CE] font-bold text-[11px] flex-shrink-0 mt-0.5">3호차</span>
+                  <span><strong>위례/감일 방면:</strong> 감일복합커뮤니티센터 → 감일스윗시티 → 하남교회</span>
+                </li>
+              </ul>
+              <p class="text-xs text-slate-400 mt-4 pt-3 border-t border-slate-200/60">※ 세부 탑승 시간 및 정류장 위치는 교회 행정실(031-792-5004) 및 주보를 참조하시기 바랍니다.</p>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="training-card">
-        <h4>써니힐 국제학교</h4>
-        <p class="t-time">월~금 08:40 ~ 16:00 (초·중·고)</p>
-        <p class="t-place">글로벌 드림센터 (문의: 031-795-2226)</p>
-      </div>
+
     </div>
-  </div>
+  </main>
 
-  <!-- 4. 오시는 길 & 셔틀버스 탭 -->
-  <div class="schedule-group" id="tab-transit">
-    <div class="schedule-card-wrapper">
-      <div class="card-header">
-        <span class="badge badge-primary">위치 및 셔틀 안내</span>
-        <h3>하남교회 오시는 길</h3>
-      </div>
-      
-      <div class="transit-block">
-        <h4><span class="material-symbols-outlined">pin_drop</span> 교회 주소 및 대표 연락처</h4>
-        <p><strong>도로명 주소:</strong> 경기도 하남시 덕풍동로 45 (우편번호 12936)</p>
-        <p><strong>지번 주소:</strong> 경기도 하남시 덕풍3동 827번지</p>
-        <p><strong>대표전화:</strong> 031-792-5004 | <strong>FAX:</strong> 031-794-7566</p>
+  <!-- ================================================================= -->
+  <!-- 4. UNIFIED COMMON FOOTER -->
+  <!-- ================================================================= -->
+  <footer class="bg-[#0B2038] text-slate-300 pt-8 pb-10 mt-auto">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <!-- 패밀리사이트 & 정책 링크 -->
+      <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 pb-6 border-b border-white/10">
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-slate-400">
+          <a href="#" class="hover:text-white">자주하는 질문</a>
+          <span class="text-slate-600">|</span>
+          <a href="#" onclick="openSitemap(); return false;" class="hover:text-white">사이트맵</a>
+          <span class="text-slate-600">|</span>
+          <a href="#" class="hover:text-white">이용약관</a>
+          <span class="text-slate-600">|</span>
+          <a href="#" class="font-bold text-white hover:underline">개인정보처리방침</a>
+        </div>
         
-        <div class="map-btn-group">
-          <a href="https://map.naver.com/p/search/%ED%95%98%EB%82%A8%EA%B5%90%ED%9A%8C/place/12301789?c=15.00,0,0,2,dh&placePath=%2Fhome%3Fbk_query%3D%ED%95%98%EB%82%A8%EA%B5%90%ED%9A%8C%26entry%3Dbmp%26from%3Dmap%26fromPanelNum%3D2%26timestamp%3D202608281514%26locale%3Dko%26svcName%3Dmap_pcv5%26searchText%3D%ED%95%98%EB%82%A8%EA%B5%90%ED%9A%8C" target="_blank" class="map-btn map-btn-naver">
-            네이버 지도로 보기
-          </a>
-          <a href="https://map.kakao.com/link/search/%ED%95%98%EB%82%A8%EA%B5%90%ED%9A%8C" target="_blank" class="map-btn map-btn-kakao">
-            카카오맵으로 보기
-          </a>
+        <!-- 패밀리사이트 (Footer Dropdown) -->
+        <div class="relative w-full sm:w-64">
+          <label for="family-site-select" class="sr-only">관련기관 선택</label>
+          <select id="family-site-select" onchange="handleFamilySite(this)" class="w-full appearance-none bg-white/5 border border-white/20 rounded-lg px-4 py-2.5 text-xs font-semibold text-slate-200 hover:border-white/40 focus:outline-none focus:ring-2 focus:ring-[#0072CE] transition cursor-pointer">
+            <option value="" disabled selected class="text-slate-900">패밀리사이트 (관련기관)</option>
+            <option value="https://www.sunnyhill.or.kr/" class="text-slate-900">써니힐국제학교</option>
+            <option value="https://sunnyhillkids.co.kr/" class="text-slate-900">써니힐유치원</option>
+            <option value="http://www.hanamjugan.com/" class="text-slate-900">하남장애주간보호시설</option>
+            <option value="https://cafe.daum.net/hanam-chorong" class="text-slate-900">하남시립초롱어린이집</option>
+            <option value="https://cafe.daum.net/skan0005" class="text-slate-900">느티나무마을</option>
+          </select>
+          <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-slate-400">
+            <span class="material-symbols-outlined text-20">expand_less</span>
+          </div>
         </div>
       </div>
 
-      <hr style="border:0; border-top:1px solid #f1f5f9; margin: 24px 0;">
+      <!-- 상세 메타데이터 -->
+      <div class="pt-6 flex flex-col lg:flex-row items-start justify-between gap-6 text-xs text-slate-400 leading-relaxed">
+        <div class="space-y-1.5 max-w-4xl">
+          <p class="font-bold text-white text-sm mb-2">대한예수교장로회 하남교회 (HANAM PRESBYTERIAN CHURCH)</p>
+          <p>주소 : 12936 경기도 하남시 덕풍동로 45 (경기도 하남시 덕풍3동 827번지)</p>
+          <p>대표전화 : 031-792-5004 | 팩스번호 : 031-794-7566 | 교회수양관 : 031-771-8121</p>
+          <p class="pt-1 text-slate-300"><strong class="text-slate-200">담임목사님 방송안내</strong> : CBSTV | sk Btv 300번, skylife 182번, 올레 KT 238번, LG U+ 270번 (토) 오후6시</p>
+          <p class="pt-2 text-[11px] text-slate-500">COPYRIGHT © HANAM PRESBYTERIAN CHURCH. ALL RIGHTS RESERVED.</p>
+        </div>
+      </div>
 
-      <div class="transit-block">
-        <h4><span class="material-symbols-outlined">airport_shuttle</span> 주일 셔틀버스 노선 요약</h4>
-        <p>성도님들의 편리한 예배 참석을 위해 주일 주요 거점별 셔틀버스를 운행하고 있습니다.</p>
-        <div style="margin-top: 12px; background: #f8fafc; padding: 16px; border-radius: 8px; border: 1px solid #e2e8f0;">
-          <ul style="padding-left: 20px; font-size: 14px; color: #475569;">
-            <li style="margin-bottom: 6px;"><strong>1호차 (미사강변 방면):</strong> 미사역 → 풍산동 주민센터 → 하남교회</li>
-            <li style="margin-bottom: 6px;"><strong>2호차 (신장/창우 방면):</strong> 하남시청역 → 신장초교 → 부영아파트 → 하남교회</li>
-            <li><strong>3호차 (위례/감일 방면):</strong> 감일복합커뮤니티센터 → 감일스윗시티 → 하남교회</li>
-          </ul>
-          <p style="font-size: 12px; color: #94a3b8; margin-top: 10px;">※ 세부 탑승 시간 및 정류장 위치는 교회 행정실(031-792-5004) 및 주보를 참조하시기 바랍니다.</p>
+    </div>
+  </footer>
+
+  <!-- ================================================================= -->
+  <!-- 5. SEARCH & SITEMAP MODALS -->
+  <!-- ================================================================= -->
+
+  <!-- Search Modal Overlay -->
+  <div id="search-modal" class="fixed inset-0 z-50 bg-slate-900/80 backdrop-blur-sm hidden opacity-0 transition-opacity duration-200 flex items-start justify-center pt-24 px-4">
+    <div class="bg-white w-full max-w-2xl rounded-2xl shadow-2xl overflow-hidden border border-slate-200">
+      <div class="p-6 border-b border-slate-100 flex items-center gap-3">
+        <span class="material-symbols-outlined text-24 text-[#0072CE]">search</span>
+        <input type="text" id="search-input" placeholder="검색어를 입력하세요 (예: 예배시간, 주보, 주일설교, 새가족)" class="w-full text-base font-medium text-slate-800 placeholder-slate-400 focus:outline-none" oninput="handleSearch(this.value)">
+        <button onclick="closeSearchModal()" class="p-1 rounded-lg text-slate-400 hover:text-slate-700 transition">
+          <span class="material-symbols-outlined text-24 block">close</span>
+        </button>
+      </div>
+      <div class="p-6 bg-slate-50">
+        <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">자주 찾는 검색어</p>
+        <div class="flex flex-wrap gap-2 mb-4">
+          <button onclick="setSearchKeyword('예배시간')" class="px-3 py-1.5 bg-white border border-slate-200 rounded-lg text-xs font-semibold text-slate-700 hover:border-[#0072CE] hover:text-[#0072CE] transition">예배시간</button>
+          <button onclick="setSearchKeyword('오시는 길')" class="px-3 py-1.5 bg-white border border-slate-200 rounded-lg text-xs font-semibold text-slate-700 hover:border-[#0072CE] hover:text-[#0072CE] transition">오시는 길</button>
+          <button onclick="setSearchKeyword('주일설교')" class="px-3 py-1.5 bg-white border border-slate-200 rounded-lg text-xs font-semibold text-slate-700 hover:border-[#88BE1E] hover:text-[#88BE1E] transition">주일설교</button>
+          <button onclick="setSearchKeyword('온라인헌금')" class="px-3 py-1.5 bg-white border border-slate-200 rounded-lg text-xs font-semibold text-slate-700 hover:border-[#F58220] hover:text-[#F58220] transition">온라인헌금</button>
+          <button onclick="setSearchKeyword('새가족안내')" class="px-3 py-1.5 bg-white border border-slate-200 rounded-lg text-xs font-semibold text-slate-700 hover:border-[#0072CE] hover:text-[#0072CE] transition">새가족안내</button>
+        </div>
+        <div id="search-results" class="hidden border-t border-slate-200 pt-4 space-y-2"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Fullscreen Sitemap Modal -->
+  <div id="sitemap-modal" class="fixed inset-0 z-50 bg-[#0B2038] text-white hidden opacity-0 transition-opacity duration-200 overflow-y-auto">
+    <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-10 min-h-screen flex flex-col justify-between">
+
+      <div class="flex items-center justify-between border-b border-slate-700 pb-8">
+        <div class="flex items-center space-x-3 cursor-pointer" onclick="closeSitemap()">
+          <img src="./logo.png" alt="하남교회 로고" class="h-10 w-auto object-contain">
+          <div>
+            <span class="text-2xl font-bold tracking-tight block">하남교회 전체 사이트맵</span>
+            <span class="text-xs tracking-wider text-slate-400 uppercase block">HANAM PRESBYTERIAN CHURCH</span>
+          </div>
+        </div>
+        <button onclick="closeSitemap()" aria-label="닫기" class="p-3 rounded-full bg-slate-800/60 hover:bg-slate-700 text-slate-300 hover:text-white transition">
+          <span class="material-symbols-outlined text-32 block">close</span>
+        </button>
+      </div>
+
+      <!-- Sitemap 5-Column Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 py-12">
+        <!-- Col 1: 교회안내 -->
+        <div>
+          <h4 class="text-[#0072CE] font-extrabold text-lg tracking-wider uppercase mb-6 border-b-2 border-[#0072CE] pb-3">교회안내</h4>
+          <div class="mb-4">
+            <p class="text-xs font-bold text-slate-400 uppercase mb-2">환영 및 등록</p>
+            <ul class="space-y-2 text-sm text-slate-200">
+              <li><a href="http://www.hanam.or.kr/about-hanam/new-family/" class="hover:text-white hover:underline transition">새가족안내</a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">교육소개</a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">온라인등록</a></li>
+            </ul>
+          </div>
+          <div class="mb-4">
+            <p class="text-xs font-bold text-slate-400 uppercase mb-2">예배안내</p>
+            <ul class="space-y-2 text-sm text-slate-200">
+              <li><a href="./worship-guide.html" class="hover:text-white hover:underline transition text-amber-300 font-bold">예배안내/시간</a></li>
+              <li><a href="https://www.youtube.com/@Hanam_online_church/featured" target="_blank" rel="noopener noreferrer" class="hover:text-white hover:underline transition">예배생중계</a></li>
+            </ul>
+          </div>
+          <div class="mb-4">
+            <p class="text-xs font-bold text-slate-400 uppercase mb-2">하남교회 소개</p>
+            <ul class="space-y-2 text-sm text-slate-200">
+              <li><a href="#" class="hover:text-white hover:underline transition">담임목사님 인사말</a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">목회서신</a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">교회를 섬기는 이들</a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">하남교회 발자취</a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">교회 둘러보기</a></li>
+            </ul>
+          </div>
+          <div class="mb-4">
+            <p class="text-xs font-bold text-slate-400 uppercase mb-2">신앙/상담 지원</p>
+            <ul class="space-y-2 text-sm text-slate-200">
+              <li><a href="#" class="hover:text-white hover:underline transition">추천도서</a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">신앙상담실</a></li>
+            </ul>
+          </div>
+          <div>
+            <p class="text-xs font-bold text-slate-400 uppercase mb-2">오시는 길</p>
+            <ul class="space-y-2 text-sm text-slate-200">
+              <li><a href="./worship-guide.html" onclick="activateTab('tab-transit'); closeSitemap();" class="hover:text-white hover:underline transition">지도/위치</a></li>
+              <li><a href="./worship-guide.html" onclick="activateTab('tab-transit'); closeSitemap();" class="hover:text-white hover:underline transition">셔틀버스 안내</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Col 2: 말씀·찬양 -->
+        <div>
+          <h4 class="text-[#88BE1E] font-extrabold text-lg tracking-wider uppercase mb-6 border-b-2 border-[#88BE1E] pb-3">말씀 · 찬양</h4>
+          <div class="mb-5">
+            <p class="text-xs font-bold text-slate-400 uppercase mb-2">설교</p>
+            <ul class="space-y-2 text-sm text-slate-200">
+              <li><a href="./index.html#b-sermon" class="hover:text-white hover:underline transition">주일설교</a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">3분터치</a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">간증영상</a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">설교패키지</a></li>
+            </ul>
+          </div>
+          <div>
+            <p class="text-xs font-bold text-slate-400 uppercase mb-2">찬양</p>
+            <ul class="space-y-2 text-sm text-slate-200">
+              <li><a href="#" class="hover:text-white hover:underline transition">찬양대</a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">주일찬양</a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">OTN찬양</a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">메타하남 찬양</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Col 3: 양육·훈련 -->
+        <div>
+          <h4 class="text-[#F58220] font-extrabold text-lg tracking-wider uppercase mb-6 border-b-2 border-[#F58220] pb-3">양육 · 훈련</h4>
+          <div class="mb-5">
+            <p class="text-xs font-bold text-slate-400 uppercase mb-2">교구</p>
+            <ul class="space-y-2 text-sm text-slate-200">
+              <li><a href="#" class="hover:text-white hover:underline transition">장년교구</a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">청년교구</a></li>
+            </ul>
+          </div>
+          <div class="mb-5">
+            <p class="text-xs font-bold text-slate-400 uppercase mb-2">양육</p>
+            <ul class="space-y-2 text-sm text-slate-200">
+              <li><a href="#" class="hover:text-white hover:underline transition">일대일제자 양육</a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">상담아카데미</a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">실버대학</a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">온라인 마케팅</a></li>
+            </ul>
+          </div>
+          <div>
+            <p class="text-xs font-bold text-slate-400 uppercase mb-2">훈련 (HDTS)</p>
+            <ul class="space-y-2 text-sm text-slate-200">
+              <li><a href="#" class="hover:text-white hover:underline transition">목자학교</a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">중보기도학교</a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">큐티학교</a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">행복전도</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Col 4: 다음세대 -->
+        <div>
+          <h4 class="text-[#0072CE] font-extrabold text-lg tracking-wider uppercase mb-6 border-b-2 border-[#0072CE] pb-3">다음세대</h4>
+          <div class="mb-4">
+            <p class="text-xs font-bold text-slate-400 uppercase mb-2">미취학부</p>
+            <ul class="space-y-2 text-sm text-slate-200">
+              <li><a href="#" class="hover:text-white hover:underline transition">영아부 (소개/갤러리)</a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">유아부 (소개/갤러리)</a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">유치부 (소개/갤러리)</a></li>
+            </ul>
+          </div>
+          <div class="mb-4">
+            <p class="text-xs font-bold text-slate-400 uppercase mb-2">취학부</p>
+            <ul class="space-y-2 text-sm text-slate-200">
+              <li><a href="#" class="hover:text-white hover:underline transition">유년부 (소개/갤러리)</a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">초등부 (소개/갤러리)</a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">소년부 (소개/갤러리)</a></li>
+            </ul>
+          </div>
+          <div class="mb-4">
+            <p class="text-xs font-bold text-slate-400 uppercase mb-2">청소년부</p>
+            <ul class="space-y-2 text-sm text-slate-200">
+              <li><a href="#" class="hover:text-white hover:underline transition">중등부 (소개/갤러리)</a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">고등부 (소개/갤러리)</a></li>
+            </ul>
+          </div>
+          <div>
+            <p class="text-xs font-bold text-slate-400 uppercase mb-2">교회학교 프로그램</p>
+            <ul class="space-y-2 text-sm text-slate-200">
+              <li><a href="#" class="hover:text-white hover:underline transition">캠핑치치 (소개/신청/갤러리/Review)</a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">오르가가정예배지 (소개/다운로드)</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Col 5: 소통·소식 -->
+        <div>
+          <h4 class="text-[#88BE1E] font-extrabold text-lg tracking-wider uppercase mb-6 border-b-2 border-[#88BE1E] pb-3">소통 · 소식</h4>
+          <div class="mb-5">
+            <p class="text-xs font-bold text-slate-400 uppercase mb-2">교회소식</p>
+            <ul class="space-y-2 text-sm text-slate-200">
+              <li><a href="#" class="hover:text-white hover:underline transition">교회주보</a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">아름다운신문</a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">자료실</a></li>
+            </ul>
+          </div>
+          <div>
+            <p class="text-xs font-bold text-slate-400 uppercase mb-2">나눔과 묵상</p>
+            <ul class="space-y-2 text-sm text-slate-200">
+              <li><a href="#" class="hover:text-white hover:underline transition">감사노트</a></li>
+              <li><a href="#" class="hover:text-white hover:underline transition">큐티노트</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sitemap Footer -->
+      <div class="border-t border-slate-700 pt-8 flex flex-col sm:flex-row items-center justify-between text-sm text-slate-400 gap-4">
+        <p>하남교회 (HANAM PRESBYTERIAN CHURCH) | 경기도 하남시 덕풍동로 45</p>
+        <div class="flex space-x-6 text-slate-300 font-medium">
+          <a href="http://www.hanam.or.kr/about-hanam/new-family/" class="hover:text-[#0072CE]">새가족 안내</a>
+          <span>|</span>
+          <a href="./index.html#b-sermon" class="hover:text-[#88BE1E]">주일 설교</a>
         </div>
       </div>
     </div>
   </div>
-</section>
 
-<!-- 탭 전환 스크립트 -->
-<script>
-  const tabButtons = document.querySelectorAll('.tab-btn');
-  const tabGroups = document.querySelectorAll('.schedule-group');
+  <!-- ================================================================= -->
+  <!-- 6. JAVASCRIPT CONTROLLER -->
+  <!-- ================================================================= -->
+  <script>
+    // 1. 탭 전환 제어 함수
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    const tabGroups = document.querySelectorAll('.schedule-group');
 
-  tabButtons.forEach(button => {
-    button.addEventListener('click', () => {
+    function activateTab(targetId) {
       tabButtons.forEach(btn => btn.classList.remove('active'));
-      tabGroups.forEach(group => group.classList.remove('active'));
+      tabGroups.forEach(grp => grp.classList.remove('active'));
 
-      button.classList.add('active');
-      const targetId = button.getAttribute('data-target');
-      const targetGroup = document.getElementById(targetId);
-      if (targetGroup) {
-        targetGroup.classList.add('active');
+      const btn = document.querySelector(`.tab-btn[data-target="${targetId}"]`);
+      const grp = document.getElementById(targetId);
+      if (btn) btn.classList.add('active');
+      if (grp) grp.classList.add('active');
+    }
+
+    tabButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const targetId = button.getAttribute('data-target');
+        activateTab(targetId);
+      });
+    });
+
+    // 2. GNB Mega Menu Dataset
+    const MENU_DATA = {
+      church: {
+        title: '교회안내', theme: '#0072CE',
+        sections: [
+          { title: '환영 및 등록', links: [{ label: '새가족안내', href: 'http://www.hanam.or.kr/about-hanam/new-family/' }, { label: '교육소개' }, { label: '온라인등록' }] },
+          { title: '예배안내', links: [{ label: '예배안내/시간', href: './worship-guide.html' }, { label: '예배생중계' }] },
+          { title: '하남교회 소개', links: [{ label: '담임목사님 인사말' }, { label: '목회서신' }, { label: '교회를 섬기는 이들' }, { label: '하남교회 발자취' }, { label: '교회 둘러보기' }] },
+          { title: '신앙/상담 지원', links: [{ label: '추천도서' }, { label: '신앙상담실' }] },
+          { title: '오시는 길', links: [{ label: '지도/위치', href: './worship-guide.html' }, { label: '셔틀버스 안내', href: './worship-guide.html' }] }
+        ]
+      },
+      worship: {
+        title: '말씀 · 찬양', theme: '#88BE1E',
+        sections: [
+          { title: '설교', links: [{ label: '주일설교', target: 'sermon' }, { label: '3분터치' }, { label: '간증영상' }, { label: '설교패키지' }] },
+          { title: '찬양', links: [{ label: '찬양대' }, { label: '주일찬양' }, { label: 'OTN찬양' }] }
+        ]
+      },
+      training: {
+        title: '양육 · 훈련', theme: '#F58220',
+        sections: [
+          { title: '교구', links: [{ label: '장년교구' }, { label: '청년교구' }] },
+          { title: '양육', links: [{ label: '일대일제자 양육' }, { label: '상담아카데미' }, { label: '실버대학' }] },
+          { title: '훈련 (HDTS)', links: [{ label: '목자학교' }, { label: '중보기도학교' }, { label: '큐티학교' }, { label: '행복전도' }] }
+        ]
+      },
+      nextgen: {
+        title: '다음세대', theme: '#0072CE',
+        sections: [
+          { title: '미취학부', links: [{ label: '영아부' }, { label: '유아부' }, { label: '유치부' }] },
+          { title: '취학부', links: [{ label: '유년부' }, { label: '초등부' }, { label: '소년부' }] },
+          { title: '청소년부', links: [{ label: '중등부' }, { label: '고등부' }] },
+          { title: '교회학교 프로그램', links: [{ label: '캠핑치치 (소개/신청/갤러리/Review)' }, { label: '오르가가정예배지 (소개/다운로드)' }] }
+        ]
+      },
+      news: {
+        title: '소통 · 소식', theme: '#88BE1E',
+        sections: [
+          { title: '교회소식', links: [{ label: '교회주보' }, { label: '아름다운신문' }, { label: '자료실' }] },
+          { title: '나눔과 묵상', links: [{ label: '감사노트' }, { label: '큐티노트' }] }
+        ]
+      }
+    };
+
+    // Mega Dropdown Render
+    const megaDropdown = document.getElementById('mega-dropdown');
+    const megaDropdownContent = document.getElementById('mega-dropdown-content');
+    const globalHeader = document.getElementById('main-global-header');
+    let dropdownTimer = null;
+
+    function renderMegaMenu(key) {
+      const data = MENU_DATA[key];
+      if (!data) return;
+
+      const colCount = data.sections.length;
+      let gridColsClass = `grid-cols-1 md:grid-cols-${colCount}`;
+      if (colCount === 2) gridColsClass = 'grid-cols-1 md:grid-cols-2 max-w-2xl';
+      if (colCount === 3) gridColsClass = 'grid-cols-1 md:grid-cols-3 max-w-4xl';
+      if (colCount === 4) gridColsClass = 'grid-cols-1 md:grid-cols-4 max-w-6xl';
+      if (colCount >= 5) gridColsClass = 'grid-cols-1 md:grid-cols-5 max-w-7xl';
+
+      let html = `
+        <div class="border-b border-white/10 pb-3 mb-6 flex items-center justify-between">
+          <span class="text-xl font-extrabold text-white">${data.title}</span>
+          <span class="text-xs text-white/50 font-medium">HANAM PRESBYTERIAN CHURCH</span>
+        </div>
+        <div class="grid ${gridColsClass} gap-8">
+      `;
+
+      data.sections.forEach(section => {
+        html += `
+          <div>
+            <h5 class="text-sm font-extrabold text-amber-300 tracking-wide pb-2 mb-3 border-b border-white/10">
+              ${section.title}
+            </h5>
+            <ul class="space-y-2.5">
+        `;
+        section.links.forEach(link => {
+          let clickAction = '';
+          let hrefAttr = link.href || '#';
+          if (link.target) {
+            clickAction = `onclick="handleGnbAction('${link.target}'); hideMegaDropdown();"`;
+          }
+          html += `
+            <li>
+              <a href="${hrefAttr}" ${clickAction} class="text-sm text-slate-200 font-medium hover:text-amber-300 hover:underline transition block">
+                ${link.label}
+              </a>
+            </li>
+          `;
+        });
+        html += `</ul></div>`;
+      });
+
+      html += `</div>`;
+      megaDropdownContent.innerHTML = html;
+      megaDropdown.classList.remove('hidden');
+    }
+
+    function showMegaDropdown(key) {
+      clearTimeout(dropdownTimer);
+      renderMegaMenu(key);
+    }
+    function hideMegaDropdown() {
+      dropdownTimer = setTimeout(() => { megaDropdown.classList.add('hidden'); }, 150);
+    }
+
+    document.querySelectorAll('.nav-item').forEach(item => {
+      item.addEventListener('mouseenter', () => showMegaDropdown(item.getAttribute('data-menu')));
+    });
+    globalHeader.addEventListener('mouseleave', hideMegaDropdown);
+    megaDropdown.addEventListener('mouseenter', () => clearTimeout(dropdownTimer));
+    megaDropdown.addEventListener('mouseleave', hideMegaDropdown);
+
+    function handleGnbAction(target) {
+      if (target === 'welcome') {
+        window.location.href = "http://www.hanam.or.kr/about-hanam/new-family/";
+      } else {
+        window.location.href = `./index.html#b-${target}`;
+      }
+    }
+
+    // 3. 검색 및 사이트맵 모달 제어
+    const searchModal = document.getElementById('search-modal');
+    const searchInput = document.getElementById('search-input');
+    const searchResults = document.getElementById('search-results');
+
+    function openSearchModal() {
+      hideMegaDropdown();
+      searchModal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+      setTimeout(() => { searchModal.classList.remove('opacity-0'); searchInput.focus(); }, 10);
+    }
+    function closeSearchModal() {
+      searchModal.classList.add('opacity-0');
+      document.body.style.overflow = '';
+      setTimeout(() => {
+        searchModal.classList.add('hidden');
+        searchInput.value = '';
+        searchResults.classList.add('hidden');
+        searchResults.innerHTML = '';
+      }, 200);
+    }
+    function setSearchKeyword(kw) { searchInput.value = kw; handleSearch(kw); }
+    function handleSearch(query) {
+      const q = query.trim().toLowerCase();
+      if (!q) { searchResults.classList.add('hidden'); return; }
+
+      const indexList = [
+        { label: '예배시간 및 안내 (주일 대예배/주중 기도회)', href: './worship-guide.html', desc: '교회안내 > 예배안내' },
+        { label: '새가족안내 및 온라인등록', href: 'http://www.hanam.or.kr/about-hanam/new-family/', desc: '교회안내 > 환영 및 등록' },
+        { label: '주일설교 영상 및 다시보기', target: 'sermon', desc: '말씀·찬양 > 설교' },
+        { label: '오시는 길 및 셔틀버스 노선표', href: './worship-guide.html', desc: '교회안내 > 오시는 길' },
+        { label: '온라인헌금 및 행정 서비스', target: 'sermon', desc: '빠른서비스' }
+      ];
+      const filtered = indexList.filter(i => i.label.includes(q) || i.desc.includes(q));
+      searchResults.classList.remove('hidden');
+      if (filtered.length === 0) {
+        searchResults.innerHTML = `<p class="text-xs text-slate-400 py-2">검색 결과가 없습니다.</p>`;
+      } else {
+        searchResults.innerHTML = filtered.map(item => `
+          <div onclick="${item.href ? `window.location.href='${item.href}'` : `handleGnbAction('${item.target}')`}; closeSearchModal();" class="p-2.5 rounded-lg hover:bg-white border border-transparent hover:border-slate-200 transition cursor-pointer flex justify-between items-center text-slate-900">
+            <div>
+              <p class="text-sm font-bold text-slate-800">${item.label}</p>
+              <p class="text-xs text-slate-400">${item.desc}</p>
+            </div>
+            <span class="material-symbols-outlined text-16 text-slate-400">arrow_forward</span>
+          </div>`).join('');
+      }
+    }
+
+    function openSitemap() {
+      hideMegaDropdown();
+      const modal = document.getElementById('sitemap-modal');
+      modal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+      setTimeout(() => modal.classList.remove('opacity-0'), 10);
+    }
+    function closeSitemap() {
+      const modal = document.getElementById('sitemap-modal');
+      modal.classList.add('opacity-0');
+      document.body.style.overflow = '';
+      setTimeout(() => modal.classList.add('hidden'), 200);
+    }
+
+    function handleFamilySite(selectElement) {
+      const url = selectElement.value;
+      if (url) {
+        window.open(url, '_blank', 'noopener,noreferrer');
+        selectElement.selectedIndex = 0;
+      }
+    }
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeSitemap();
+        closeSearchModal();
+        hideMegaDropdown();
       }
     });
-  });
-</script>
-
+  </script>
 </body>
 </html>

@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>예배 및 교통 안내 - 하남교회</title>
+  <!-- Material Symbols for Icons -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <style>
+    /* Reset & Typography */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Segoe UI", sans-serif;
+      background-color: #f8fafc;
+      color: #1e293b;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Section Layout */
+    .worship-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 60px 20px 80px;
+    }
+
+    /* Section Header */
+    .section-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .section-header .sub-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #1d4ed8;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      display: inline-block;
+      margin-bottom: 8px;
+    }
+    .section-header .main-title {
+      font-size: 32px;
+      font-weight: 800;
+      color: #0f172a;
+      letter-spacing: -0.5px;
+      margin-bottom: 12px;
+    }
+    .section-header .desc {
+      font-size: 16px;
+      color: #64748b;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Tabs Navigation */
+    .category-tabs {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 36px;
+    }
+    .tab-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 22px;
+      border-radius: 9999px;
+      border: 1px solid #e2e8f0;
+      background-color: #ffffff;
+      color: #475569;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .tab-btn .material-symbols-outlined {
+      font-size: 18px;
+    }
+    .tab-btn:hover {
+      background-color: #f1f5f9;
+      color: #0f172a;
+    }
+    .tab-btn.active {
+      background-color: #1d4ed8;
+      color: #ffffff;
+      border-color: #1d4ed8;
+      box-shadow: 0 4px 12px rgba(29, 78, 216, 0.25);
+    }
+
+    /* Tab Contents Panel */
+    .schedule-group {
+      display: none;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+    .schedule-group.active {
+      display: block;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Card Wrapper */
+    .schedule-card-wrapper {
+      background: #ffffff;
+      border-radius: 16px;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+      padding: 28px;
+      margin-bottom: 28px;
+    }
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #f1f5f9;
+    }
+    .card-header h3 {
+      font-size: 20px;
+      font-weight: 700;
+      color: #0f172a;
+      letter-spacing: -0.3px;
+    }
+
+    /* Badges & Tags */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .badge-primary { background: #dbeafe; color: #1e40af; }
+    .badge-secondary { background: #f1f5f9; color: #334155; }
+    .badge-accent { background: #e0f2fe; color: #0369a1; }
+    .badge-warning { background: #fef3c7; color: #92400e; }
+    .tag {
+      display: inline-block;
+      background: #f1f5f9;
+      color: #475569;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    /* Table Styles (Desktop) */
+    .table-responsive {
+      width: 100%;
+    }
+    .schedule-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+    .schedule-table th, .schedule-table td {
+      padding: 14px 16px;
+      border-bottom: 1px solid #f1f5f9;
+      font-size: 15px;
+      vertical-align: middle;
+    }
+    .schedule-table th {
+      background-color: #f8fafc;
+      color: #64748b;
+      font-weight: 600;
+      font-size: 14px;
+    }
+    .schedule-table tr:hover td {
+      background-color: #fcfdfe;
+    }
+
+    /* Responsive Mobile Table Card View (Breakpoints <= 768px) */
+    @media (max-width: 768px) {
+      .schedule-table, .schedule-table thead, .schedule-table tbody, .schedule-table th, .schedule-table td, .schedule-table tr {
+        display: block;
+      }
+      .schedule-table thead {
+        display: none;
+      }
+      .schedule-table tr {
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 16px;
+        margin-bottom: 14px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+      }
+      .schedule-table td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8px 0;
+        border-bottom: 1px dashed #f1f5f9;
+        font-size: 14px;
+      }
+      .schedule-table td:last-child {
+        border-bottom: none;
+      }
+      .schedule-table td::before {
+        content: attr(data-label);
+        font-weight: 600;
+        color: #64748b;
+        font-size: 13px;
+        min-width: 80px;
+        text-align: left;
+      }
+      .schedule-table td:first-child {
+        font-size: 16px;
+        font-weight: 700;
+        color: #0f172a;
+        border-bottom: 1px solid #e2e8f0;
+        padding-bottom: 10px;
+      }
+      .schedule-table td:first-child::before {
+        display: none;
+      }
+      .schedule-card-wrapper {
+        padding: 18px;
+      }
+    }
+
+    /* Cards Grid (Next Generation) */
+    .grid-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 20px;
+    }
+    .info-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 14px;
+      padding: 22px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .info-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px -3px rgba(0, 0, 0, 0.08);
+      border-color: #cbd5e1;
+    }
+    .info-card .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+    .info-card .card-target {
+      font-size: 13px;
+      color: #94a3b8;
+      font-weight: 500;
+    }
+    .info-card .card-time {
+      font-size: 15px;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 6px;
+    }
+    .info-card .card-loc {
+      font-size: 13px;
+      color: #64748b;
+    }
+
+    /* Training Cards Grid */
+    .training-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 20px;
+    }
+    .training-card {
+      background: #ffffff;
+      border-left: 4px solid #1d4ed8;
+      border-radius: 12px;
+      padding: 20px;
+      border-top: 1px solid #e2e8f0;
+      border-right: 1px solid #e2e8f0;
+      border-bottom: 1px solid #e2e8f0;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+    }
+    .training-card h4 {
+      font-size: 17px;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .training-card .t-time {
+      font-size: 14px;
+      font-weight: 600;
+      color: #334155;
+      margin-bottom: 4px;
+    }
+    .training-card .t-place {
+      font-size: 13px;
+      color: #64748b;
+    }
+
+    /* Transport & Directions Tab */
+    .transit-block {
+      margin-bottom: 24px;
+    }
+    .transit-block h4 {
+      font-size: 16px;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .transit-block p {
+      font-size: 14px;
+      color: #475569;
+    }
+    .map-btn-group {
+      display: flex;
+      gap: 10px;
+      margin-top: 16px;
+      flex-wrap: wrap;
+    }
+    .map-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .map-btn-naver {
+      background-color: #03c75a;
+      color: #ffffff;
+    }
+    .map-btn-kakao {
+      background-color: #fee500;
+      color: #191919;
+    }
+  </style>
+</head>
+<body>
+
+<section class="worship-section">
+  <!-- 섹션 헤더 -->
+  <div class="section-header">
+    <span class="sub-title">Worship & Community</span>
+    <h2 class="main-title">예배 및 모임 안내</h2>
+    <p class="desc">온전한 예배와 말씀, 기도의 회복이 있는 하남교회로 여러분을 초대합니다.</p>
+  </div>
+
+  <!-- 탭 메뉴 -->
+  <div class="category-tabs">
+    <button class="tab-btn active" data-target="tab-adult">
+      <span class="material-symbols-outlined">church</span>장년 예배
+    </button>
+    <button class="tab-btn" data-target="tab-nextgen">
+      <span class="material-symbols-outlined">escalator_warning</span>다음세대(교육부)
+    </button>
+    <button class="tab-btn" data-target="tab-training">
+      <span class="material-symbols-outlined">menu_book</span>양육 및 아카데미
+    </button>
+    <button class="tab-btn" data-target="tab-transit">
+      <span class="material-symbols-outlined">directions_bus</span>오시는 길 & 셔틀버스
+    </button>
+  </div>
+
+  <!-- 1. 장년 예배 탭 -->
+  <div class="schedule-group active" id="tab-adult">
+    <!-- 주일 예배 -->
+    <div class="schedule-card-wrapper">
+      <div class="card-header">
+        <span class="badge badge-primary">큰나무 비전학교</span>
+        <h3>주일예배 안내</h3>
+      </div>
+      <div class="table-responsive">
+        <table class="schedule-table">
+          <thead>
+            <tr>
+              <th>예배구분</th>
+              <th>예배시간</th>
+              <th>예배장소</th>
+              <th>특이사항 / 대상</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-label="구분"><strong>1부 경건의 예배</strong></td>
+              <td data-label="시간">오전 07:45</td>
+              <td data-label="장소">벧엘성전</td>
+              <td data-label="비고">-</td>
+            </tr>
+            <tr>
+              <td data-label="구분"><strong>2부 은혜의 예배</strong></td>
+              <td data-label="시간">오전 09:15</td>
+              <td data-label="장소">벧엘성전</td>
+              <td data-label="비고">-</td>
+            </tr>
+            <tr>
+              <td data-label="구분"><strong>3부 감동의 예배</strong></td>
+              <td data-label="시간">오전 10:45</td>
+              <td data-label="장소">벧엘성전</td>
+              <td data-label="비고"><span class="tag">수어 통역</span></td>
+            </tr>
+            <tr>
+              <td data-label="구분"><strong>4부 열정의 예배</strong></td>
+              <td data-label="시간">낮 12:15</td>
+              <td data-label="장소">벧엘성전</td>
+              <td data-label="비고"><span class="tag">영어 통역</span></td>
+            </tr>
+            <tr>
+              <td data-label="구분"><strong>5부 젊은이 예배</strong></td>
+              <td data-label="시간">오후 02:00</td>
+              <td data-label="장소">프라미스홀</td>
+              <td data-label="비고">청년교구</td>
+            </tr>
+            <tr>
+              <td data-label="구분"><strong>6부 직장인 예배</strong></td>
+              <td data-label="시간">오후 07:00</td>
+              <td data-label="장소">프라미스홀</td>
+              <td data-label="비고">-</td>
+            </tr>
+            <tr>
+              <td data-label="구분"><strong>E.M Service</strong></td>
+              <td data-label="시간">오후 03:30</td>
+              <td data-label="장소">프라미스홀</td>
+              <td data-label="비고">장년영어예배</td>
+            </tr>
+            <tr>
+              <td data-label="구분"><strong>메타하남 (온라인)</strong></td>
+              <td data-label="시간">1부 10:45 / 2부 12:15</td>
+              <td data-label="장소">meta.hanam.or.kr</td>
+              <td data-label="비고">메타버스 가상예배</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 주중 예배 -->
+    <div class="schedule-card-wrapper">
+      <div class="card-header">
+        <span class="badge badge-secondary">기도회 및 주중 집회</span>
+        <h3>주중예배 안내</h3>
+      </div>
+      <div class="table-responsive">
+        <table class="schedule-table">
+          <thead>
+            <tr>
+              <th>구분</th>
+              <th>시간</th>
+              <th>장소</th>
+              <th>비고</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-label="구분"><strong>새벽기도회 (월~금)</strong></td>
+              <td data-label="시간">오전 05:00</td>
+              <td data-label="장소">벧엘성전</td>
+              <td data-label="비고">매일 아침 은혜 나눔</td>
+            </tr>
+            <tr>
+              <td data-label="구분"><strong>수요여성예배 WOW</strong></td>
+              <td data-label="시간">수요일 오전 10:30</td>
+              <td data-label="장소">프라미스홀</td>
+              <td data-label="비고">학기제 운영 (4~6월 / 9~11월)</td>
+            </tr>
+            <tr>
+              <td data-label="구분"><strong>금요성령집회 (One Thing Night)</strong></td>
+              <td data-label="시간">금요일 저녁 09:00</td>
+              <td data-label="장소">벧엘성전</td>
+              <td data-label="비고">찬양과 뜨거운 기도</td>
+            </tr>
+            <tr>
+              <td data-label="구분"><strong>목장 모임</strong></td>
+              <td data-label="시간">월~토 상시</td>
+              <td data-label="장소">각 가정 및 지정장소</td>
+              <td data-label="비고">교구별 목장 모임</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. 차세대 비전학교(교육부) 탭 -->
+  <div class="schedule-group" id="tab-nextgen">
+    <div class="grid-cards">
+      <div class="info-card">
+        <div class="card-top">
+          <span class="badge badge-accent">영아부</span>
+          <span class="card-target">~3세</span>
+        </div>
+        <p class="card-time">1부 09:15 / 2부 10:45 / 3부 12:15</p>
+        <p class="card-loc"><span class="material-symbols-outlined" style="font-size:14px; vertical-align:middle;">location_on</span> 써니힐 1층 영아부실</p>
+      </div>
+
+      <div class="info-card">
+        <div class="card-top">
+          <span class="badge badge-accent">유아부</span>
+          <span class="card-target">4~5세</span>
+        </div>
+        <p class="card-time">1부 09:15 / 2부 10:45 / 3부 12:15</p>
+        <p class="card-loc"><span class="material-symbols-outlined" style="font-size:14px; vertical-align:middle;">location_on</span> 써니힐 2층 유아부실</p>
+      </div>
+
+      <div class="info-card">
+        <div class="card-top">
+          <span class="badge badge-accent">유치부</span>
+          <span class="card-target">6~7세</span>
+        </div>
+        <p class="card-time">1부 09:15 / 2부 10:45 / 3부 12:15</p>
+        <p class="card-loc"><span class="material-symbols-outlined" style="font-size:14px; vertical-align:middle;">location_on</span> 본관 유치부실</p>
+      </div>
+
+      <div class="info-card">
+        <div class="card-top">
+          <span class="badge badge-accent">유년부</span>
+          <span class="card-target">초등 1~2학년</span>
+        </div>
+        <p class="card-time">1부 09:15 / 2부 10:45 / 3부 12:15</p>
+        <p class="card-loc"><span class="material-symbols-outlined" style="font-size:14px; vertical-align:middle;">location_on</span> 본관 유년부실</p>
+      </div>
+
+      <div class="info-card">
+        <div class="card-top">
+          <span class="badge badge-accent">초등부</span>
+          <span class="card-target">초등 3~4학년</span>
+        </div>
+        <p class="card-time">1부 09:15 / 2부 10:45 / 3부 12:15</p>
+        <p class="card-loc"><span class="material-symbols-outlined" style="font-size:14px; vertical-align:middle;">location_on</span> 본관 초등부실</p>
+      </div>
+
+      <div class="info-card">
+        <div class="card-top">
+          <span class="badge badge-accent">소년부</span>
+          <span class="card-target">초등 5~6학년</span>
+        </div>
+        <p class="card-time">1부 09:15 / 2부 10:45 / 3부 12:15</p>
+        <p class="card-loc"><span class="material-symbols-outlined" style="font-size:14px; vertical-align:middle;">location_on</span> 본관 소년부실</p>
+      </div>
+
+      <div class="info-card">
+        <div class="card-top">
+          <span class="badge badge-accent">중등부</span>
+          <span class="card-target">중등 1~3학년</span>
+        </div>
+        <p class="card-time">1부 10:45 / 2부 12:15</p>
+        <p class="card-loc"><span class="material-symbols-outlined" style="font-size:14px; vertical-align:middle;">location_on</span> 써니힐 3층 / 프라미스홀</p>
+      </div>
+
+      <div class="info-card">
+        <div class="card-top">
+          <span class="badge badge-accent">고등부</span>
+          <span class="card-target">고등 1~3학년</span>
+        </div>
+        <p class="card-time">주일 오전 10:45</p>
+        <p class="card-loc"><span class="material-symbols-outlined" style="font-size:14px; vertical-align:middle;">location_on</span> 프라미스홀</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. 양육 및 아카데미 탭 -->
+  <div class="schedule-group" id="tab-training">
+    <div class="training-grid">
+      <div class="training-card">
+        <h4>새가족 교육 <span class="badge badge-warning">필수과정</span></h4>
+        <p class="t-time">매주일 오전 10:30 / 오후 01:30 (5주 과정)</p>
+        <p class="t-place">1팀: 4층 새가족실 / 2팀: 3층 / 3팀: 2층</p>
+      </div>
+      <div class="training-card">
+        <h4>목자학교</h4>
+        <p class="t-time">3~4월, 9~10월 매주일 오후 04:00</p>
+        <p class="t-place">프라미스홀 (목자 및 예비목자)</p>
+      </div>
+      <div class="training-card">
+        <h4>중보기도 아카데미</h4>
+        <p class="t-time">3~4월, 9~10월 매주 금요일 오전 10:30</p>
+        <p class="t-place">프라미스홀</p>
+      </div>
+      <div class="training-card">
+        <h4>상담 아카데미</h4>
+        <p class="t-time">화요일 저녁 07:00 (학기제 운영)</p>
+        <p class="t-place">프라미스홀 (성도 및 목회자 대상)</p>
+      </div>
+      <div class="training-card">
+        <h4>실버대학</h4>
+        <p class="t-time">목요일 오전 10:00 (학기제 운영)</p>
+        <p class="t-place">1층 프라미스홀 (만 65세~80세 지역 어르신)</p>
+      </div>
+      <div class="training-card">
+        <h4>써니힐 국제학교</h4>
+        <p class="t-time">월~금 08:40 ~ 16:00 (초·중·고)</p>
+        <p class="t-place">글로벌 드림센터 (문의: 031-795-2226)</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. 오시는 길 & 셔틀버스 탭 -->
+  <div class="schedule-group" id="tab-transit">
+    <div class="schedule-card-wrapper">
+      <div class="card-header">
+        <span class="badge badge-primary">위치 및 셔틀 안내</span>
+        <h3>하남교회 오시는 길</h3>
+      </div>
+      
+      <div class="transit-block">
+        <h4><span class="material-symbols-outlined">pin_drop</span> 교회 주소 및 대표 연락처</h4>
+        <p><strong>도로명 주소:</strong> 경기도 하남시 덕풍동로 45 (우편번호 12936)</p>
+        <p><strong>지번 주소:</strong> 경기도 하남시 덕풍3동 827번지</p>
+        <p><strong>대표전화:</strong> 031-792-5004 | <strong>FAX:</strong> 031-794-7566</p>
+        
+        <div class="map-btn-group">
+          <a href="https://map.naver.com/p/search/%ED%95%98%EB%82%A8%EA%B5%90%ED%9A%8C/place/12301789?c=15.00,0,0,2,dh&placePath=%2Fhome%3Fbk_query%3D%ED%95%98%EB%82%A8%EA%B5%90%ED%9A%8C%26entry%3Dbmp%26from%3Dmap%26fromPanelNum%3D2%26timestamp%3D202608281514%26locale%3Dko%26svcName%3Dmap_pcv5%26searchText%3D%ED%95%98%EB%82%A8%EA%B5%90%ED%9A%8C" target="_blank" class="map-btn map-btn-naver">
+            네이버 지도로 보기
+          </a>
+          <a href="https://map.kakao.com/link/search/%ED%95%98%EB%82%A8%EA%B5%90%ED%9A%8C" target="_blank" class="map-btn map-btn-kakao">
+            카카오맵으로 보기
+          </a>
+        </div>
+      </div>
+
+      <hr style="border:0; border-top:1px solid #f1f5f9; margin: 24px 0;">
+
+      <div class="transit-block">
+        <h4><span class="material-symbols-outlined">airport_shuttle</span> 주일 셔틀버스 노선 요약</h4>
+        <p>성도님들의 편리한 예배 참석을 위해 주일 주요 거점별 셔틀버스를 운행하고 있습니다.</p>
+        <div style="margin-top: 12px; background: #f8fafc; padding: 16px; border-radius: 8px; border: 1px solid #e2e8f0;">
+          <ul style="padding-left: 20px; font-size: 14px; color: #475569;">
+            <li style="margin-bottom: 6px;"><strong>1호차 (미사강변 방면):</strong> 미사역 → 풍산동 주민센터 → 하남교회</li>
+            <li style="margin-bottom: 6px;"><strong>2호차 (신장/창우 방면):</strong> 하남시청역 → 신장초교 → 부영아파트 → 하남교회</li>
+            <li><strong>3호차 (위례/감일 방면):</strong> 감일복합커뮤니티센터 → 감일스윗시티 → 하남교회</li>
+          </ul>
+          <p style="font-size: 12px; color: #94a3b8; margin-top: 10px;">※ 세부 탑승 시간 및 정류장 위치는 교회 행정실(031-792-5004) 및 주보를 참조하시기 바랍니다.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 탭 전환 스크립트 -->
+<script>
+  const tabButtons = document.querySelectorAll('.tab-btn');
+  const tabGroups = document.querySelectorAll('.schedule-group');
+
+  tabButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      tabButtons.forEach(btn => btn.classList.remove('active'));
+      tabGroups.forEach(group => group.classList.remove('active'));
+
+      button.classList.add('active');
+      const targetId = button.getAttribute('data-target');
+      const targetGroup = document.getElementById(targetId);
+      if (targetGroup) {
+        targetGroup.classList.add('active');
+      }
+    });
+  });
+</script>
+
+</body>
+</html>

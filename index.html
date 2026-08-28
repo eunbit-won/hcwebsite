@@ -69,9 +69,9 @@
     <!-- Main Navigation Bar -->
     <div class="max-w-7xl mx-auto px-4 sm:px-8 h-20 flex items-center justify-between">
 
-      <!-- Brand Logo (Vimeo CDN + no-referrer 적용) -->
+      <!-- Brand Logo (로컬 파일 ./logo.png 연결) -->
       <a href="#" class="flex items-center flex-shrink-0" onclick="window.scrollTo({top:0, behavior:'smooth'}); return false;">
-        <img src="https://i.vimeocdn.com/portrait/43998264_640x640" referrerpolicy="no-referrer" alt="하남교회 로고" class="h-10 w-auto object-contain rounded-lg shadow-sm">
+        <img src="./logo.png" alt="하남교회 로고" class="h-10 w-auto object-contain rounded-lg shadow-sm">
       </a>
 
       <!-- 5 Main 1Depth Menu Items -->
@@ -469,7 +469,7 @@
   </main>
 
   <!-- ================================================================= -->
-  <!-- 3. UNIFIED COMMON FOOTER (상단 다단 링크 영역 제거 완료) -->
+  <!-- 3. UNIFIED COMMON FOOTER -->
   <!-- ================================================================= -->
   <footer class="bg-[#0B2038] text-slate-300 pt-8 pb-10 mt-auto">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -557,7 +557,7 @@
       <!-- Sitemap Header -->
       <div class="flex items-center justify-between border-b border-slate-700 pb-8">
         <div class="flex items-center space-x-3 cursor-pointer" onclick="closeSitemap()">
-          <img src="https://i.vimeocdn.com/portrait/43998264_640x640" referrerpolicy="no-referrer" alt="하남교회 로고" class="h-9 w-auto object-contain rounded bg-white p-1">
+          <img src="./logo.png" alt="하남교회 로고" class="h-9 w-auto object-contain rounded bg-white p-1">
           <div>
             <span class="text-2xl font-bold tracking-tight block">하남교회 전체 사이트맵</span>
             <span class="text-xs tracking-wider text-slate-400 uppercase block">HANAM PRESBYTERIAN CHURCH</span>
@@ -928,7 +928,7 @@
       setTimeout(() => modal.classList.add('hidden'), 200);
     }
 
-    // Family Site Controller
+    // Family Site Controller (새 창 열기 및 셀렉트박스 리셋)
     function handleFamilySite(selectElement) {
       const url = selectElement.value;
       if (url) {

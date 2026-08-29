@@ -386,7 +386,7 @@
           <article class="story-image bg-cover bg-center rounded-3xl min-h-[460px] text-white p-8 sm:p-12 flex flex-col justify-end shadow-md">
             <p class="section-label text-white/60 mb-3">PEOPLE OF HANAM</p>
             <h2 class="text-4xl font-extrabold tracking-[-.05em]">하남교회에서<br><span class="font-bold">만난 사람들</span></h2>
-            <p class="text-sm text-white/85 leading-7 mt-7 break-keep max-w-md">“아이 때문에 교회에 오게 됐어요.<br>지금은 온 가족이 함께 신앙으로 자라고 있습니다.”</p>
+            <p class="text-sm text-white/85 leading-7 mt-7 break-keep max-w-md">"아이 때문에 교회에 오게 됐어요.<br>지금은 온 가족이 함께 신앙으로 자라고 있습니다."</p>
             <a href="#" class="mt-7 inline-flex w-fit px-5 py-2.5 border border-white/50 rounded-full text-xs font-bold hover:bg-white/20 transition">성도들의 이야기 보기 →</a>
           </article>
 
@@ -472,6 +472,9 @@
             <a href="https://www.youtube.com/watch?v=k3Z-fbSKzIk&list=PLkmh73bvmyFBtNMcwUbIlmlP1BG4D2qnT&index=4" target="_blank" rel="noopener noreferrer" class="px-8 py-3.5 bg-[#88BE1E] hover:bg-[#78aa19] text-white font-bold rounded-xl shadow-lg transition inline-flex items-center gap-2 mx-auto">
               <span class="material-symbols-outlined text-20">play_circle</span> 영상보기
             </a>
+            <div class="mt-5">
+              <a href="./sermons.html" class="text-xs font-bold text-white/70 hover:text-white underline underline-offset-4">지난 설교 전체보기 →</a>
+            </div>
           </div>
         </div>
       </div>
@@ -631,9 +634,9 @@
       church: {
         title: '교회안내', color: '#0072CE',
         sections: [
-          ['환영 및 등록', [['새가족안내', 'http://www.hanam.or.kr/about-hanam/new-family/'], ['교육소개', '#'], ['온라인등록', '#']]],
+          ['환영 및 등록', [['새가족안내', 'http://www.hanam.or.kr/about-hanam/new-family/'], ['교육소개', '#'], ['온라인등록', './registration.html']]],
           ['예배안내', [['예배안내/시간', './worship-guide.html'], ['예배생중계', 'https://www.youtube.com/@Hanam_online_church/featured']]],
-          ['하남교회 소개', [['담임목사님 인사말', '#'], ['목회서신', '#'], ['교회를 섬기는 이들', '#'], ['하남교회 발자취', '#'], ['교회 둘러보기', '#']]],
+          ['하남교회 소개', [['담임목사님 인사말', './greeting.html'], ['목회서신', '#'], ['교회를 섬기는 이들', '#'], ['하남교회 발자취', '#'], ['교회 둘러보기', '#']]],
           ['신앙/상담 지원', [['추천도서', '#'], ['신앙상담실', '#']]],
           ['오시는 길', [['지도/위치', './worship-guide.html'], ['셔틀버스 안내', './worship-guide.html']]]
         ]
@@ -641,7 +644,7 @@
       worship: {
         title: '말씀 · 찬양', color: '#88BE1E',
         sections: [
-          ['설교', [['주일설교', '#b-sermon'], ['3분터치', '#'], ['간증영상', '#'], ['설교패키지', '#']]],
+          ['설교', [['주일설교', './sermons.html'], ['3분터치', '#'], ['간증영상', '#'], ['설교패키지', '#']]],
           ['찬양', [['찬양대', '#'], ['주일찬양', '#'], ['OTN찬양', '#']]]
         ]
       },
@@ -650,13 +653,13 @@
         sections: [
           ['교구', [['장년교구', '#'], ['청년교구', '#']]],
           ['양육', [['일대일제자 양육', '#'], ['상담아카데미', '#'], ['실버대학', '#']]],
-          ['훈련 (HDTS)', [['목자학교', '#'], ['중보기도학교', '#'], ['큐티학교', '#'], ['행복전도', '#']]]
+          ['훈련 (HDTS)', [['목자학교', './shepherd-school.html'], ['중보기도학교', '#'], ['큐티학교', '#'], ['행복전도', '#']]]
         ]
       },
       nextgen: {
         title: '다음세대', color: '#0072CE',
         sections: [
-          ['미취학부', [['영아부', '#'], ['유아부', '#'], ['유치부', '#']]],
+          ['미취학부', [['영아부', './infant-dept.html'], ['유아부', '#'], ['유치부', '#']]],
           ['취학부', [['유년부', '#'], ['초등부', '#'], ['소년부', '#']]],
           ['청소년부', [['중등부', '#'], ['고등부', '#']]],
           ['교회학교 프로그램', [['캠핑치치', '#'], ['오르가가정예배지', '#']]]
@@ -665,7 +668,7 @@
       news: {
         title: '소통 · 소식', color: '#88BE1E',
         sections: [
-          ['교회소식', [['교회주보', '#'], ['아름다운신문', '#'], ['자료실', '#']]],
+          ['교회소식', [['교회주보', './bulletin.html'], ['아름다운신문', '#'], ['자료실', '#']]],
           ['나눔과 묵상', [['감사노트', '#'], ['큐티노트', '#']]]
         ]
       }
@@ -772,9 +775,9 @@
       const indexList = [
         { label: '예배시간 및 안내', href: './worship-guide.html', desc: '교회안내 > 예배안내' },
         { label: '새가족안내 및 등록', href: 'http://www.hanam.or.kr/about-hanam/new-family/', desc: '교회안내 > 환영 및 등록' },
-        { label: '주일설교 영상', href: '#b-sermon', desc: '말씀·찬양 > 설교' },
+        { label: '주일설교 영상', href: './sermons.html', desc: '말씀·찬양 > 설교' },
         { label: '오시는 길 (위치/셔틀)', href: './worship-guide.html', desc: '교회안내 > 오시는 길' },
-        { label: '이번 주 교회 주보', href: '#news', desc: '소통·소식 > 교회소식' }
+        { label: '이번 주 교회 주보', href: './bulletin.html', desc: '소통·소식 > 교회소식' }
       ];
 
       const filtered = indexList.filter(i => i.label.toLowerCase().includes(q) || i.desc.toLowerCase().includes(q));
